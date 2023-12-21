@@ -7,6 +7,7 @@ const Login = () => {
   const handleNext = () => {
     setStage(stage + 1);
   };
+
   return (
     <div className="login-page">
       <h1 className="logo">logo</h1>
