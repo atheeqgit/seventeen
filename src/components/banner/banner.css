@@ -1,0 +1,17 @@
+.home .home-banner {
+  display: flex;
+  overflow: auto;
+  width: max-content;
+  gap: 1rem;
+}
+.home .home-banner .banner {
+  width: 85vw;
+  height: 20rem;
+  border-radius: 1rem;
+  background: linear-gradient(to bottom, #0cefff, #c6e3f0 75%);
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}

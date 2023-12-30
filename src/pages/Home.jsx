@@ -7,15 +7,13 @@ import {
   valueAddedServicesData,
   seventeenGuaranteeData,
 } from "../utils/data";
+import Banner from "../components/banner/Banner";
+import SpareParts from "../components/spareParts/SpareParts";
 
 const Home = () => {
   return (
     <div className="home">
-      <div className="home-banner">
-        <div className="banner">banner IMG</div>
-        <div className="banner">banner IMG</div>
-        <div className="banner">banner IMG</div>
-      </div>
+      <Banner />
       <Featured title="sheduled Services" data={sheduledServicesData} />
       <Featured title="mechanical Services" data={mechanicalRepairsData} />
       <div className="ad-div">
@@ -26,7 +24,12 @@ const Home = () => {
         <div className="ad-box">ad!</div>
         <div className="ad-box">ad!</div>
       </div>
-      <Featured title="seventee guarentee" data={seventeenGuaranteeData} />
+      <SpareParts />
+      <div className="ad-div">
+        <div className="ad-box">ad!</div>
+      </div>
+      <Featured title="seventeen guarentee" data={seventeenGuaranteeData} />
+      <div className="banner-bottom">bottom banner!</div>
     </div>
   );
 };

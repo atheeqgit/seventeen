@@ -2,20 +2,22 @@
   display: flex;
   flex-direction: column;
   padding: 1.5rem 1rem;
+  padding-bottom: 0.5rem;
   gap: 1rem;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: rgb(230, 230, 230);
+  background-color: rgb(255, 255, 255);
 }
 .top-nav .top-nav-top {
   align-items: center;
+  justify-content: center;
   display: flex;
   gap: 2rem;
 }
 .top-nav .top-nav-top .img-div {
-  width: 5rem;
+  width: 15%;
   justify-content: center;
   height: 6rem;
   display: flex;
@@ -24,31 +26,40 @@
   align-items: center;
 }
 .top-nav .top-nav-top .img-div img {
-  width: 100%;
+  width: 80%;
 }
 
 .top-nav .top-nav-top .img-div span {
   padding: 0.2rem 0.7rem;
-  background-color: rgb(11, 184, 252);
-  border-radius: 5rem;
-  width: fit-content;
+  background-color: var(--primary-blue);
+  border-radius: 0.5rem;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-weight: 500;
+  width: 100%;
   font-size: 1.2rem;
 }
 .top-nav .top-nav-top .details {
+  width: 80%;
   display: flex;
   flex-direction: column;
 }
 .top-nav .top-nav-top .details h1 {
-  font-size: 2.4rem;
+  /* background: var(--primary-blue); */
+
+  color: var(--primary-blue);
+  font-size: 2.2rem;
   line-height: 2.5rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
-  color: rgb(46, 46, 46);
+}
+.top-nav .top-nav-top .details h1 i {
+  font-size: 2rem;
 }
 .top-nav .top-nav-top .details p {
-  color: rgb(46, 46, 46);
+  color: rgb(63, 62, 62);
   line-height: 2rem;
   font-size: 1.6rem;
   font-weight: 500;
@@ -60,19 +71,19 @@
 }
 .top-nav .top-nav-bottom {
   display: flex;
-  margin: 1rem;
+  margin: 1rem 0;
   align-items: center;
   padding: 0 2rem;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(233, 233, 233);
   border-radius: 5rem;
 }
 .top-nav .top-nav-bottom i {
-  color: rgb(0, 102, 255);
+  color: var(--primary-blue);
 }
 .top-nav .top-nav-bottom input {
   flex: 1;
-  height: 4rem;
   background-color: transparent;
+  height: 4rem;
   border: none;
   outline: none;
   font-family: inherit;
@@ -108,16 +119,15 @@
 }
 
 .bottom-nav .link-active {
-  background-color: rgb(0, 162, 255);
-  color: rgb(226, 226, 226);
+  color: var(--primary-blue);
 }
 .bottom-nav a:hover {
   border: 1px solid #646464;
   background-color: #ccc;
 }
 .bottom-nav .link-active:hover {
-  background-color: rgb(0, 162, 255);
-  color: rgb(226, 226, 226);
+  background-color: rgb(255, 255, 255);
+  color: var(--primary-blue);
 }
 
 .bottom-nav a p {

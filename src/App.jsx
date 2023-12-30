@@ -10,6 +10,8 @@ import BottomNav from "./components/BottomNav";
 import Wallet from "./pages/Wallet";
 import Cart from "./pages/Cart";
 import Profile from "./pages/profile";
+import Details from "./pages/details/Details";
+import MoreDetails from "./pages/moredetails/MoreDetails";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -24,6 +26,8 @@ function App() {
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/details/:id" element={<Details />} />
+          <Route path="/moreDetails/:id/:price" element={<MoreDetails />} />
         </Routes>
         <BottomNav />
       </Router>
