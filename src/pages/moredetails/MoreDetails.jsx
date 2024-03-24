@@ -58,8 +58,13 @@ const MoreDetails = () => {
         <div className="addtionals">Essentials services</div>
         <div className="addtionals">additionals services</div>
         <div className="addtionals">Frequently asked</div>
-        <div className="add-to-cart-btn">
-          <span>{priced.price}/-</span> <span>add to cart</span>
+        <div
+          className="add-to-cart-btn"
+          onClick={() => {
+            navigate("/confirm");
+          }}
+        >
+          <span>{priced.price}/-</span> <span>proceed Check out</span>
         </div>
       </div>
     </div>
