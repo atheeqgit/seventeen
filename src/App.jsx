@@ -8,10 +8,10 @@ import Home from "./pages/Home";
 import TopNav from "./components/topNav";
 import BottomNav from "./components/BottomNav";
 import Wallet from "./pages/Wallet";
-import Cart from "./pages/Cart";
 import Profile from "./pages/profile";
 import Details from "./pages/details/Details";
 import MoreDetails from "./pages/moredetails/MoreDetails";
+import Cart from "./pages/cart/Cart";
 
 function App() {
   const [count, setCount] = useState(0);

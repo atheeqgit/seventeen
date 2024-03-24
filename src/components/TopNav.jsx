@@ -9,7 +9,7 @@ const TopNav = () => {
           <img src="/r15.png" alt="" />
           <span>R15</span>
         </div>
-        <div className="details">
+        <div className="details-tnav">
           <h1>
             <i class="fa-solid fa-location-dot"></i> Old washermenpet
           </h1>

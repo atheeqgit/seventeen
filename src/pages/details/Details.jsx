@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+
 import "./details.css";
 import { details } from "../../utils/data";
 import { useParams } from "react-router-dom";
@@ -6,6 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 const Details = () => {
   const params = useParams();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // This makes the scrolling smooth
+    });
+  }, []);
 
   const navigate = useNavigate();
   const selectedId = +params.id;
@@ -37,6 +45,7 @@ const Details = () => {
                   handleNavigate(item.price);
                 }}
               >
+                {item.Title && <p>${item.Title}</p>}
                 <p>${item.price}</p>
                 <div>
                   <ul>

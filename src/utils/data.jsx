@@ -2,12 +2,12 @@ export const sheduledServicesData = [
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "full service",
-    id: 11,
+    id: 13,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "custom service",
-    id: 12,
+    id: 13,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
@@ -17,42 +17,50 @@ export const sheduledServicesData = [
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "tyers and wheels",
-    id: 14,
+    id: 13,
   },
 ];
 
 export const mechanicalRepairsData = [
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "engin",
+    title: "engine",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "gears",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "accelator & clucth",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "insurence claim",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "smoking issue",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "clutch issue",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "breakes",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "lights",
+    id: 21,
   },
 ];
 
@@ -60,18 +68,22 @@ export const valueAddedServicesData = [
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "stickering",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "detailing",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "custamizations",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "inspections",
+    id: 21,
   },
 ];
 
@@ -79,18 +91,22 @@ export const seventeenGuaranteeData = [
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "affrdable",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "free pickup and drop",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "30 days warrenty",
+    id: 21,
   },
   {
     icon: <i class="fa-solid fa-circle-question"></i>,
     title: "genuine inspections",
+    id: 21,
   },
 ];
 
@@ -165,180 +181,80 @@ export const details = [
       },
     ],
   },
-  {
-    id: 14,
-    data: [
-      {
-        price: 199,
-        img: "/no-img.png",
-        points: ["full vehicle wash"],
-      },
-      {
-        price: 299,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish"],
-      },
-      {
-        price: 399,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish", "full vehicle wash"],
-      },
-      {
-        price: 499,
-        img: "/no-img.png",
-        points: [
-          "full vehicle wash",
-          "full body polish",
-          "full vehicle wash",
-          "full vehicle wash",
-        ],
-      },
-    ],
-  },
-  {
-    id: 11,
-    data: [
-      {
-        price: 199,
-        img: "/no-img.png",
-        points: ["full vehicle 11 wash"],
-      },
-      {
-        price: 299,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish"],
-      },
-      {
-        price: 399,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish", "full vehicle wash"],
-      },
-      {
-        price: 499,
-        img: "/no-img.png",
-        points: [
-          "full vehicle wash",
-          "full body polish",
-          "full vehicle wash",
-          "full vehicle wash",
-        ],
-      },
-    ],
-  },
-  {
-    id: 12,
-    data: [
-      {
-        price: 199,
-        img: "/no-img.png",
-        points: ["full vehicle 12 wash"],
-      },
-      {
-        price: 299,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish"],
-      },
-      {
-        price: 399,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish", "full vehicle wash"],
-      },
-      {
-        price: 499,
-        img: "/no-img.png",
-        points: [
-          "full vehicle wash",
-          "full body polish",
-          "full vehicle wash",
-          "full vehicle wash",
-        ],
-      },
-    ],
-  },
-];
 
-export const otherDetails = [
   {
-    id: 14,
+    id: 21,
+    title: "engine",
     data: [
       {
         price: 199,
-        img: "/no-img.png",
-        points: ["full vehicle wash"],
-      },
-      {
-        price: 299,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish"],
-      },
-      {
-        price: 399,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish", "full vehicle wash"],
-      },
-      {
-        price: 499,
+        title: "Plug Issue",
         img: "/no-img.png",
         points: [
-          "full vehicle wash",
-          "full body polish",
-          "full vehicle wash",
-          "full vehicle wash",
+          "Plug Changing or Plug Cleaning",
+          "Plug Changing or Plug Cleaning",
+          "Spare Parts Doesn’t Include",
+          "Takes 30 minutes",
+          "1 Month Warranty",
+          "Free Pick-Up and Drop",
         ],
-      },
-    ],
-  },
-  {
-    id: 11,
-    data: [
-      {
-        price: 199,
-        img: "/no-img.png",
-        points: ["full vehicle 11 wash"],
+        thumbnail: "/no-img.png",
+        banners: ["/no-img.png", "/no-img.png", "/no-img.png"],
+        howItWorks: [
+          "A Dedicated Mechanic will be assigned to you",
+          "Additional services will get notified to you and authorized by you",
+          "A Dedicated Mechanic will be assigned to you",
+          "Mecanic will deliver the vehicle at door step ",
+        ],
       },
       {
         price: 299,
         img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish"],
-      },
-      {
-        price: 399,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish", "full vehicle wash"],
-      },
-      {
-        price: 499,
-        img: "/no-img.png",
+        thumbnail: "/no-img.png",
+        banners: ["/no-img.png", "/no-img.png", "/no-img.png"],
+        howItWorks: [
+          "Fixing Basic Wire Cuts (Only in 2 places)",
+          "Price May vary, Based on the work",
+          "Spare Parts Doesn’t Include",
+          "Takes 1-hour",
+          "1 Month Warranty",
+          "Free Pick-Up and Drop",
+        ],
         points: [
-          "full vehicle wash",
-          "full body polish",
-          "full vehicle wash",
-          "full vehicle wash",
+          "Fixing Basic Wire Cuts (Only in 2 places)",
+          "Price May vary, Based on the work",
+          "Spare Parts Doesn’t Include",
         ],
-      },
-    ],
-  },
-  {
-    id: 12,
-    data: [
-      {
-        price: 199,
-        img: "/no-img.png",
-        points: ["full vehicle 12 wash"],
-      },
-      {
-        price: 299,
-        img: "/no-img.png",
-        points: ["full vehicle wash", "full body polish"],
       },
       {
         price: 399,
         img: "/no-img.png",
+        thumbnail: "/no-img.png",
+        banners: ["/no-img.png", "/no-img.png", "/no-img.png"],
+        howItWorks: [
+          "A Dedicated 399 Mechanic will be assigned to you",
+          "Additional services will get notified to you and authorized by you",
+          "Mecanic will deliver the vehicle at door step ",
+          "A Dedicated Mechanic will be assigned to you",
+          "Additional services will get notified to you and authorized by you",
+          "Mecanic will deliver the vehicle at door step ",
+        ],
         points: ["full vehicle wash", "full body polish", "full vehicle wash"],
       },
       {
         price: 499,
         img: "/no-img.png",
+        thumbnail: "/no-img.png",
+        banners: ["/no-img.png", "/no-img.png", "/no-img.png"],
+        howItWorks: [
+          "A Dedicated Mechanic will be assigned to you",
+          "A Dedicated Mechanic will be assigned to you",
+          "Additional services will get notified to you and authorized by you",
+          "A Dedicated Mechanic will be assigned to you",
+          "Additional services will get notified to you and authorized by you",
+          "Additional services will get notified to you and authorized by you",
+          "Mecanic will deliver the vehicle at door step ",
+        ],
         points: [
           "full vehicle wash",
           "full body polish",

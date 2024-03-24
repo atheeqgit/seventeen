@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./pages.css";
 import Featured from "../components/featured/Featured";
 import {

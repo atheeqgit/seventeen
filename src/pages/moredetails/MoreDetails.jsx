@@ -59,7 +59,7 @@ const MoreDetails = () => {
         <div className="addtionals">additionals services</div>
         <div className="addtionals">Frequently asked</div>
         <div className="add-to-cart-btn">
-          <span>$199/-</span> <span>add to cart</span>
+          <span>{priced.price}/-</span> <span>add to cart</span>
         </div>
       </div>
     </div>

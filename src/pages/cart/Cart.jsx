@@ -1,7 +1,8 @@
 import React from "react";
+import "./cart.css";
 
 const Cart = () => {
-  return <div className="home">Cart</div>;
+  return <div className="full-body">Cart</div>;
 };
 
 export default Cart;
