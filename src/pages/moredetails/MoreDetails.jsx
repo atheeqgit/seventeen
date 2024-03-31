@@ -61,7 +61,7 @@ const MoreDetails = () => {
         <div
           className="add-to-cart-btn"
           onClick={() => {
-            navigate("/confirm");
+            navigate("/booking");
           }}
         >
           <span>{priced.price}/-</span> <span>proceed Check out</span>

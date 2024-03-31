@@ -1,0 +1,115 @@
+.booking {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 2rem;
+}
+.booking .top-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 2px solid #ccc;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.booking .top-box h3 {
+  font-weight: 500;
+  font-size: 2.4rem;
+}
+.booking .top-box p {
+  font-weight: 500;
+  font-size: 1.6rem;
+  color: #333;
+}
+.booking span {
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--primary-blue);
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.booking .date-box {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.booking > h5 {
+  font-weight: 500;
+  text-align: center;
+}
+
+.booking h2 {
+  font-weight: 600;
+  font-size: 2.2rem;
+  text-align: center;
+}
+.booking .date-box > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+.booking .date-box > div span {
+  text-transform: capitalize;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.booking .time-box {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.booking .time-box > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.booking .bottom-box {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 2px solid #ccc;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.booking .bottom-box > div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.booking .bottom-box > div h5 {
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-align: center;
+}
+.booking .bottom-box > div p {
+  font-weight: 600;
+  color: #333;
+}
+
+.add-to-cart-btn {
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  font-size: 1.8rem;
+  height: fit-content;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  background-color: var(--primary-blue);
+  cursor: pointer;
+  margin-bottom: 3rem;
+}

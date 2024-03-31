@@ -13,25 +13,35 @@ import Details from "./pages/details/Details";
 import MoreDetails from "./pages/moredetails/MoreDetails";
 import Cart from "./pages/cart/Cart";
 import Confirm from "./pages/confirmPage/Confirm";
+import Booking from "./pages/booking/Booking";
+import { useGlobalContext } from "./context";
 
 function App() {
   const [count, setCount] = useState(0);
-
+  const { login } = useGlobalContext();
   return (
     <div className="app">
       <Router>
-        <TopNav />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/details/:id" element={<Details />} />
-          <Route path="/moreDetails/:id/:price" element={<MoreDetails />} />
-          <Route path="/confirm" element={<Confirm />} />
-        </Routes>
-        <BottomNav />
+        {login ? (
+          <Routes>
+            <Route path="/" element={<Login />} />
+          </Routes>
+        ) : (
+          <>
+            <TopNav />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/details/:id" element={<Details />} />
+              <Route path="/moreDetails/:id/:price" element={<MoreDetails />} />
+              <Route path="/confirm" element={<Confirm />} />
+              <Route path="/booking" element={<Booking />} />
+            </Routes>
+            <BottomNav />
+          </>
+        )}
       </Router>
     </div>
   );

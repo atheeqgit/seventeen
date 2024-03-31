@@ -9,13 +9,26 @@ import {
 } from "../utils/data";
 import Banner from "../components/banner/Banner";
 import SpareParts from "../components/spareParts/SpareParts";
+import { useGlobalContext } from "../context";
 
 const Home = () => {
+  const { services, AdditionalIssues, Issues } = useGlobalContext();
+
   return (
     <div className="home">
       <Banner />
-      <Featured title="sheduled Services" data={sheduledServicesData} />
-      <Featured title="mechanical Services" data={mechanicalRepairsData} />
+      <Featured
+        title="sheduled Services"
+        data={services ? services : sheduledServicesData}
+      />
+      <Featured
+        title="mechanical Services"
+        data={AdditionalIssues ? AdditionalIssues : mechanicalRepairsData}
+      />
+      <Featured
+        title="mechanical Services"
+        data={Issues ? Issues : mechanicalRepairsData}
+      />
       <div className="ad-div">
         <div className="ad-box">ad!</div>
       </div>
