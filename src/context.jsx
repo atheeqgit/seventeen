@@ -4,10 +4,10 @@ import axios from "axios";
 export const Context = createContext();
 
 export function GlobalProvider({ children }) {
-  const [login, setLogin] = useState(true);
-  const [services, setServices] = useState([]);
-  const [AdditionalIssues, setAdditionalIssues] = useState([]);
-  const [Issues, setIssues] = useState([]);
+  const [login, setLogin] = useState(false);
+  const [services, setServices] = useState(null);
+  const [AdditionalIssues, setAdditionalIssues] = useState(null);
+  const [Issues, setIssues] = useState(null);
 
   useEffect(() => {
     fetchServices();

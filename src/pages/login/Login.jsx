@@ -36,19 +36,19 @@ const NumberForm = () => {
   const { setLogin } = useGlobalContext();
 
   const handleLogin = (body) => {
-    try {
-      const response = axios.post("localhost:8000/validateUser", {
-        mobile_no: number,
-      });
+    // try {
+    //   const response = axios.post("localhost:8000/validateUser", {
+    //     mobile_no: number,
+    //   });
 
-      console.log(response);
+    //   console.log(response);
 
-      if (response.statusCode == 200) {
-        setLogin(false);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    //   if (response.statusCode == 200) {
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    setLogin(false);
   };
 
   return (
@@ -90,18 +90,20 @@ const SignUpForm = () => {
   });
 
   const handleSignup = () => {
-    try {
-      const response = axios.post("localhost:8000/createUser", {
-        ...body,
-      });
+    setLogin(false);
 
-      console.log(response);
-      if (response.statusCode == 200) {
-        setLogin(false);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   const response = axios.post("localhost:8000/createUser", {
+    //     ...body,
+    //   });
+
+    //   console.log(response);
+    //   if (response.statusCode == 200) {
+    //     setLogin(false);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -142,7 +144,6 @@ const SignUpForm = () => {
         <button
           onClick={(e) => {
             e.preventDefault();
-
             handleSignup();
           }}
         >

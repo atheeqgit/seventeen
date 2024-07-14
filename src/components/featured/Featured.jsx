@@ -16,7 +16,7 @@ const Featured = (props) => {
         {data.map((item) => {
           return (
             <div
-              className="card"
+              className="card-m"
               onClick={() => {
                 navigate(`/details/${item.id}`);
               }}

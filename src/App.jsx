@@ -15,6 +15,8 @@ import Cart from "./pages/cart/Cart";
 import Confirm from "./pages/confirmPage/Confirm";
 import Booking from "./pages/booking/Booking";
 import { useGlobalContext } from "./context";
+import LandingPage from "./pages/landing/LandingPage";
+import Mybookings from "./pages/Mybookings/Mybookings";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,6 +27,7 @@ function App() {
         {login ? (
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/landing" element={<LandingPage />} />
           </Routes>
         ) : (
           <>
@@ -36,8 +39,10 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/details/:id" element={<Details />} />
               <Route path="/moreDetails/:id/:price" element={<MoreDetails />} />
-              <Route path="/confirm" element={<Confirm />} />
-              <Route path="/booking" element={<Booking />} />
+              {/* change this to nested routes */}
+              <Route path="/confirmBooking" element={<Booking />} />
+              <Route path="/confirmed" element={<Confirm />} />
+              <Route path="/Mybooking" element={<Mybookings />} />
             </Routes>
             <BottomNav />
           </>

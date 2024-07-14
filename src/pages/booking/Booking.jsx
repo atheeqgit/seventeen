@@ -81,7 +81,7 @@ const Booking = () => {
       <div
         className="add-to-cart-btn"
         onClick={() => {
-          navigate("/confirm");
+          navigate("/confirmed");
         }}
       >
         confirm booking
