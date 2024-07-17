@@ -5,7 +5,7 @@ import "./App.css";
 import Login from "./pages/login/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import TopNav from "./components/topNav";
+import TopNav from "./components/TopNav";
 import BottomNav from "./components/BottomNav";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/profile";
@@ -17,12 +17,15 @@ import Booking from "./pages/booking/Booking";
 import { useGlobalContext } from "./context";
 import LandingPage from "./pages/landing/LandingPage";
 import Mybookings from "./pages/Mybookings/Mybookings";
+import Orderdetails from "./pages/orderdetails/Orderdetails";
+import Trackorder from "./pages/trackorder/Trackorder";
+import Notfound from "./pages/notfound/Notfound";
 
 function App() {
   const [count, setCount] = useState(0);
   const { login } = useGlobalContext();
   return (
-    <div className="app">
+    <div className="app lg:pl-32">
       <Router>
         {login ? (
           <Routes>
@@ -43,6 +46,9 @@ function App() {
               <Route path="/confirmBooking" element={<Booking />} />
               <Route path="/confirmed" element={<Confirm />} />
               <Route path="/Mybooking" element={<Mybookings />} />
+              <Route path="/orderdetails/:id" element={<Orderdetails />} />
+              <Route path="/trackorder/:id" element={<Trackorder />} />
+              <Route path="*" element={<Notfound />} />
             </Routes>
             <BottomNav />
           </>

@@ -4,6 +4,7 @@ import "./details.css";
 import { details } from "../../utils/data";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import NavigateComp from "../../components/navigateComp/NavigateComp";
 
 const Details = () => {
   const params = useParams();
@@ -26,15 +27,7 @@ const Details = () => {
   return (
     <div className="full-body">
       <div className="details">
-        <h1 className="title-text">
-          <i
-            onClick={() => {
-              navigate(-1);
-            }}
-            class="fa-solid fa-chevron-left"
-          ></i>{" "}
-          provided services
-        </h1>
+        <NavigateComp title="provided services" />
 
         <div className="details-cards">
           {data.data.map((item, index) => {

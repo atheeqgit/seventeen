@@ -3,6 +3,7 @@ import "./moreDetails.css";
 import { details } from "../../utils/data";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import NavigateComp from "../../components/navigateComp/NavigateComp";
 
 const MoreDetails = () => {
   const params = useParams();
@@ -19,15 +20,7 @@ const MoreDetails = () => {
   return (
     <div className="full-body">
       <div className="more-details">
-        <h1 className="title-text">
-          <i
-            onClick={() => {
-              navigate(-1);
-            }}
-            class="fa-solid fa-chevron-left"
-          ></i>{" "}
-          about this service
-        </h1>
+        <NavigateComp title="more details" />
         <div className="md-top">
           <div className="md-top-content">
             <h2>

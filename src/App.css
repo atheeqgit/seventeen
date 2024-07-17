@@ -35,6 +35,22 @@
   border: 2px solid #979797;
   font-weight: 500;
 }
+.secondary-btn.my-text-xs {
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  height: fit-content;
+  color: #1e1e1e;
+  padding: 0.05rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #f4f5f6;
+  cursor: pointer;
+  border: 1px solid #979797;
+  font-weight: 500;
+  width: fit-content;
+}
 .primary-btn {
   font-weight: 500;
   display: flex;

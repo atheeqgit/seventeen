@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const BottomNav = () => {
   return (
-    <div className="bottom-nav">
+    <div className="bottom-nav flex flex-row lg:flex-col lg:h-full fixed bottom-0 left-0 z-[102] w-full lg:w-fit px-8 lg:px-4 py-4 justify-around bg-white border border-gray-400 rounded-2xl">
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
@@ -24,7 +24,7 @@ const BottomNav = () => {
         <p>wallet</p>
       </NavLink>
       <NavLink
-        to="/cart"
+        to="/mybooking"
         className={({ isActive, isPending }) =>
           isPending ? "nav-button" : isActive ? "nav-button link-active" : ""
         }

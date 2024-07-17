@@ -3,23 +3,27 @@ import "./component.css";
 
 const TopNav = () => {
   return (
-    <div className="top-nav">
-      <div className="top-nav-top">
-        <div className="img-div">
-          <img src="/r15.png" alt="" />
-          <span>R15</span>
+    <div className=" w-full bg-white fixed top-0 left-0 lg:pl-32  z-50 shadow-lg">
+      <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-6 pb-2 gap-4 md:pb-6 ">
+        <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-8">
+          <div className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center ">
+            <img src="/r15.png" className="w-20" alt="" />
+            <span className="px-3 py-1.5 bg-[#2459E0] rounded-md text-white flex justify-center items-center font-medium w-full  text-lg">
+              R15
+            </span>
+          </div>
+          <div className="details-tnav flex flex-col w-4/5">
+            <h1>
+              <i class="fa-solid fa-location-dot"></i> Old washermenpet
+            </h1>
+            <p>muthaiya mudalai street washermenpet , chennai</p>
+          </div>
         </div>
-        <div className="details-tnav">
-          <h1>
-            <i class="fa-solid fa-location-dot"></i> Old washermenpet
-          </h1>
-          <p>muthaiya mudalai street washermenpet , chennai</p>
+        <div className="top-nav-bottom md:col-span-6 flex my-4 items-center px-8 bg-gray-200 rounded-full">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search..." />
+          <i class="fa-solid fa-sliders"></i>
         </div>
-      </div>
-      <div className="top-nav-bottom">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" placeholder="Search..." />
-        <i class="fa-solid fa-sliders"></i>
       </div>
     </div>
   );
