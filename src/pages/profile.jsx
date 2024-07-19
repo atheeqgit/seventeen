@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
+import { motion } from "framer-motion";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -37,7 +38,12 @@ const Profile = () => {
   ];
 
   return (
-    <div className="full-body profile p-3 flex flex-col gap-3 ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 1 }}
+      className="full-body profile p-3 flex flex-col gap-3 "
+    >
       <NavigateComp title="profile" />
       <div className="container mx-auto p-3 flex flex-col gap-3">
         <div className="p-4 flex flex-col gap-4 bg-[#2459E0] rounded-lg text-white mb-4">
@@ -74,7 +80,7 @@ const Profile = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

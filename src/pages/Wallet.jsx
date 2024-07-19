@@ -1,12 +1,17 @@
 import React from "react";
 import "./pages.css";
-
 import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
+import { motion } from "framer-motion";
 
 const Wallet = () => {
   return (
-    <div className="full-body wallet p-3  ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 1 }}
+      className="full-body wallet p-3  "
+    >
       <NavigateComp title="wallets" />
       <div className="container mx-auto flex flex-col gap-6 md:grid grid-cols-12">
         <div className="p-6   md:col-span-6   lg:col-span-5 flex flex-col   gap-4 bg-[#2459E0] rounded-2xl text-white">
@@ -71,7 +76,7 @@ const Wallet = () => {
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

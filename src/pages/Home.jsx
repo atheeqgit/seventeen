@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { motion } from "framer-motion";
 import "./pages.css";
 import Featured from "../components/featured/Featured";
 import {
@@ -10,12 +11,19 @@ import {
 import Banner from "../components/banner/Banner";
 import SpareParts from "../components/spareParts/SpareParts";
 import { useGlobalContext } from "../context";
+import TopNav from "../components/TopNav";
 
 const Home = () => {
   const { services, AdditionalIssues, Issues } = useGlobalContext();
 
   return (
-    <div className="home bg-[#F4F5F6] ">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 1 }}
+      className="home bg-[#F4F5F6] "
+    >
+      <TopNav />
       <div className="container mx-auto ">
         <Banner />
         <Featured
@@ -45,7 +53,7 @@ const Home = () => {
         <Featured title="seventeen guarentee" data={seventeenGuaranteeData} />
         <div className="banner-bottom">bottom banner!</div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

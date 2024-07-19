@@ -1,12 +1,19 @@
 import React from "react";
 import NavigateComp from "../../components/navigateComp/NavigateComp";
 import { useNavigate } from "react-router-dom";
+
 import Mybutton from "../../components/mybutton/Mybutton";
+import { motion } from "framer-motion";
 
 const Mybookings = () => {
   const navigate = useNavigate();
   return (
-    <div className="full-body">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 1 }}
+      className="full-body"
+    >
       <NavigateComp title="my bookings" />
 
       <div className="container mt-3 flex m-auto flex-col gap-5 md:grid md:grid-cols-12 ">
@@ -170,7 +177,7 @@ const Mybookings = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
