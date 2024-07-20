@@ -4,7 +4,7 @@ const Notfound = () => {
   return (
     <div className="full-body flex justify-center items-center ">
       <h4 className="font-bold capitalize text-4xl md:text-6xl text-red-600 text-center">
-        page - Not found / in development
+        page - Not found (OR) <br /> under development
       </h4>
     </div>
   );

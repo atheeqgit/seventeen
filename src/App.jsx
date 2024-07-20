@@ -24,7 +24,7 @@ function App() {
   const [count, setCount] = useState(0);
   const { login } = useGlobalContext();
   return (
-    <div className="app lg:pl-32">
+    <div className="app lg:pl-40">
       <Router>
         {login ? (
           <Routes>

@@ -3,7 +3,7 @@ import "./component.css";
 
 const TopNav = () => {
   return (
-    <div className=" w-full bg-white fixed top-0 left-0 lg:pl-32  z-50 shadow-lg">
+    <div className=" w-full bg-white fixed top-0 left-0 lg:pl-40  z-50 shadow-lg">
       <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-6 pb-2 gap-4 md:pb-6 ">
         <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-8">
           <div className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center ">

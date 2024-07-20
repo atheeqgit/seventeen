@@ -8,7 +8,7 @@ const BottomNav = () => {
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>
-          isPending ? "nav-button" : isActive ? "nav-button link-active" : ""
+          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
         }
       >
         <i className="fa-solid fa-house"></i>
@@ -17,7 +17,7 @@ const BottomNav = () => {
       <NavLink
         to="/wallet"
         className={({ isActive, isPending }) =>
-          isPending ? "nav-button" : isActive ? "nav-button link-active" : ""
+          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
         }
       >
         <i class="fa-solid fa-wallet"></i>
@@ -26,16 +26,16 @@ const BottomNav = () => {
       <NavLink
         to="/mybooking"
         className={({ isActive, isPending }) =>
-          isPending ? "nav-button" : isActive ? "nav-button link-active" : ""
+          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
         }
       >
-        <i class="fa-solid fa-cart-shopping"></i>
-        <p>cart</p>
+        <i class="fa-solid fa-business-time"></i>
+        <p>bookings</p>
       </NavLink>
       <NavLink
         to="/sos"
         className={({ isActive, isPending }) =>
-          isPending ? "nav-button" : isActive ? "nav-button link-active" : ""
+          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
         }
       >
         <i class="fa-solid fa-car-burst"></i> <p>sos</p>
@@ -43,7 +43,7 @@ const BottomNav = () => {
       <NavLink
         to="/profile"
         className={({ isActive, isPending }) =>
-          isPending ? "nav-button" : isActive ? "nav-button link-active" : ""
+          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
         }
       >
         <i class="fa-solid fa-user"></i>
