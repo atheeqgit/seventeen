@@ -37,7 +37,7 @@ const Wallet = () => {
             <p className="text-[#2459E0] ">View All</p>
           </div>
           <ul className="my-list flex flex-col gap-2 list-unstyled">
-            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow">
+            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow bg-white">
               <div className="flex flex-row gap-4 items-center justify-center">
                 <div>
                   <img src="./icon-wallet-minus.png" alt="" />
@@ -49,7 +49,7 @@ const Wallet = () => {
               </div>
               <h1 className="">-$15</h1>
             </li>
-            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow">
+            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow bg-white">
               <div className="flex flex-row gap-4 items-center justify-center">
                 <div>
                   <img src="./icon-wallet-plus.png" alt="" />
@@ -61,7 +61,7 @@ const Wallet = () => {
               </div>
               <h1 className="">+$10</h1>
             </li>
-            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow">
+            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow bg-white">
               <div className="flex flex-row gap-4 items-center justify-center">
                 <div>
                   <img src="./icon-wallet-plus.png" alt="" />

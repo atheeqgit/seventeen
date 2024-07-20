@@ -34,24 +34,31 @@ const Home = () => {
           title="mechanical Services"
           data={AdditionalIssues ? AdditionalIssues : mechanicalRepairsData}
         />
-        <Featured
+        {/* <Featured
           title="mechanical Services"
           data={Issues ? Issues : mechanicalRepairsData}
-        />
-        <div className="ad-div">
-          <div className="ad-box">ad!</div>
+        /> */}
+        <div className="w-full py-10 px-5 text-center bg-white rounded-lg border border-solid border-[#ccc] shadow-lg">
+          <p className="capitalize font-medium text-2xl">
+            don't know what the issue is?{" "}
+            <span className="text-[#115ab9] capitalize font-bold">
+              know more
+            </span>
+          </p>
         </div>
         <Featured title="value added services" data={valueAddedServicesData} />
-        <div className="ad-div">
-          <div className="ad-box">ad!</div>
-          <div className="ad-box">ad!</div>
+        <div className="ad-div flex flex-col gap-4">
+          <h4 className="text-2xl md:text-4xl font-medium capitalize">
+            Most booked services
+          </h4>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="ad-box col-span-1">most booked</div>
+            <div className="ad-box col-span-1">most booked</div>
+          </div>
         </div>
         <SpareParts />
-        <div className="ad-div">
-          <div className="ad-box">ad!</div>
-        </div>
-        <Featured title="seventeen guarentee" data={seventeenGuaranteeData} />
-        <div className="banner-bottom">bottom banner!</div>
+
+        <Featured title="Todo guarentee" data={seventeenGuaranteeData} />
       </div>
     </motion.div>
   );

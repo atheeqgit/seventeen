@@ -40,11 +40,11 @@ function App() {
                 <Route key={3} path="/cart" element={<Cart />} />
                 <Route key={4} path="/profile" element={<Profile />} />
                 <Route key={5} path="/details/:id" element={<Details />} />
-                <Route
+                {/* <Route
                   key={6}
                   path="/moreDetails/:id/:price"
                   element={<MoreDetails />}
-                />
+                /> */}
                 {/* change this to nested routes */}
                 <Route key={7} path="/confirmBooking" element={<Booking />} />
                 <Route key={8} path="/confirmed" element={<Confirm />} />

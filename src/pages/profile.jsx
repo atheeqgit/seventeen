@@ -46,10 +46,10 @@ const Profile = () => {
     >
       <NavigateComp title="profile" />
       <div className="container mx-auto p-3 flex flex-col gap-3">
-        <div className="p-4 flex flex-col gap-4 bg-[#2459E0] rounded-lg text-white mb-4">
-          <div className="flex flex-row w-full justify-between items-center">
+        <div className="p-4 flex flex-col  bg-[#2459E0] rounded-lg text-white mb-4">
+          <div className="flex flex-row w-full justify-between items-center gap-10">
             <div className="flex flex-col w-full justify-between items-left">
-              <h3 className="font-semibold">Raj Kumar</h3>
+              <h3 className="font-semibold mb-8">Raj Kumar</h3>
               <p className="font-medium">Ref ID: 00741658</p>
             </div>
             <div className="">
@@ -63,13 +63,13 @@ const Profile = () => {
               return (
                 <li
                   key={index}
-                  className="flex flex-row gap-1 justify-between items-center px-4 py-3 "
+                  className="flex flex-row gap-1 justify-between items-center px-4 py-3 bg-white rounded-2xl shadow-md"
                 >
                   <div className="flex flex-row gap-4 items-center justify-center">
                     <div className=" p-6 rounded-full bg-[#eae9ff]">
                       <img src={"./" + data.icon} className="w-10" alt="" />
                     </div>
-                    <p className="font-medium fs-2 text-capitalize ">
+                    <p className="font-medium font-xl text-capitalize ">
                       {data.title}
                     </p>
                   </div>

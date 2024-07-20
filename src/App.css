@@ -18,23 +18,9 @@
   min-height: 100vh;
   position: relative;
   z-index: 101;
-  background-color: white;
-}
-.secondary-btn {
-  font-weight: 400;
-  display: flex;
-  justify-content: center;
-  text-transform: capitalize;
-  font-size: 1.8rem;
-  height: fit-content;
-  color: #1e1e1e;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
   background-color: #f4f5f6;
-  cursor: pointer;
-  border: 2px solid #979797;
-  font-weight: 500;
 }
+
 .secondary-btn.my-text-xs {
   font-weight: 400;
   display: flex;
@@ -50,17 +36,4 @@
   border: 1px solid #979797;
   font-weight: 500;
   width: fit-content;
-}
-.primary-btn {
-  font-weight: 500;
-  display: flex;
-  justify-content: center;
-  text-transform: capitalize;
-  font-size: 1.8rem;
-  height: fit-content;
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  background-color: #2459e0;
-  cursor: pointer;
 }
