@@ -3,10 +3,11 @@ import React, { useEffect } from "react";
 import "./details.css";
 import { details } from "../../utils/data";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import NavigateComp from "../../components/navigateComp/NavigateComp";
+import { useNavigate } from "react-router-dom";
 
 const Details = () => {
+  const navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
@@ -16,7 +17,6 @@ const Details = () => {
     });
   }, []);
 
-  const navigate = useNavigate();
   const selectedId = +params.id;
 
   const data = details.find((item) => item.id === selectedId);

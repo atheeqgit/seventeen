@@ -4,7 +4,7 @@ import axios from "axios";
 export const Context = createContext();
 
 export function GlobalProvider({ children }) {
-  const [login, setLogin] = useState(false);
+  const [login, setLogin] = useState(null);
   const [services, setServices] = useState(null);
   const [AdditionalIssues, setAdditionalIssues] = useState(null);
   const [Issues, setIssues] = useState(null);

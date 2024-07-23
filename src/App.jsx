@@ -24,15 +24,16 @@ function App() {
   const [count, setCount] = useState(0);
   const { login } = useGlobalContext();
   return (
-    <div className="app lg:pl-40">
+    <div className="app">
       <Router>
-        {login ? (
+        {login == null ? (
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/landing" element={<LandingPage />} />
+            <Route path="*" element={<Notfound />} />
           </Routes>
         ) : (
-          <>
+          <div className="lg:pl-40">
             <AnimatePresence>
               <Routes>
                 <Route key={1} path="/" element={<Home />} />
@@ -64,7 +65,7 @@ function App() {
 
               <BottomNav />
             </AnimatePresence>
-          </>
+          </div>
         )}
       </Router>
     </div>

@@ -4,137 +4,217 @@ import axios from "axios";
 import { useGlobalContext } from "../../context";
 
 const Login = () => {
-  // const [stage, setStage] = useState(1);
   const [isLogin, setIslogin] = useState(true);
-
-  // const handleNext = () => {
-  //   setStage(stage + 1);
-  // };
+  // console.log(import.meta.env.VITE_SERVER_PORT);
 
   return (
-    <div className="login-page">
-      <img src="/logo.png" alt="" srcset="" />
-      {isLogin ? <NumberForm /> : <SignUpForm />}
-      {/* {stage == 1 && }
-      {/* {stage == 2 && <OtpForm handleNext={handleNext} />} */}
-      {/* {stage == 3 && }  */}
+    <div className="login-page w-full h-screen flex justify-center items-center bg-[#fcf0ff] relative flex-col gap-5 p-10">
+      <div className="w-full md:w-[50%] lg:w-[40%] bg-white  p-6 rounded-2xl shadow-xl">
+        <div className="w-2/5 m-auto">
+          <img src="/logo.png" className="w-full" alt="" srcset="" />
+        </div>
+        {isLogin ? <LoginForm /> : <SignUpForm />}
+      </div>
       <div
-        className="skip-btn"
+        className=""
         onClick={() => {
           setIslogin(!isLogin);
         }}
       >
-        {isLogin ? "SignUp" : "Login"}
+        <p className="text-2xl text-center capitalize font-semibold ">
+          {isLogin ? (
+            <span className="  text-black ">don't have an account?</span>
+          ) : (
+            <span className="  text-black ">already have an account?</span>
+          )}
+
+          <span className="text-[#2516ff] cursor-pointer "> click here</span>
+        </p>
       </div>
     </div>
   );
 };
 
-const NumberForm = () => {
+const LoginForm = () => {
   const [number, setNumber] = useState("");
 
-  const { setLogin } = useGlobalContext();
+  const { setLogin, login } = useGlobalContext();
 
-  const handleLogin = (body) => {
-    // try {
-    //   const response = axios.post("localhost:8000/validateUser", {
-    //     mobile_no: number,
-    //   });
+  const handleLogin = async () => {
+    if (number.length > 8) {
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_SERVER_PORT + "/ac/auth/authenticate",
+          {
+            mobile: number,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+          }
+        );
 
-    //   console.log(response);
+        console.log(response);
 
-    //   if (response.statusCode == 200) {
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
-    setLogin(false);
+        if (response.status == 200) {
+          setLogin({ ...response.data, mobile: number });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("Login field required");
+    }
   };
 
   return (
-    <>
-      <form className="number-form">
-        <div className="form-control">
-          <select>
-            <option default value="91">
-              +91
-            </option>
-            <option value="92">+91</option>
-          </select>
-          <input
-            type="number"
-            value={number}
-            onChange={(e) => {
-              setNumber(e.target.value);
-            }}
-            placeholder="Enter your number"
-          />
-        </div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            handleLogin();
+    <form className="number-form conatiner flex flex-col gap-8 justify-center text-center">
+      <p className="text-2xl text-center capitalize font-semibold text-[#2516ff] ">
+        Hey! welcome back! please login to your account
+      </p>
+      <div className="form-control w-full flex border-2 border-[#ccc] rounded-md">
+        <select>
+          <option default value="91">
+            +91
+          </option>
+          <option value="92">+91</option>
+        </select>
+        <input
+          type="number"
+          value={number}
+          onChange={(e) => {
+            setNumber(e.target.value);
           }}
-        >
-          Login
-        </button>
-      </form>
-    </>
+          placeholder="Enter your number"
+          className="p-2 px-4 font-inherit border-none w-full border-l-2 border-[#ccc] text-2xl outline-none"
+        />
+      </div>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          handleLogin();
+        }}
+        class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-full mt-3"
+      >
+        Login
+      </button>
+    </form>
   );
 };
 
 const SignUpForm = () => {
+  const { setLogin } = useGlobalContext();
+
   const [body, setBody] = useState({
-    mobile_no: "",
-    bike_model: "",
+    mobile: "",
+    name: "",
+    email: "",
+    model_name: "",
   });
 
-  const handleSignup = () => {
-    setLogin(false);
+  const handleSignup = async () => {
+    if (
+      (body.mobile.length > 9) & (body.name !== "") & (body.email !== "") &&
+      body.model_name !== ""
+    ) {
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_SERVER_PORT + "/ac/auth/register",
+          body,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+          }
+        );
 
-    // try {
-    //   const response = axios.post("localhost:8000/createUser", {
-    //     ...body,
-    //   });
-
-    //   console.log(response);
-    //   if (response.statusCode == 200) {
-    //     setLogin(false);
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
+        if (response.status == 200) {
+          setLogin({ ...body, token: response.data.token });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      console.log("all fields are required");
+    }
   };
 
   return (
-    <>
-      <form className="login-form">
-        <p>
-          seems like you are new to the Seventeen app , kindly fill the form
+    <div className="conatiner">
+      <form className="login-form flex flex-col gap-8 justify-center text-center">
+        <p className="text-2xl text-center capitalize font-semibold text-[#2516ff] ">
+          seems like you are new to the TODO , kindly fill the form
         </p>
-        <div className="inputs">
-          <div className="form-control">
-            <div>
-              <p>number</p>
+        <div className="inputs flex flex-col gap-4">
+          <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="p-2 flex justify-center items-center w-1/5">
+              <p className="font-semibold capitalize text-2xl text-[#0d0d0f]">
+                number
+              </p>
             </div>
             <input
-              type="text"
-              value={body.mobile_no}
+              className="p-2 px-4 font-inherit w-4/5 border-none border-l-2 border-[#ccc] bg-transparent text-2xl outline-none"
+              type="number"
+              value={body.mobile}
               onChange={(e) => {
-                setBody({ ...body, mobile_no: e.target.value });
+                setBody({ ...body, mobile: e.target.value });
               }}
               placeholder="Enter your number"
             />
           </div>
-          <div className="form-control">
-            <div>
-              <p>bike Model</p>
+          <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="p-2 flex justify-center items-center w-1/5">
+              <p className="font-semibold capitalize text-2xl text-[#0d0d0f]">
+                full name
+              </p>
             </div>
             <input
+              className="p-2 px-4 font-inherit w-4/5 border-none border-l-2 border-[#ccc] bg-transparent text-2xl outline-none"
               type="text"
-              value={body.bike_model}
+              value={body.name}
               onChange={(e) => {
-                setBody({ ...body, bike_model: e.target.value });
+                setBody({ ...body, name: e.target.value });
+              }}
+              placeholder="Your full-Name"
+            />
+          </div>
+          <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="p-2 flex justify-center items-center w-1/5">
+              <p className="font-semibold capitalize text-2xl text-[#0d0d0f]">
+                E-mail
+              </p>
+            </div>
+            <input
+              className="p-2 px-4 font-inherit w-4/5 border-none border-l-2 border-[#ccc] bg-transparent text-2xl outline-none"
+              type="email"
+              value={body.email}
+              onChange={(e) => {
+                setBody({ ...body, email: e.target.value });
+              }}
+              placeholder="johndoe007@gmail.com"
+            />
+          </div>
+          <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="p-2 flex justify-center items-center w-1/5">
+              <p className="font-semibold capitalize text-2xl text-[#0d0d0f]">
+                bike Model
+              </p>
+            </div>
+            <input
+              className="p-2 px-4 font-inherit w-4/5 border-none border-l-2 border-[#ccc] bg-transparent text-2xl outline-none"
+              type="text"
+              value={body.model_name}
+              onChange={(e) => {
+                setBody({ ...body, model_name: e.target.value });
               }}
               placeholder="your bike model"
             />
@@ -146,11 +226,12 @@ const SignUpForm = () => {
             e.preventDefault();
             handleSignup();
           }}
+          class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-full mt-3 capitalize"
         >
-          SignIn
+          Sign up
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

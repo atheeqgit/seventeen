@@ -2,8 +2,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import { motion } from "framer-motion";
+import { useGlobalContext } from "../context";
 
 const Profile = () => {
+  const { login, setLogin } = useGlobalContext();
+
   const navigate = useNavigate();
 
   const profileData = [
@@ -48,13 +51,28 @@ const Profile = () => {
       <div className="container mx-auto p-3 flex flex-col gap-3">
         <div className="p-4 flex flex-col  bg-[#2459E0] rounded-lg text-white mb-4">
           <div className="flex flex-row w-full justify-between items-center gap-10">
-            <div className="flex flex-col w-full justify-between items-left">
-              <h3 className="font-semibold mb-8">Raj Kumar</h3>
-              <p className="font-medium">Ref ID: 00741658</p>
+            <div className="flex flex-col w-full justify-between items-left capitalize">
+              {login ? (
+                <>
+                  {" "}
+                  <h3 className="font-semibold mb-8 text-4xl">
+                    User Name : {login.name}
+                  </h3>
+                  <p className="font-medium">mobile: {login.mobile}</p>
+                </>
+              ) : (
+                <></>
+              )}
             </div>
-            <div className="">
-              <img src="./icon-profile-pencil.png" alt="" />
-            </div>
+            <button
+              onClick={() => {
+                setLogin(null);
+                navigate("/");
+              }}
+              class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#fbfaff] text-black rounded-md text-2xl transition duration-300 hover:bg-[#d5d2ff] w-fit mt-3 capitalize"
+            >
+              Logout
+            </button>
           </div>
         </div>
         <div className="down-div ">
