@@ -4,7 +4,14 @@ import axios from "axios";
 export const Context = createContext();
 
 export function GlobalProvider({ children }) {
-  const [login, setLogin] = useState(null);
+  //const [login, setLogin] = useState(null);
+  const [login, setLogin] = useState({
+    name: "xxxxxxxx",
+    mobile: 95663324,
+    model_name: "some bike",
+    token: "dummytoken",
+  });
+
   const [services, setServices] = useState(null);
   const [AdditionalIssues, setAdditionalIssues] = useState(null);
   const [Issues, setIssues] = useState(null);

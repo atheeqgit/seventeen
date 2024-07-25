@@ -1,8 +1,60 @@
 import React from "react";
-import "./pages.css";
 import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import { motion } from "framer-motion";
+
+const transactionsData = [
+  {
+    id: 54895663241,
+    date: "oct 11 , 12:35 P.M",
+    amount: -12,
+  },
+  {
+    id: 94858763241,
+    date: "oct 13 , 2:15 P.M",
+    amount: 15,
+  },
+  {
+    id: 54895663241,
+    date: "oct 11 , 12:35 P.M",
+    amount: -12,
+  },
+  {
+    id: 94858763241,
+    date: "oct 13 , 2:15 P.M",
+    amount: 15,
+  },
+  {
+    id: 54895663241,
+    date: "oct 11 , 12:35 P.M",
+    amount: -12,
+  },
+  {
+    id: 94858763241,
+    date: "oct 13 , 2:15 P.M",
+    amount: 15,
+  },
+  {
+    id: 54895663241,
+    date: "oct 11 , 12:35 P.M",
+    amount: -12,
+  },
+  {
+    id: 94858763241,
+    date: "oct 13 , 2:15 P.M",
+    amount: 15,
+  },
+  {
+    id: 54895663241,
+    date: "oct 11 , 12:35 P.M",
+    amount: -12,
+  },
+  {
+    id: 94858763241,
+    date: "oct 13 , 2:15 P.M",
+    amount: 15,
+  },
+];
 
 const Wallet = () => {
   return (
@@ -14,9 +66,11 @@ const Wallet = () => {
     >
       <NavigateComp title="wallets" />
       <div className="container mx-auto flex flex-col gap-6 md:grid grid-cols-12">
-        <div className="p-6   md:col-span-6   lg:col-span-5 flex flex-col   gap-4 bg-[#2459E0] rounded-2xl text-white">
-          <div className="flex flex-row w-full justify-between items-center">
-            <h3>Todo wallet</h3>
+        <div className="p-6 h-fit md:col-span-6   lg:col-span-5 flex flex-col   gap-4 bg-[#2459E0] rounded-2xl text-white">
+          <div className="flex flex-row w-full  justify-between items-center">
+            <h3 className="font-semibold capitalize text-5xl mb-6 ">
+              Todo wallet
+            </h3>
             <div className="ques-icon">
               <img src="./icon-question.png" alt="" />
             </div>
@@ -37,42 +91,29 @@ const Wallet = () => {
             <p className="text-[#2459E0] ">View All</p>
           </div>
           <ul className="my-list flex flex-col gap-2 list-unstyled">
-            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow bg-white">
-              <div className="flex flex-row gap-4 items-center justify-center">
-                <div>
-                  <img src="./icon-wallet-minus.png" alt="" />
-                </div>
-                <div className="flex flex-col ">
-                  <p className="id-num">ID no : 24356789509</p>
-                  <p className="date">Oct 14, 10:24 AM</p>
-                </div>
-              </div>
-              <h1 className="">-$15</h1>
-            </li>
-            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow bg-white">
-              <div className="flex flex-row gap-4 items-center justify-center">
-                <div>
-                  <img src="./icon-wallet-plus.png" alt="" />
-                </div>
-                <div className="flex flex-col ">
-                  <p className="id-num">ID no : 13567895458</p>
-                  <p className="date">Oct 11, 01:19 AM</p>
-                </div>
-              </div>
-              <h1 className="">+$10</h1>
-            </li>
-            <li className="flex flex-row gap-1 justify-between items-center px-4 border py-3 rounded shadow bg-white">
-              <div className="flex flex-row gap-4 items-center justify-center">
-                <div>
-                  <img src="./icon-wallet-plus.png" alt="" />
-                </div>
-                <div className="flex flex-col ">
-                  <p className="id-num">ID no : 65678985632</p>
-                  <p className="date">Oct 10, 02:13 PM</p>
-                </div>
-              </div>
-              <h1 className="">+$15</h1>
-            </li>
+            {transactionsData.map((item, idx) => {
+              return (
+                <li
+                  key={idx}
+                  className="flex flex-row gap-1 justify-between items-center px-6 border py-6 rounded-xl shadow bg-white"
+                >
+                  <div className="flex flex-row gap-4 items-center justify-center">
+                    <div>
+                      {item.amount > 0 ? (
+                        <img src="./icon-wallet-plus.png" alt="" />
+                      ) : (
+                        <img src="./icon-wallet-minus.png" alt="" />
+                      )}
+                    </div>
+                    <div className="flex flex-col px-3">
+                      <p className="id-num">ID no : {item.id}</p>
+                      <p className="date">{item.date}</p>
+                    </div>
+                  </div>
+                  <h1 className="font-medium text-4xl ">${item.amount}</h1>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

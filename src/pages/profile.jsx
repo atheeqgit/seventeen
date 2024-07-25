@@ -4,41 +4,49 @@ import NavigateComp from "../components/navigateComp/NavigateComp";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../context";
 
+const profileData = [
+  {
+    title: "My Bookings",
+    icon: "icon-profile-booking-app.png",
+  },
+  {
+    title: "Refer and Earn",
+    icon: "icon-settings-refer-and-earn.png",
+  },
+  {
+    title: "Manage Payment Method",
+    icon: "icon-settings-manage-payment.png",
+  },
+  {
+    title: "Manage Address",
+    icon: "icon-settings-manage-address.png",
+  },
+  {
+    title: "Settings",
+    icon: "icon-profile-settings.png",
+  },
+  {
+    title: "Help & Support",
+    icon: "icon-settings-customer-support.png",
+  },
+  {
+    title: "About App",
+    icon: "icon-settings-about-app.png",
+  },
+  {
+    title: "dummy Help & Support",
+    icon: "icon-settings-customer-support.png",
+  },
+  {
+    title: "dummy About App",
+    icon: "icon-settings-about-app.png",
+  },
+];
+
 const Profile = () => {
   const { login, setLogin } = useGlobalContext();
 
   const navigate = useNavigate();
-
-  const profileData = [
-    {
-      title: "My Bookings",
-      icon: "icon-profile-booking-app.png",
-    },
-    {
-      title: "Refer and Earn",
-      icon: "icon-settings-refer-and-earn.png",
-    },
-    {
-      title: "Manage Payment Method",
-      icon: "icon-settings-manage-payment.png",
-    },
-    {
-      title: "Manage Address",
-      icon: "icon-settings-manage-address.png",
-    },
-    {
-      title: "Settings",
-      icon: "icon-profile-settings.png",
-    },
-    {
-      title: "Help & Support",
-      icon: "icon-settings-customer-support.png",
-    },
-    {
-      title: "About App",
-      icon: "icon-settings-about-app.png",
-    },
-  ];
 
   return (
     <motion.div
@@ -85,9 +93,13 @@ const Profile = () => {
                 >
                   <div className="flex flex-row gap-4 items-center justify-center">
                     <div className=" p-6 rounded-full bg-[#eae9ff]">
-                      <img src={"./" + data.icon} className="w-10" alt="" />
+                      <img
+                        src={"./" + data.icon}
+                        className="w-8 md:w-10"
+                        alt=""
+                      />
                     </div>
-                    <p className="font-medium font-xl text-capitalize ">
+                    <p className="font-medium font-lg md:font-xl text-capitalize ">
                       {data.title}
                     </p>
                   </div>

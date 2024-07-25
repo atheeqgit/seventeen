@@ -16,7 +16,7 @@ const TopNav = () => {
             <h1 className="text-3xl lg:text-4xl ">
               {login.model_name ? login.model_name : "no model from backend"}
             </h1>
-            <p>
+            <p className="text-xl lg:text-2xl">
               {" "}
               <i class="fa-solid fa-location-dot"></i> muthaiya mudalai street
               washermenpet , chennai 600018{" "}

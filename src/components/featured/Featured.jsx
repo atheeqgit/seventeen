@@ -27,7 +27,7 @@ const Featured = (props) => {
               }}
             >
               <div
-                className="md:border-2 h-full border-gray-300 gap-4 md:gap-6 w-full flex flex-col lg:flex-row items-center p-3 md:p-6 md:bg-[#f3f3f3] rounded-2xl md:shadow-md transition-all hover:scale-105   
+                className="lg:border-2 h-full lg:border-gray-300 gap-4 md:gap-6 w-full flex flex-col lg:flex-row items-center p-3 md:p-6 lg:bg-[#f3f3f3] rounded-2xl lg:shadow-md transition-all hover:scale-105   
               "
               >
                 <div className="icon-box">{item.icon}</div>
