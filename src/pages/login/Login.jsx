@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../pages.css";
 import axios from "axios";
 import { useGlobalContext } from "../../context";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [isLogin, setIslogin] = useState(true);
@@ -38,29 +39,15 @@ const Login = () => {
 const LoginForm = () => {
   const [number, setNumber] = useState("");
 
-  const { setLogin, login } = useGlobalContext();
+  const { setLogin, login, fetchFunc } = useGlobalContext();
 
   const handleLogin = async () => {
     if (number.length > 8) {
       try {
-        const response = await axios.post(
-          import.meta.env.VITE_SERVER_PORT + "/ac/auth/authenticate",
-          {
-            mobile: number,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
-          }
-        );
-
+        const response = await fetchFunc("post", "/ac/auth/authenticate", {
+          mobile: number,
+        });
         console.log(response);
-
         if (response.status == 200) {
           setLogin({ ...response.data, mobile: number });
         }
@@ -97,7 +84,14 @@ const LoginForm = () => {
       <button
         onClick={(e) => {
           e.preventDefault();
-          handleLogin();
+          setLogin({
+            name: "xxxxxxxx",
+            mobile: 9566332402,
+            model_name: "some bike",
+            token: "dummytoken",
+          });
+          toast.success("dummy auth successful");
+          // handleLogin();
         }}
         class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-full mt-3"
       >
@@ -108,7 +102,7 @@ const LoginForm = () => {
 };
 
 const SignUpForm = () => {
-  const { setLogin } = useGlobalContext();
+  const { setLogin, fetchFunc } = useGlobalContext();
 
   const [body, setBody] = useState({
     mobile: "",
@@ -123,19 +117,7 @@ const SignUpForm = () => {
       body.model_name !== ""
     ) {
       try {
-        const response = await axios.post(
-          import.meta.env.VITE_SERVER_PORT + "/ac/auth/register",
-          body,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
-          }
-        );
+        const response = await fetchFunc("post", "/ac/auth/register", body);
 
         if (response.status == 200) {
           setLogin({ ...body, token: response.data.token });
@@ -224,7 +206,15 @@ const SignUpForm = () => {
         <button
           onClick={(e) => {
             e.preventDefault();
-            handleSignup();
+            setLogin({
+              name: "xxxxxxxx",
+              mobile: 9566332402,
+              model_name: "some bike",
+              token: "dummytoken",
+            });
+            toast.success("dummy auth successful");
+
+            // handleSignup();
           }}
           class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-full mt-3 capitalize"
         >

@@ -1,65 +1,80 @@
 export const sheduledServicesData = [
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icons-scheduled-service-general-service.png",
     title: "general service",
     id: 11,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "water wash",
+    icon: "icons-Scheduled-services-bike-inspection.png",
+    title: "bike inspection",
     id: 11,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icons-Scheduled-services-tyres-and-wheel.png",
     title: "tyers and wheels",
     id: 11,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "Bike inspection",
+    icon: "icons-Scheduled-services-water-service.png",
+    title: "water wash",
     id: 11,
   },
 ];
 
 export const mechanicalRepairsData = [
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "starting issue",
+    icon: "icons-Mechanical-services-battery.png",
+    title: "battery issue",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "smoking issue",
+    icon: "icons-Mechanical-services-chain-issue.png",
+    title: "chain issue",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "clucth issue",
+    icon: "icons-Mechanical-services-engine.png",
+    title: "engine issue",
     id: 21,
   },
 
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icons-Mechanical-services-brakes.png",
     title: "breakes",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icons-Mechanical-services-starting-issue.png",
+    title: "startind issue",
+    id: 21,
+  },
+  {
+    icon: "icons-Mechanical-services-cluctch-issue.png",
+    title: "clutch issue",
+    id: 21,
+  },
+  {
+    icon: "icons-Mechanical-services-horns-and-lights.png",
     title: "horns & lights",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icons-Mechanical-services-oil-change.png",
+    title: "Oil change",
+    id: 21,
+  },
+  {
+    icon: "icons-Mechanical-services-switch-and-stands.png",
     title: "switches & stands",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
-    title: "Bodyparts & extrafits",
+    icon: "icons-Mechanical-services-wheel-alignment.png",
+    title: "wheel alignment",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icons-Mechanical-services-dont-know-what-issue-is.png",
     title: "Dont know problem",
     id: 21,
   },
@@ -67,22 +82,22 @@ export const mechanicalRepairsData = [
 
 export const valueAddedServicesData = [
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "stickering",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "detailing",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "custamizations",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "inspections",
     id: 21,
   },
@@ -90,22 +105,22 @@ export const valueAddedServicesData = [
 
 export const seventeenGuaranteeData = [
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "affrdable",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "free pickup and drop",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "30 days warrenty",
     id: 21,
   },
   {
-    icon: <i class="fa-solid fa-circle-question"></i>,
+    icon: "icon-not-found.png",
     title: "genuine inspections",
     id: 21,
   },

@@ -33,7 +33,7 @@ const Details = () => {
           {data.data.map((item, index) => {
             return (
               <div
-                className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white"
+                className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly"
                 onClick={() => {
                   handleNavigate(item.price);
                 }}
@@ -65,7 +65,7 @@ const Details = () => {
                   <h4 className="text-3xl md:text-4xl font-bold capitalize">
                     ${item.price}/-
                   </h4>
-                  <button className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-8 py-3 font-medium capitalize rounded-xl">
+                  <button className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl">
                     add to cart
                   </button>
                 </div>

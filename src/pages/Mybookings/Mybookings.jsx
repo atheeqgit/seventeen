@@ -26,8 +26,8 @@ const Mybookings = () => {
                 <img src="./landing1.png" className="w-100 rounded-4" />
               </div>
               <div className="uppercase font-semibold ">
-                <p className="text-3xl lg:text-4xl">R15 V3</p>
-                <p className="text-2xl md:text-3xl ">ph:54566412</p>
+                <p className="text-3xl lg:text-3xl">R15 V3</p>
+                <p className="text-2xl md:text-2xl ">ph:54566412</p>
               </div>
               <h3 className="font-medium text-capitalize text-2xl">
                 4000 KM General <br /> Service Package
@@ -49,8 +49,8 @@ const Mybookings = () => {
               </h1>
               <div className="p-4 mt-3 flex flex-row gap-5 align-items-center justify-between  border-2 border-solid border-gray-300 rounded-xl">
                 <div className="capitalize font-semibold ">
-                  <p className="text-3xl lg:text-4xl">9th Nov 2024</p>
-                  <p className="text-2xl md:text-3xl ">09:00 AM</p>
+                  <p className="text-2xl lg:text-3xl">9th Nov 2024</p>
+                  <p className="text-xl md:text-2xl ">09:00 AM</p>
                 </div>
 
                 <Mybutton

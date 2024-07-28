@@ -2,6 +2,8 @@ import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useGlobalContext } from "./context";
 import { AnimatePresence, motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Login from "./pages/login/Login";
 import Home from "./pages/Home";
@@ -25,6 +27,7 @@ function App() {
   const { login } = useGlobalContext();
   return (
     <div className="app">
+      <ToastContainer />
       <Router>
         {login == null ? (
           <Routes>

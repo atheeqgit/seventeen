@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../context";
+import { ToastContainer, toast } from "react-toastify";
 
 const profileData = [
   {
@@ -76,6 +77,7 @@ const Profile = () => {
               onClick={() => {
                 setLogin(null);
                 navigate("/");
+                toast.success("logged out successfully");
               }}
               class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#fbfaff] text-black rounded-md text-2xl transition duration-300 hover:bg-[#d5d2ff] w-fit mt-3 capitalize"
             >

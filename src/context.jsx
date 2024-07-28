@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Context = createContext();
 
@@ -22,6 +24,62 @@ export function GlobalProvider({ children }) {
     fetchGetIssues();
   }, []);
 
+  const notify = (msg, success) => {
+    if (success) {
+      toast.success(msg);
+    } else {
+      toast.error(msg);
+    }
+  };
+
+  const fetchFunc = async (method, url, body) => {
+    if (method == "get") {
+      try {
+        const response = await axios.get(
+          import.meta.env.VITE_SERVER_PORT + url,
+          body,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+          }
+        );
+
+        // console.log(response);
+        notify(response.message, true);
+        return response;
+      } catch (err) {
+        notify(err.message, false);
+        return err;
+      }
+    } else if (method == "post") {
+      try {
+        const response = await axios.post(
+          import.meta.env.VITE_SERVER_PORT + url,
+          body,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+          }
+        );
+
+        // console.log(response);
+        notify(response.data.message, true);
+        return response;
+      } catch (err) {
+        notify(err.message, false);
+        return err;
+      }
+    }
+  };
+
   const fetchServices = () => {
     try {
       const response = axios.get("localhost:8000/getServices");
@@ -29,7 +87,7 @@ export function GlobalProvider({ children }) {
         setServices(response.data);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -40,7 +98,7 @@ export function GlobalProvider({ children }) {
         setAdditionalIssues(response.data);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -51,7 +109,7 @@ export function GlobalProvider({ children }) {
         setIssues(response.data);
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -64,6 +122,7 @@ export function GlobalProvider({ children }) {
         AdditionalIssues,
         Issues,
         setIssues,
+        fetchFunc,
       }}
     >
       {children}
