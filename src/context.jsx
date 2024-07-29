@@ -9,7 +9,7 @@ export function GlobalProvider({ children }) {
   //const [login, setLogin] = useState(null);
   const [login, setLogin] = useState({
     name: "xxxxxxxx",
-    mobile: 95663324,
+    mobile: 9566332402,
     model_name: "some bike",
     token: "dummytoken",
   });
@@ -33,22 +33,23 @@ export function GlobalProvider({ children }) {
   };
 
   const fetchFunc = async (method, url, body) => {
+    const headers = {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Content-Type, Authorization",
+    };
+
     if (method == "get") {
       try {
         const response = await axios.get(
           import.meta.env.VITE_SERVER_PORT + url,
           body,
           {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
+            headers,
           }
         );
 
-        // console.log(response);
         notify(response.message, true);
         return response;
       } catch (err) {
@@ -61,12 +62,7 @@ export function GlobalProvider({ children }) {
           import.meta.env.VITE_SERVER_PORT + url,
           body,
           {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            },
+            headers,
           }
         );
 

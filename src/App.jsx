@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useGlobalContext } from "./context";
 import { AnimatePresence, motion } from "framer-motion";
@@ -25,6 +25,7 @@ import Notfound from "./pages/notfound/Notfound";
 function App() {
   const [count, setCount] = useState(0);
   const { login } = useGlobalContext();
+
   return (
     <div className="app">
       <ToastContainer />

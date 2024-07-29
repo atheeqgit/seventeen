@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./pages.css";
 import Featured from "../components/featured/Featured";
@@ -15,13 +15,20 @@ import TopNav from "../components/TopNav";
 
 const Home = () => {
   const { services, AdditionalIssues, Issues } = useGlobalContext();
+  const [count, setCount] = useState(0);
 
+  // useEffect(() => {
+  //   const topNav = document.getElementById("top-nav").offsetHeight;
+
+  //   setCount(topNav);
+  //   console.log(topNav);
+  // }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="home bg-[#F4F5F6] "
+      className="home pt-72 md:pt-56  px-9 bg-[#F4F5F6]"
     >
       <TopNav />
       <div className="container mx-auto ">
