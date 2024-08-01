@@ -45,7 +45,7 @@ const profileData = [
 ];
 
 const Profile = () => {
-  const { login, setLogin } = useGlobalContext();
+  const { login, setLogin, setTok } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -76,6 +76,8 @@ const Profile = () => {
             <button
               onClick={() => {
                 setLogin(null);
+                setTok(null);
+                localStorage.removeItem("profile");
                 navigate("/");
                 toast.success("logged out successfully");
               }}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./featured.css";
 import { useNavigate } from "react-router-dom";
 
@@ -17,30 +17,31 @@ const Featured = (props) => {
         </span>
       </div>
       <div className="w-full cards-div grid grid-cols-12 gap-6 md:gap-6 lg:gap-8 justify-center items-center">
-        {data.map((item, index) => {
-          return (
-            <div
-              key={index}
-              className="card-m col-span-3 h-full "
-              onClick={() => {
-                navigate(`/details/${item.id}`);
-              }}
-            >
+        {data.length > 0 &&
+          data.map((item, index) => {
+            return (
               <div
-                className="lg:border-2 h-full lg:border-gray-300 gap-4 md:gap-6 w-full flex flex-col lg:flex-row items-center p-3 md:p-6 lg:bg-[#f3f3f3] rounded-2xl lg:shadow-md transition-all hover:scale-105   
-              "
+                key={index}
+                className="card-m col-span-3 h-full "
+                onClick={() => {
+                  navigate(`/details/21`);
+                }}
               >
-                <div className="icon-box">
-                  <img src={item.icon} alt="" srcset="" />{" "}
+                <div
+                  className="lg:border-2 h-full lg:border-gray-300 gap-4 md:gap-6 w-full flex flex-col lg:flex-row items-center p-3 md:p-6 lg:bg-[#f3f3f3] rounded-2xl lg:shadow-md transition-all hover:scale-105   
+              "
+                >
+                  <div className="icon-box">
+                    <img src={item.icon} alt="" srcset="" />{" "}
+                  </div>
+                  {/* <div className="icon-box">{item.icon}</div> */}
+                  <p className="text-base md:text-2xl font-medium text-center capitalize overflow-hidden whitespace-normal">
+                    {item.serviceName}
+                  </p>
                 </div>
-                {/* <div className="icon-box">{item.icon}</div> */}
-                <p className="text-base md:text-2xl font-medium text-center capitalize overflow-hidden whitespace-normal">
-                  {item.title}
-                </p>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

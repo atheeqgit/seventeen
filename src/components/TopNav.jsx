@@ -23,7 +23,7 @@ const TopNav = () => {
           </div>
           <div className="details-tnav flex flex-col w-4/5">
             <h1 className="text-3xl lg:text-4xl ">
-              {login.model_name ? login.model_name : "no model from backend"}
+              {login?.model_name ? login.model_name : "no model from backend"}
             </h1>
             <p className="text-lg lg:text-2xl">
               {" "}

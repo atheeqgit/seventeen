@@ -24,13 +24,13 @@ import Notfound from "./pages/notfound/Notfound";
 
 function App() {
   const [count, setCount] = useState(0);
-  const { login } = useGlobalContext();
+  const { getLocalStorage, login } = useGlobalContext();
 
   return (
     <div className="app">
       <ToastContainer />
       <Router>
-        {login == null ? (
+        {getLocalStorage() == null ? (
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/landing" element={<LandingPage />} />

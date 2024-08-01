@@ -14,15 +14,19 @@ import { useGlobalContext } from "../context";
 import TopNav from "../components/TopNav";
 
 const Home = () => {
-  const { services, AdditionalIssues, Issues } = useGlobalContext();
+  const {
+    mechanicalRepairs,
+    valueAddedServices,
+    sheduledServices,
+    fetchAllServices,
+  } = useGlobalContext();
   const [count, setCount] = useState(0);
 
-  // useEffect(() => {
-  //   const topNav = document.getElementById("top-nav").offsetHeight;
-
-  //   setCount(topNav);
-  //   console.log(topNav);
-  // }, []);
+  useEffect(() => {
+    // const topNav = document.getElementById("top-nav").offsetHeight;
+    // setCount(topNav);
+    // console.log(topNav);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -33,14 +37,8 @@ const Home = () => {
       <TopNav />
       <div className="container mx-auto ">
         <Banner />
-        <Featured
-          title="sheduled Services"
-          data={services ? services : sheduledServicesData}
-        />
-        <Featured
-          title="mechanical Services"
-          data={AdditionalIssues ? AdditionalIssues : mechanicalRepairsData}
-        />
+        <Featured title="sheduled Services" data={sheduledServices} />
+        <Featured title="mechanical Services" data={mechanicalRepairs} />
         {/* <Featured
           title="mechanical Services"
           data={Issues ? Issues : mechanicalRepairsData}
@@ -53,7 +51,7 @@ const Home = () => {
             </span>
           </p>
         </div>
-        <Featured title="value added services" data={valueAddedServicesData} />
+        <Featured title="value added services" data={valueAddedServices} />
         <div className="ad-div flex flex-col gap-4">
           <h4 className="text-2xl md:text-4xl font-medium capitalize">
             Most booked services

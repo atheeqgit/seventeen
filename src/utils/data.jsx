@@ -1,22 +1,22 @@
 export const sheduledServicesData = [
   {
     icon: "icons-scheduled-service-general-service.png",
-    title: "general service",
+    serviceName: "general service",
     id: 11,
   },
   {
     icon: "icons-Scheduled-services-bike-inspection.png",
-    title: "bike inspection",
+    serviceName: "bike inspection",
     id: 11,
   },
   {
     icon: "icons-Scheduled-services-tyres-and-wheel.png",
-    title: "tyers and wheels",
+    serviceName: "tyers and wheels",
     id: 11,
   },
   {
     icon: "icons-Scheduled-services-water-service.png",
-    title: "water wash",
+    serviceName: "water wash",
     id: 11,
   },
 ];
@@ -24,58 +24,58 @@ export const sheduledServicesData = [
 export const mechanicalRepairsData = [
   {
     icon: "icons-Mechanical-services-battery.png",
-    title: "battery issue",
+    serviceName: "battery issue",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-chain-issue.png",
-    title: "chain issue",
+    serviceName: "chain issue",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-engine.png",
-    title: "engine issue",
+    serviceName: "engine issue",
     id: 21,
   },
 
   {
     icon: "icons-Mechanical-services-brakes.png",
-    title: "breakes",
+    serviceName: "breakes",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-starting-issue.png",
-    title: "startind issue",
+    serviceName: "startind issue",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-cluctch-issue.png",
-    title: "clutch issue",
+    serviceName: "clutch issue",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-horns-and-lights.png",
-    title: "horns & lights",
+    serviceName: "horns & lights",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-oil-change.png",
-    title: "Oil change",
+    serviceName: "Oil change",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-switch-and-stands.png",
-    title: "switches & stands",
+    serviceName: "switches & stands",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-wheel-alignment.png",
-    title: "wheel alignment",
+    serviceName: "wheel alignment",
     id: 21,
   },
   {
     icon: "icons-Mechanical-services-dont-know-what-issue-is.png",
-    title: "Dont know problem",
+    serviceName: "Dont know problem",
     id: 21,
   },
 ];
@@ -83,22 +83,22 @@ export const mechanicalRepairsData = [
 export const valueAddedServicesData = [
   {
     icon: "icon-not-found.png",
-    title: "stickering",
+    serviceName: "stickering",
     id: 21,
   },
   {
     icon: "icon-not-found.png",
-    title: "detailing",
+    serviceName: "detailing",
     id: 21,
   },
   {
     icon: "icon-not-found.png",
-    title: "custamizations",
+    serviceName: "custamizations",
     id: 21,
   },
   {
     icon: "icon-not-found.png",
-    title: "inspections",
+    serviceName: "inspections",
     id: 21,
   },
 ];
@@ -106,22 +106,22 @@ export const valueAddedServicesData = [
 export const seventeenGuaranteeData = [
   {
     icon: "icon-not-found.png",
-    title: "affrdable",
+    serviceName: "affrdable",
     id: 21,
   },
   {
     icon: "icon-not-found.png",
-    title: "free pickup and drop",
+    serviceName: "free pickup and drop",
     id: 21,
   },
   {
     icon: "icon-not-found.png",
-    title: "30 days warrenty",
+    serviceName: "30 days warrenty",
     id: 21,
   },
   {
     icon: "icon-not-found.png",
-    title: "genuine inspections",
+    serviceName: "genuine inspections",
     id: 21,
   },
 ];
