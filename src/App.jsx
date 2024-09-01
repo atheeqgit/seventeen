@@ -21,6 +21,7 @@ import Mybookings from "./pages/Mybookings/Mybookings";
 import Orderdetails from "./pages/orderdetails/Orderdetails";
 import Trackorder from "./pages/trackorder/Trackorder";
 import Notfound from "./pages/notfound/Notfound";
+import CheckinPage from "./pages/CheckinPage";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -40,33 +41,25 @@ function App() {
           <div className="lg:pl-40">
             <AnimatePresence>
               <Routes>
-                <Route key={1} path="/" element={<Home />} />
-                <Route key={2} path="/wallet" element={<Wallet />} />
-                <Route key={3} path="/cart" element={<Cart />} />
-                <Route key={4} path="/profile" element={<Profile />} />
-                <Route key={5} path="/details/:id" element={<Details />} />
-                {/* <Route
-                  key={6}
-                  path="/moreDetails/:id/:price"
+                <Route path="/" element={<Home />} />
+                <Route path="/wallet" element={<Wallet />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/cart" element={<Cart />} />
+                {/* <Route path="/details/:id/:category" element={<Details />} /> */}
+                <Route path="/details/mr/:ServiceName" element={<Details />} />
+                <Route
+                  path="/moreDetails/mr/:ServiceDetails"
                   element={<MoreDetails />}
-                /> */}
-                {/* change this to nested routes */}
-                <Route key={7} path="/confirmBooking" element={<Booking />} />
-                <Route key={8} path="/confirmed" element={<Confirm />} />
-                <Route key={9} path="/Mybooking" element={<Mybookings />} />
-                <Route
-                  key={10}
-                  path="/orderdetails/:id"
-                  element={<Orderdetails />}
                 />
-                <Route
-                  key={11}
-                  path="/trackorder/:id"
-                  element={<Trackorder />}
-                />
-                <Route key={12} path="*" element={<Notfound />} />
+                <Route path="/confirmBooking" element={<Booking />} />
+                <Route path="/checkin" element={<CheckinPage />} />
+                <Route path="/confirmed" element={<Confirm />} />
+                <Route path="/Mybooking" element={<Mybookings />} />
+                <Route path="/orderdetails/:id" element={<Orderdetails />} />
+                <Route path="/trackorder/:id" element={<Trackorder />} />
+                <Route path="*" element={<Notfound />} />
               </Routes>
-
               <BottomNav />
             </AnimatePresence>
           </div>

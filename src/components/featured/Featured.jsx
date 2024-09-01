@@ -6,6 +6,8 @@ const Featured = (props) => {
   const { data } = props;
   const navigate = useNavigate();
 
+  const HandleNavigation = () => {};
+
   return (
     <div className="featured-div flex flex-col gap-2 mt-5 justify-center items-center mb-4">
       <div className="featured-top w-full flex flex-row gap-4 justify-between items-center mb-3 md:mb-6">
@@ -24,7 +26,11 @@ const Featured = (props) => {
                 key={index}
                 className="card-m col-span-3 h-full "
                 onClick={() => {
-                  navigate(`/details/21`);
+                  if (item.type == "MechanicalRepairs") {
+                    navigate(`/details/mr/${item.serviceName}`);
+                  } else {
+                    navigate(`/details/21/${item.type}`);
+                  }
                 }}
               >
                 <div
@@ -32,7 +38,7 @@ const Featured = (props) => {
               "
                 >
                   <div className="icon-box">
-                    <img src={item.icon} alt="" srcset="" />{" "}
+                    <img src={item.icon} alt="" srcSet="" />{" "}
                   </div>
                   {/* <div className="icon-box">{item.icon}</div> */}
                   <p className="text-base md:text-2xl font-medium text-center capitalize overflow-hidden whitespace-normal">

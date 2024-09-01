@@ -6,11 +6,6 @@ import { useState } from "react";
 const TopNav = () => {
   const { login } = useGlobalContext();
 
-  // useEffect(() => {
-  //   const topNav = document.getElementById("top-nav").offsetHeight;
-
-  //   console.log(topNav);
-  // }, []);
   return (
     <div
       className=" w-full bg-white fixed top-0 left-0 lg:pl-40  z-50 shadow-lg"
@@ -23,10 +18,9 @@ const TopNav = () => {
           </div>
           <div className="details-tnav flex flex-col w-4/5">
             <h1 className="text-3xl lg:text-4xl ">
-              {login?.model_name ? login.model_name : "no model from backend"}
+              {login?.model_name ? login?.model_name : "no model"}
             </h1>
             <p className="text-lg lg:text-2xl">
-              {" "}
               <i class="fa-solid fa-location-dot"></i> muthaiya mudalai street
               washermenpet , chennai 600018{" "}
             </p>

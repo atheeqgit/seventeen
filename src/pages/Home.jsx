@@ -23,6 +23,11 @@ const Home = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+  useEffect(() => {
     // const topNav = document.getElementById("top-nav").offsetHeight;
     // setCount(topNav);
     // console.log(topNav);

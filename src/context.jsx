@@ -7,27 +7,31 @@ export const Context = createContext();
 
 export function GlobalProvider({ children }) {
   const [login, setLogin] = useState(null);
-  const [tok, setTok] = useState("");
-  const [allServices, setAllServices] = useState(null);
+  const [bookings, setBookings] = useState(null);
   const [sheduledServices, setSheduledServices] = useState([]);
   const [mechanicalRepairs, setMechanicalRepairs] = useState([]);
   const [valueAddedServices, setValueAddedServices] = useState([]);
+  const [cartData, setCartData] = useState([]);
 
   const getLocalStorage = () => {
     const data = localStorage.getItem("profile");
     return data ? JSON.parse(data) : null;
   };
-  useEffect(() => {
+
+  const getFrmLS = () => {
     const lsData = getLocalStorage();
     if (lsData) {
       setLogin(lsData);
-      setTok(lsData.token);
     }
+  };
+  useEffect(() => {
+    getFrmLS();
   }, []);
 
   useEffect(() => {
     fetchAllServices();
-  }, [tok]);
+    getBookings();
+  }, [login]);
 
   const notify = (msg, success) => {
     if (success) {
@@ -47,44 +51,59 @@ export function GlobalProvider({ children }) {
 
     if (method == "get") {
       try {
-        //CONSOLING!!!!!!!!!!!!!!!!!! ===================
-        // console.log(import.meta.env.VITE_SERVER_PORT + url, {
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //     Accept: "application/json",
-        //     Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwMDAiLCJpYXQiOjE3MjIzNTgwODUsImV4cCI6MTcyNDk1MDA4NX0.6RNtRfFHaTqP2vS9egbM9J1dsTNunJuLeI15XG1biys`, // Bearer token for authentication
-        //   },
-        // });
-        const response = await axios.get(
-          import.meta.env.VITE_SERVER_PORT + url,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: `Bearer ${tok}`, // Bearer token for authentication
-            },
-          }
-        );
-
-        // console.log(response);
-        return response;
+        if (url.includes("/ac")) {
+          const response = await axios.get(
+            import.meta.env.VITE_SERVER_PORT + url,
+            {
+              headers,
+            }
+          );
+          return response;
+        } else {
+          const response = await axios.get(
+            import.meta.env.VITE_SERVER_PORT + url,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${login.token}`,
+              },
+            }
+          );
+          return response;
+        }
       } catch (err) {
-        //console
         console.log(err);
         notify(err.message, false);
         return err;
       }
     } else if (method == "post") {
       try {
-        const response = await axios.post(
-          import.meta.env.VITE_SERVER_PORT + url,
-          body,
-          {
-            headers,
-          }
-        );
-        notify(response.data.message, true);
-        return response;
+        if (url.includes("/ac")) {
+          const response = await axios.post(
+            import.meta.env.VITE_SERVER_PORT + url,
+            body,
+            {
+              headers,
+            }
+          );
+          notify(response.data.message, true);
+          return response;
+        } else {
+          const response = await axios.post(
+            import.meta.env.VITE_SERVER_PORT + url,
+            body,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                Authorization: `Bearer ${login.token}`,
+              },
+            }
+          );
+          notify(response.data.message, true);
+          return response;
+        }
       } catch (err) {
         notify(err.message, false);
         return err;
@@ -92,8 +111,50 @@ export function GlobalProvider({ children }) {
     }
   };
 
+  const getMRdata = async (serviceName) => {
+    if (serviceName) {
+      try {
+        const response = await fetchFunc(
+          "get",
+          `/gc/getServicesForCategory?category=${serviceName}`,
+          {}
+        );
+        if (response?.status === 200) {
+          return response.data;
+        } else {
+          console.warn("Unexpected response status:", response.status);
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    } else {
+      console.warn("No serviceName provided");
+    }
+  };
+
+  const getMRDetails = async (serviceDetailsName) => {
+    if (serviceDetailsName) {
+      try {
+        const response = await fetchFunc(
+          "get",
+          `/gc/getServiceDetails?model=Ntorq&serviceName=${serviceDetailsName}`,
+          {}
+        );
+        if (response?.status === 200) {
+          return response.data;
+        } else {
+          console.warn("Unexpected response status:", response.status);
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
+      }
+    } else {
+      console.warn("No serviceDetailsName provided");
+    }
+  };
+
   const fetchAllServices = async () => {
-    if (tok) {
+    if (login) {
       try {
         const response = await fetchFunc("get", "/gc/getAllServices", {});
         if (response.status === 200) {
@@ -123,38 +184,59 @@ export function GlobalProvider({ children }) {
     }
   };
 
-  // const fetchServices = () => {
-  //   try {
-  //     const response = axios.get("localhost:8000/getServices");
-  //     if (response.statusCode == 200) {
-  //       setServices(response.data);
-  //     }
-  //   } catch (err) {
-  //     // console.log(err);
-  //   }
-  // };
+  const addToCart = (data) => {
+    setCartData([...cartData, data]);
+    notify("item added to cart", true);
+    console.log(cartData);
+  };
 
-  // const fetchmechanicalRepairs = () => {
-  //   try {
-  //     const response = axios.get("localhost:8000/getmechanicalRepairs");
-  //     if (response.statusCode == 200) {
-  //       setmechanicalRepairs(response.data);
-  //     }
-  //   } catch (err) {
-  //     // console.log(err);
-  //   }
-  // };
+  const removeFromCart = (data) => {
+    const updatedCart = cartData.filter((item) => item.id !== data.id);
+    setCartData(updatedCart);
+    notify("item Removed From cart", true);
+  };
 
-  // const fetchGetIssues = () => {
-  //   try {
-  //     const response = axios.get("localhost:8000/getIssues");
-  //     if (response.statusCode == 200) {
-  //       setIssues(response.data);
-  //     }
-  //   } catch (err) {
-  //     // console.log(err);
-  //   }
-  // };
+  const postBooking = async () => {
+    if (cartData.length > 0) {
+      let bod = cartData.map((item) => {
+        return item.id;
+      });
+      try {
+        const response = await fetchFunc("post", "/gc/bookService", {
+          mobile: login.mobile,
+          model: login.model_name,
+          cart: bod,
+        });
+        if (response.status === 200) {
+          notify(response.data, true);
+          getBookings();
+        } else {
+          notify("Something went wrong while booking", false);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      notify("The Cart Has No items...", false);
+    }
+  };
+
+  const getBookings = async () => {
+    try {
+      const response = await fetchFunc(
+        "get",
+        `/gc/getBookingsForUser?userId=${login.mobile}`
+      );
+      if (response.status === 200) {
+        if (response.data.length > 0) {
+          setBookings(response.data);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const cancelBookings = async (num) => {};
 
   return (
     <Context.Provider
@@ -167,9 +249,16 @@ export function GlobalProvider({ children }) {
         valueAddedServices,
         sheduledServices,
         fetchFunc,
-        tok,
-        setTok,
         notify,
+        getMRdata,
+        getMRDetails,
+        cartData,
+        setCartData,
+        addToCart,
+        removeFromCart,
+        postBooking,
+        bookings,
+        setBookings,
       }}
     >
       {children}

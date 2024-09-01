@@ -45,7 +45,7 @@ const profileData = [
 ];
 
 const Profile = () => {
-  const { login, setLogin, setTok } = useGlobalContext();
+  const { login, setLogin } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -64,7 +64,7 @@ const Profile = () => {
               {login ? (
                 <>
                   {" "}
-                  <h3 className="font-semibold mb-8 text-4xl">
+                  <h3 className="font-semibold mb-8 text-3xl md:text-3xl">
                     User Name : {login.name}
                   </h3>
                   <p className="font-medium">mobile: {login.mobile}</p>
@@ -76,7 +76,6 @@ const Profile = () => {
             <button
               onClick={() => {
                 setLogin(null);
-                setTok(null);
                 localStorage.removeItem("profile");
                 navigate("/");
                 toast.success("logged out successfully");
@@ -93,6 +92,9 @@ const Profile = () => {
               return (
                 <li
                   key={index}
+                  onClick={() => {
+                    navigate("/profile/cart");
+                  }}
                   className="flex flex-row gap-1 justify-between items-center px-4 py-3 bg-white rounded-2xl shadow-md"
                 >
                   <div className="flex flex-row gap-4 items-center justify-center">
