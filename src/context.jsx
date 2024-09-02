@@ -51,27 +51,18 @@ export function GlobalProvider({ children }) {
 
     if (method == "get") {
       try {
-        if (url.includes("/ac")) {
-          const response = await axios.get(
-            import.meta.env.VITE_SERVER_PORT + url,
-            {
-              headers,
-            }
-          );
-          return response;
-        } else {
-          const response = await axios.get(
-            import.meta.env.VITE_SERVER_PORT + url,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${login.token}`,
-              },
-            }
-          );
-          return response;
-        }
+        const response = await axios.get(
+          import.meta.env.VITE_SERVER_PROXY + url,
+          {
+            headers: url.includes("/ac")
+              ? headers
+              : {
+                  ...headers,
+                  Authorization: `Bearer ${login.token}`,
+                },
+          }
+        );
+        return response;
       } catch (err) {
         console.log(err);
         notify(err.message, false);
@@ -79,31 +70,20 @@ export function GlobalProvider({ children }) {
       }
     } else if (method == "post") {
       try {
-        if (url.includes("/ac")) {
-          const response = await axios.post(
-            import.meta.env.VITE_SERVER_PORT + url,
-            body,
-            {
-              headers,
-            }
-          );
-          notify(response.data.message, true);
-          return response;
-        } else {
-          const response = await axios.post(
-            import.meta.env.VITE_SERVER_PORT + url,
-            body,
-            {
-              headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                Authorization: `Bearer ${login.token}`,
-              },
-            }
-          );
-          notify(response.data.message, true);
-          return response;
-        }
+        const response = await axios.post(
+          import.meta.env.VITE_SERVER_PROXY + url,
+          body,
+          {
+            headers: url.includes("/ac")
+              ? headers
+              : {
+                  ...headers,
+                  Authorization: `Bearer ${login.token}`,
+                },
+          }
+        );
+        notify(response.data.message, true);
+        return response;
       } catch (err) {
         notify(err.message, false);
         return err;

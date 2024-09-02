@@ -13,7 +13,6 @@ const Login = () => {
   const [isLogin, setIslogin] = useState(true);
 
   const handleLogin = async (number) => {
-    console.log(number, !number.length < 10, !number.length > 10);
     if (
       !validator.isNumeric(number) ||
       number.length < 10 ||
