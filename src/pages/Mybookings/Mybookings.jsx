@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Mybutton from "../../components/mybutton/Mybutton";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../../context";
+import Loading from "../../components/Loading";
 
 const Mybookings = () => {
   const navigate = useNavigate();
 
-  const { bookings, login } = useGlobalContext();
+  const { bookings, login, loading } = useGlobalContext();
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -17,8 +18,9 @@ const Mybookings = () => {
       className="full-body"
     >
       <NavigateComp title="my bookings" />
-
-      {bookings ? (
+      {loading ? (
+        <Loading />
+      ) : bookings ? (
         <div className="container mt-3 flex m-auto flex-col gap-5 md:grid md:grid-cols-12 ">
           {bookings.map((booking, idx) => {
             return (
@@ -120,7 +122,7 @@ const Mybookings = () => {
         </div>
       ) : (
         <div className="min-h-[20vh] flex justify-center items-center">
-          <p className="text-4xl font-semibold capitalize  ">
+          <p className="text-4xl font-semibold capitalize ">
             you have no bookings
           </p>
         </div>

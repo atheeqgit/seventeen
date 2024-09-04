@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom";
 import NavigateComp from "../../components/navigateComp/NavigateComp";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../context";
+import Loading from "../../components/Loading";
+Loading;
 
 const Details = () => {
-  const { getMRdata } = useGlobalContext();
+  const { getMRdata, loading, setLoading } = useGlobalContext();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -39,36 +41,40 @@ const Details = () => {
     <div className="full-body">
       <div className="details">
         <NavigateComp title="provided services" />
-        <div className="grid grid-cols-12 gap-4 ">
-          {data?.map((item, index) => {
-            return (
-              <div
-                className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly"
-                onClick={() => {
-                  handleNavigate(item.serviceName);
-                }}
-                key={index}
-              >
-                <div className="grid grid-cols-12 gap-5 ">
-                  <div className="col-span-4 ">
-                    <img
-                      src="/no-img.png"
-                      className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-span-8 flex flex-col gap-3 ">
-                    {item.serviceName && (
-                      <h4 className="text-2xl md:text-4xl font-semibold capitalize">
-                        {item.serviceName}
-                      </h4>
-                    )}
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="grid grid-cols-12 gap-4 ">
+            {data?.map((item, index) => {
+              return (
+                <div
+                  className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly"
+                  onClick={() => {
+                    handleNavigate(item.serviceName);
+                  }}
+                  key={index}
+                >
+                  <div className="grid grid-cols-12 gap-5 ">
+                    <div className="col-span-4 ">
+                      <img
+                        src="/no-img.png"
+                        className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                        alt=""
+                      />
+                    </div>
+                    <div className="col-span-8 flex flex-col gap-3 ">
+                      {item.serviceName && (
+                        <h4 className="text-2xl md:text-4xl font-semibold capitalize">
+                          {item.serviceName}
+                        </h4>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

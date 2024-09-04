@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const Context = createContext();
 
 export function GlobalProvider({ children }) {
+  const [loading, setLoading] = useState(true);
   const [login, setLogin] = useState(null);
   const [bookings, setBookings] = useState(null);
   const [sheduledServices, setSheduledServices] = useState([]);
@@ -43,6 +44,7 @@ export function GlobalProvider({ children }) {
   };
 
   const fetchFunc = async (method, url, body) => {
+    setLoading(true);
     const headers = {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -63,6 +65,7 @@ export function GlobalProvider({ children }) {
                 },
           }
         );
+        setLoading(false);
         return response;
       } catch (err) {
         console.log(err);
@@ -240,6 +243,8 @@ export function GlobalProvider({ children }) {
         postBooking,
         bookings,
         setBookings,
+        loading,
+        setLoading,
       }}
     >
       {children}
