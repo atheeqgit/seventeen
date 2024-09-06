@@ -18,13 +18,13 @@ const Featured = (props) => {
           {props.title == "seventeen guarentee" ? "" : "see all >"}
         </span>
       </div>
-      <div className="w-full cards-div grid grid-cols-12 gap-6 md:gap-6 lg:gap-8 justify-center items-center">
+      <div className="w-full cards-div grid grid-cols-4 gap-2 md:gap-6 lg:gap-8 justify-center items-center">
         {data.length > 0 &&
           data.map((item, index) => {
             return (
               <div
                 key={index}
-                className="card-m col-span-3 h-full "
+                className="card-m col-span-1 h-full "
                 onClick={() => {
                   if (item.type == "MechanicalRepairs") {
                     navigate(`/details/mr/${item.serviceName}`);

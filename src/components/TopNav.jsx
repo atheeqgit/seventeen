@@ -6,9 +6,32 @@ import { useState } from "react";
 const TopNav = () => {
   const { login } = useGlobalContext();
 
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY) {
+      // if scroll down, hide navbar
+      setIsVisible(false);
+    } else {
+      // if scroll up, show navbar
+      setIsVisible(true);
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
+
   return (
     <div
-      className=" w-full bg-white fixed top-0 left-0 lg:pl-40  z-50 shadow-lg"
+      className={`w-full bg-white fixed top-0 left-0 lg:pl-40 z-50 shadow-lg transition-transform duration-300 ${
+        isVisible ? "transform translate-y-0" : "transform -translate-y-full"
+      }`}
       id="top-nav"
     >
       <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-4 md:p-6 pb-2 gap-4 md:pb-6 ">

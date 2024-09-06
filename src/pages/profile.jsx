@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import { motion } from "framer-motion";
@@ -9,44 +9,43 @@ const profileData = [
   {
     title: "My Bookings",
     icon: "icon-profile-booking-app.png",
+    link: "/mybooking",
   },
   {
     title: "Refer and Earn",
     icon: "icon-settings-refer-and-earn.png",
-  },
-  {
-    title: "Manage Payment Method",
-    icon: "icon-settings-manage-payment.png",
+    link: "refer&earn",
   },
   {
     title: "Manage Address",
     icon: "icon-settings-manage-address.png",
+    link: "null",
   },
-  {
-    title: "Settings",
-    icon: "icon-profile-settings.png",
-  },
+
   {
     title: "Help & Support",
     icon: "icon-settings-customer-support.png",
+    link: "help&support",
   },
   {
     title: "About App",
     icon: "icon-settings-about-app.png",
+    link: "null",
   },
   {
     title: "dummy Help & Support",
     icon: "icon-settings-customer-support.png",
-  },
-  {
-    title: "dummy About App",
-    icon: "icon-settings-about-app.png",
+    link: "null",
   },
 ];
 
 const Profile = () => {
   const { login, setLogin } = useGlobalContext();
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   const navigate = useNavigate();
 
   return (
@@ -93,7 +92,7 @@ const Profile = () => {
                 <li
                   key={index}
                   onClick={() => {
-                    navigate("/profile/cart");
+                    navigate(`/${data.link}`);
                   }}
                   className="flex flex-row gap-1 justify-between items-center px-4 py-3 bg-white rounded-2xl shadow-md"
                 >

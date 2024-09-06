@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import NavigateComp from "../../components/navigateComp/NavigateComp";
 import { useNavigate } from "react-router-dom";
 import Mybutton from "../../components/mybutton/Mybutton";
@@ -9,7 +9,17 @@ import Loading from "../../components/Loading";
 const Mybookings = () => {
   const navigate = useNavigate();
 
-  const { bookings, login, loading } = useGlobalContext();
+  const { bookings, login, loading, getBookings } = useGlobalContext();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
+  useContext(() => {
+    getBookings();
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}

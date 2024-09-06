@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useGlobalContext } from "./context";
-import { AnimatePresence, motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
+import { AnimatePresence } from "framer-motion";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Login from "./pages/login/Login";
 import Home from "./pages/Home";
-import TopNav from "./components/TopNav";
 import BottomNav from "./components/BottomNav";
 import Wallet from "./pages/Wallet";
 import Profile from "./pages/profile";
@@ -22,9 +21,11 @@ import Orderdetails from "./pages/orderdetails/Orderdetails";
 import Trackorder from "./pages/trackorder/Trackorder";
 import Notfound from "./pages/notfound/Notfound";
 import CheckinPage from "./pages/CheckinPage";
+import Sos from "./pages/Sos";
+import RefEarn from "./pages/RefEarn";
+import HelpSupport from "./pages/HelpSupport";
 
 function App() {
-  const [count, setCount] = useState(0);
   const { getLocalStorage, login } = useGlobalContext();
 
   return (
@@ -44,7 +45,10 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/wallet" element={<Wallet />} />
                 <Route path="/cart" element={<Cart />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/profile" element={<Profile />}></Route>
+                <Route path="/sos" element={<Sos />} />
+                <Route path="/refer&earn" element={<RefEarn />} />
+                <Route path="/help&support" element={<HelpSupport />} />
                 <Route path="/cart" element={<Cart />} />
                 {/* <Route path="/details/:id/:category" element={<Details />} /> */}
                 <Route path="/details/mr/:ServiceName" element={<Details />} />
@@ -56,6 +60,7 @@ function App() {
                 <Route path="/checkin" element={<CheckinPage />} />
                 <Route path="/confirmed" element={<Confirm />} />
                 <Route path="/Mybooking" element={<Mybookings />} />
+
                 <Route path="/orderdetails/:id" element={<Orderdetails />} />
                 <Route path="/trackorder/:id" element={<Trackorder />} />
                 <Route path="*" element={<Notfound />} />

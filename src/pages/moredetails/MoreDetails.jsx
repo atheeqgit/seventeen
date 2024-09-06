@@ -18,6 +18,7 @@ const MoreDetails = () => {
       top: 0,
       behavior: "smooth", // Optional: for smooth scrolling
     });
+
     const fetchData = async () => {
       setData([]);
       try {

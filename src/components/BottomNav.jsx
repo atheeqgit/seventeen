@@ -23,16 +23,7 @@ const BottomNav = () => {
         <i className="fa-solid fa-wallet"></i>
         <p>wallet</p>
       </NavLink> */}
-      <NavLink
-        to="/cart"
-        className={({ isActive, isPending }) =>
-          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
-        }
-      >
-        <span></span>
-        <i className="fa-solid fa-wallet"></i>
-        <p>cart</p>
-      </NavLink>
+
       <NavLink
         to="/mybooking"
         className={({ isActive, isPending }) =>
@@ -49,6 +40,16 @@ const BottomNav = () => {
         }
       >
         <i className="fa-solid fa-car-burst"></i> <p>sos</p>
+      </NavLink>
+      <NavLink
+        to="/cart"
+        className={({ isActive, isPending }) =>
+          isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
+        }
+      >
+        <span></span>
+        <i className="fa-solid fa-wallet"></i>
+        <p>cart</p>
       </NavLink>
       <NavLink
         to="/profile"
