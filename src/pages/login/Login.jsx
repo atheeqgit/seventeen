@@ -265,7 +265,7 @@ const SignUpForm = ({ handleSignup }) => {
                 if (location.latitude && location.longitude) {
                   setBody({
                     ...body,
-                    userLatLng: location.latitude + " | " + location.longitude,
+                    userLatLng: location.latitude + "|" + location.longitude,
                   });
                 }
               }}
