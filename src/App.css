@@ -17,6 +17,15 @@
   padding-bottom: 9rem;
   min-height: 100vh;
   position: relative;
+  z-index: 105;
+  background-color: #f4f5f6;
+}
+
+.part-body {
+  padding: 1rem;
+  padding-bottom: 9rem;
+  min-height: 100vh;
+  position: relative;
   z-index: 101;
   background-color: #f4f5f6;
 }

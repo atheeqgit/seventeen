@@ -24,6 +24,7 @@ import CheckinPage from "./pages/CheckinPage";
 import Sos from "./pages/Sos";
 import RefEarn from "./pages/RefEarn";
 import HelpSupport from "./pages/HelpSupport";
+import AboutApp from "./pages/AboutApp";
 
 function App() {
   const { getLocalStorage, login } = useGlobalContext();
@@ -49,6 +50,8 @@ function App() {
                 <Route path="/sos" element={<Sos />} />
                 <Route path="/refer&earn" element={<RefEarn />} />
                 <Route path="/help&support" element={<HelpSupport />} />
+                <Route path="/aboutapp" element={<AboutApp />} />
+
                 <Route path="/cart" element={<Cart />} />
                 {/* <Route path="/details/:id/:category" element={<Details />} /> */}
                 <Route path="/details/mr/:ServiceName" element={<Details />} />
@@ -60,7 +63,6 @@ function App() {
                 <Route path="/checkin" element={<CheckinPage />} />
                 <Route path="/confirmed" element={<Confirm />} />
                 <Route path="/Mybooking" element={<Mybookings />} />
-
                 <Route path="/orderdetails/:id" element={<Orderdetails />} />
                 <Route path="/trackorder/:id" element={<Trackorder />} />
                 <Route path="*" element={<Notfound />} />

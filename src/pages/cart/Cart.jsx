@@ -18,7 +18,7 @@ const Cart = () => {
   }, 0);
 
   return (
-    <div className="full-body">
+    <div className="part-body">
       <NavigateComp title="CART" />
       {cartData.length > 0 ? (
         <div className="grid grid-cols-12 gap-4 ">

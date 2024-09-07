@@ -14,9 +14,6 @@ const Featured = (props) => {
         <h4 className="text-2xl md:text-4xl font-medium capitalize">
           {props.title}
         </h4>
-        <span className="text-lg md:text-2xl font-medium md:font-semibold capitalize px-3 py-1.5 cursor-pointer ">
-          {props.title == "seventeen guarentee" ? "" : "see all >"}
-        </span>
       </div>
       <div className="w-full cards-div grid grid-cols-4 gap-2 md:gap-6 lg:gap-8 justify-center items-center">
         {data.length > 0 &&
