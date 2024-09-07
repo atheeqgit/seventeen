@@ -36,6 +36,7 @@ function App() {
         {getLocalStorage() == null ? (
           <Routes>
             <Route path="/" element={<Login />} />
+
             <Route path="/landing" element={<LandingPage />} />
             <Route path="*" element={<Notfound />} />
           </Routes>
@@ -51,9 +52,7 @@ function App() {
                 <Route path="/refer&earn" element={<RefEarn />} />
                 <Route path="/help&support" element={<HelpSupport />} />
                 <Route path="/aboutapp" element={<AboutApp />} />
-
                 <Route path="/cart" element={<Cart />} />
-                {/* <Route path="/details/:id/:category" element={<Details />} /> */}
                 <Route path="/details/mr/:ServiceName" element={<Details />} />
                 <Route
                   path="/moreDetails/mr/:ServiceDetails"

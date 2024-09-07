@@ -3,6 +3,10 @@ import "../pages.css";
 import { useGlobalContext } from "../../context";
 import { toast } from "react-toastify";
 import validator from "validator";
+import Mybutton from "../../components/mybutton/Mybutton";
+import { Outlet, useNavigate } from "react-router-dom";
+import Map from "../MapComp";
+import Loading from "../../components/Loading";
 
 const setLocalStorage = (data) => {
   localStorage.setItem("profile", JSON.stringify(data));
@@ -60,9 +64,12 @@ const Login = () => {
       toast.error("Enter a valid E-mail ");
       return null;
     }
-
     if (!body.model_name) {
       toast.error("Please provide a model name");
+      return null;
+    }
+    if (!body.userLatLng) {
+      toast.error("Please provide your location using Map");
       return null;
     }
     try {
@@ -79,10 +86,11 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-[#fcf0ff] relative flex-col gap-5 p-10 ">
-      <div className="w-full md:w-[50%] lg:w-[40%] bg-white p-6 rounded-2xl shadow-xl">
+      <div className="w-full md:w-[60%] lg:w-[50%] bg-white p-6 rounded-2xl shadow-xl">
         <div className="w-2/5 m-auto">
           <img src="/logo.png" className="w-full" alt="" />
         </div>
+
         {isLogin ? (
           <LoginForm handleLogin={handleLogin} />
         ) : (
@@ -144,12 +152,15 @@ const LoginForm = ({ handleLogin }) => {
 };
 
 const SignUpForm = ({ handleSignup }) => {
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
+  const [openMap, setOpenMap] = useState(false);
   const [brandName, SetBrandName] = useState(null);
   const [body, setBody] = useState({
     mobile: "",
     name: "",
     email: "",
     model_name: null,
+    userLatLng: null,
   });
 
   return (
@@ -218,6 +229,71 @@ const SignUpForm = ({ handleSignup }) => {
           )}
         </div>
         <AddVehicle SetBrandName={SetBrandName} setBody={setBody} body={body} />
+        {body.userLatLng && (
+          <>
+            <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+              <div className="p-2 flex justify-center items-center w-1/5">
+                <p className="font-semibold capitalize text-xl md:text-2xl text-[#0d0d0f]">
+                  your location
+                </p>
+              </div>
+              <input
+                className="p-2 px-4 font-inherit w-4/5 border-none bg-transparent text-2xl outline-none"
+                type="text"
+                disabled
+                placeholder={`Model name`}
+                value={location.latitude + " | " + location.longitude}
+              />
+            </div>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenMap(true);
+              }}
+              className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize block m-auto"
+            >
+              Re-enter location
+            </button>
+          </>
+        )}
+        {openMap && (
+          <>
+            <Map setLocation={setLocation} location={location} />
+            <button
+              onClick={(e) => {
+                setOpenMap(!openMap);
+                if (location.latitude && location.longitude) {
+                  setBody({
+                    ...body,
+                    userLatLng: location.latitude + " | " + location.longitude,
+                  });
+                }
+              }}
+              className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-fit mt-3 capitalize block m-auto"
+            >
+              Confirm location
+            </button>
+          </>
+        )}
+
+        {!openMap && !body.userLatLng && (
+          <div className="border border-solid border-red-600 rounded-2xl w-fit block m-auto p-3">
+            <p className="text-2xl text-center capitalize font-semibold text-[#ce1c16] ">
+              Please allow the geo-location popup to get accurate location
+            </p>
+
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenMap(!openMap);
+              }}
+              className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-fit mt-3 capitalize block m-auto"
+            >
+              Enter your location
+            </button>
+          </div>
+        )}
+
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -233,7 +309,7 @@ const SignUpForm = ({ handleSignup }) => {
 };
 
 const AddVehicle = ({ SetBrandName, setBody, body }) => {
-  const { fetchFunc, notify, setLogin, login } = useGlobalContext();
+  const { fetchFunc, notify, setLogin, login, loading } = useGlobalContext();
   const [brandSearchName, setSearchBrandName] = useState("");
   const [modelSearchName, setSearchmodelName] = useState("");
   const [brands, setBrands] = useState([]);
@@ -254,6 +330,8 @@ const AddVehicle = ({ SetBrandName, setBody, body }) => {
     }
   };
   const fetchModelNames = async (name) => {
+    setBrands([]);
+
     try {
       const response = await fetchFunc(
         "get",
@@ -269,18 +347,19 @@ const AddVehicle = ({ SetBrandName, setBody, body }) => {
     }
   };
 
-  return (
-    <div className="w-full bg-white p-3 md:p-6 rounded-2xl shadow-xl">
+  return loading ? (
+    <Loading />
+  ) : (
+    <div className="w-full  rounded-2xl ">
       {body.model_name ? (
         <button
           onClick={(e) => {
             e.preventDefault();
             SetBrandName(null);
             setModels([]);
-            fetchBrandNames();
             setBody({ ...body, model_name: null });
           }}
-          className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize"
+          className="p-2 px-2 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize"
         >
           Re-enter model
         </button>

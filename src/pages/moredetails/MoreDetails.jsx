@@ -66,7 +66,7 @@ const MoreDetails = () => {
               </div>
               <div className="flex flex-row justify-around data?s-center gap-6">
                 <h4 className="text-3xl md:text-4xl font-bold capitalize">
-                  ${data?.price}
+                  ₹{data?.price}
                 </h4>
                 <button
                   className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"

@@ -26,6 +26,8 @@ const Details = () => {
       try {
         const result = await getMRdata(params.ServiceName);
         setData(result);
+
+        console.log(result);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -55,6 +57,7 @@ const Details = () => {
         })
       );
 
+      console.log(results);
       setAllData(results); // Set the fetched data into state after all API calls are done
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -104,7 +107,7 @@ const Details = () => {
                 </div>
                 <div className="flex flex-row justify-around data?s-center gap-6">
                   <h4 className="text-3xl md:text-4xl font-bold capitalize">
-                    ${data?.price}
+                    ₹{data?.price}
                   </h4>
                   <button
                     className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"

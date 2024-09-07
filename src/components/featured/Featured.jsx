@@ -23,11 +23,13 @@ const Featured = (props) => {
                 key={index}
                 className="card-m col-span-1 h-full "
                 onClick={() => {
-                  if (item.type == "MechanicalRepairs") {
-                    navigate(`/details/mr/${item.serviceName}`);
-                  } else {
-                    navigate(`/details/21/${item.type}`);
-                  }
+                  // if (item.type == "MechanicalRepairs" ) {
+                  //   navigate(`/details/mr/${item.serviceName}`);
+                  // } else {
+                  //   navigate(`/details/21/${item.type}`);
+                  // }
+
+                  navigate(`/details/mr/${item.serviceName}`);
                 }}
               >
                 <div

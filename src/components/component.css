@@ -1,3 +1,10 @@
+.login-page .number-form .form-control select {
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  border: none;
+  font-size: 1.8rem;
+}
+
 .top-nav .top-nav-top .details-tnav h1 {
   /* background: var(--primary-blue); */
   color: var(--primary-blue);
