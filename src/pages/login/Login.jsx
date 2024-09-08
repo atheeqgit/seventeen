@@ -261,8 +261,8 @@ const SignUpForm = ({ handleSignup }) => {
             <Map setLocation={setLocation} location={location} />
             <button
               onClick={(e) => {
-                setOpenMap(!openMap);
                 if (location.latitude && location.longitude) {
+                  setOpenMap(!openMap);
                   setBody({
                     ...body,
                     userLatLng: location.latitude + "|" + location.longitude,

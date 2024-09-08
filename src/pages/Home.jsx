@@ -13,7 +13,7 @@ import SpareParts from "../components/spareParts/SpareParts";
 import { useGlobalContext } from "../context";
 import TopNav from "../components/TopNav";
 import Loading from "../components/Loading";
-Loading;
+import CartNav from "../components/CartNav";
 
 const Home = () => {
   const {
@@ -22,6 +22,7 @@ const Home = () => {
     sheduledServices,
     fetchAllServices,
     loading,
+    cartData,
   } = useGlobalContext();
   const [count, setCount] = useState(0);
 
@@ -40,13 +41,15 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="home min-vh-100 pt-72 md:pt-56  px-9 bg-[#F4F5F6]"
+      className="home min-vh-100 pt-72 md:pt-56  px-9 bg-[#F4F5F6] relative"
     >
       <TopNav />
       {loading ? (
         <Loading />
       ) : (
         <div className="container mx-auto ">
+          {cartData.length > 0 && <CartNav />}
+
           <Banner />
           <Featured title="sheduled Services" data={sheduledServices} />
           <Featured title="mechanical Services" data={mechanicalRepairs} />
@@ -73,7 +76,6 @@ const Home = () => {
             </div>
           </div>
           <SpareParts />
-
           <Featured title="Todo guarentee" data={seventeenGuaranteeData} />
         </div>
       )}

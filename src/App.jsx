@@ -27,7 +27,7 @@ import HelpSupport from "./pages/HelpSupport";
 import AboutApp from "./pages/AboutApp";
 
 function App() {
-  const { getLocalStorage, login } = useGlobalContext();
+  const { getLocalStorage, login, cartData } = useGlobalContext();
 
   return (
     <div className="app">
@@ -36,7 +36,6 @@ function App() {
         {getLocalStorage() == null ? (
           <Routes>
             <Route path="/" element={<Login />} />
-
             <Route path="/landing" element={<LandingPage />} />
             <Route path="*" element={<Notfound />} />
           </Routes>

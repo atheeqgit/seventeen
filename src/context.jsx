@@ -180,16 +180,23 @@ export function GlobalProvider({ children }) {
     notify("item Removed From cart", true);
   };
 
-  const postBooking = async () => {
+  const postBooking = async (preferred) => {
+    if (!preferred.time || !preferred.date) {
+      notify("Please select preferred Date and Time", false);
+      return null;
+    }
     if (cartData.length > 0) {
       let bod = cartData.map((item) => {
         return item.id;
       });
+
       try {
         const response = await fetchFunc("post", "/gc/bookService", {
           mobile: login.mobile,
           model: login.model_name,
           cart: bod,
+          preferredDate: preferred.date,
+          preferredTime: preferred.time,
         });
         if (response.status === 200) {
           notify(response.data, true);

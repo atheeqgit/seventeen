@@ -4,7 +4,7 @@ Mybutton;
 
 const Notfound = () => {
   return (
-    <div className="full-body flex justify-center flex-col items-center ga-6">
+    <div className="full-body flex justify-center flex-col items-center gap-6">
       <div className="w-full ">
         <img
           src="/page-not-found.png"

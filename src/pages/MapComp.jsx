@@ -60,15 +60,6 @@ const UserLocationWithClick = ({ setLocation, location }) => {
           <p className="text-2xl text-center capitalize font-semibold text-[#ce1616] mb-4">
             Error:{error}
           </p>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              getGeolocation();
-            }}
-            className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize block m-auto"
-          >
-            Re-Allow location
-          </button>
         </>
       ) : location.latitude && location.longitude ? (
         <div className="h-[50vh] ">
