@@ -44,8 +44,8 @@ const TopNav = () => {
               {login?.model_name ? login?.model_name : "no model"}
             </h1>
             <p className="text-lg lg:text-2xl">
-              <i class="fa-solid fa-location-dot"></i> muthaiya mudalai street
-              washermenpet , chennai 600018{" "}
+              <i className="fa-solid fa-location-dot"></i> muthaiya mudalai
+              street washermenpet , chennai 600018{" "}
             </p>
           </div>
         </div>

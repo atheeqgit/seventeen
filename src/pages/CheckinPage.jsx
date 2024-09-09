@@ -71,21 +71,9 @@ const CheckinPage = () => {
   }, 0);
 
   useEffect(() => {
-    console.log(cartData);
     setCart(cartData);
-    console.log(getNextWeekDates());
     setWeekDates(getNextWeekDates());
   }, [cartData]);
-
-  // {
-  //   "mobile":"8248596070",
-  //   "model":"Ntorq",
-  //   "preferredDate":"29-08-2024",
-  //   "preferredTime":"11-13",
-  //   "cart":[1,18,22]
-  //   }
-
-  // const nextWeekDates = useMemo(() => getNextWeekDates(), []);
 
   return (
     <div className="full-body">
@@ -121,14 +109,19 @@ const CheckinPage = () => {
                 return (
                   <li
                     key={idx}
-                    className="ml-10 p-4 bg-gray-200 flex flex-row justify-between px-10"
+                    className=" p-4 bg-gray-200 flex flex-row justify-between px-5 md:px-10"
                   >
                     <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
-                      {item.serviceName}
+                      {idx + 1}
                     </p>
-                    <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize">
-                      ₹{item.price}
-                    </p>
+                    <div className="flex flex-row justify-between px-4 md:px-10 w-full">
+                      <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
+                        {item.serviceName}
+                      </p>
+                      <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize">
+                        ₹{item.price}
+                      </p>
+                    </div>
                   </li>
                 );
               })}
@@ -185,7 +178,7 @@ const CheckinPage = () => {
             {timeData?.map((time) => {
               return (
                 <li
-                  className={`col-span-2 lg:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
+                  className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                       ${
                         preferred.time == time[24]
                           ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"
@@ -216,7 +209,7 @@ const CheckinPage = () => {
             {weekDates?.map((date) => {
               return (
                 <li
-                  className={`col-span-2 lg:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
+                  className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                      ${
                        preferred.date == date
                          ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"
@@ -240,9 +233,9 @@ const CheckinPage = () => {
           </p>{" "}
           <div
             className="w-full border-0 border-solid p-6 mt-5 rounded capitalize  text-white rounded-md bg-[#2459e0]  transition-colors hover:opacity-85 cursor-pointer"
-            onClick={() => {
-              const result = postBooking(preferred);
-
+            onClick={async () => {
+              const result = await postBooking(preferred);
+              console.log(result);
               if (result) {
                 navigate("/confirmed");
               }
@@ -259,3 +252,12 @@ const CheckinPage = () => {
 };
 
 export default CheckinPage;
+
+// {
+//   "bookingPoint": "13.05950623921726|80.2731935509633",
+//   "cart": [1],
+//   "mobile": "1234512345",
+//   "model": "Passion",
+//   "preferredDate": "10-09-2024",
+//   "preferredTime": "11-13"
+//   }

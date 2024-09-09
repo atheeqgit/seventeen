@@ -26,8 +26,6 @@ const Details = () => {
       try {
         const result = await getMRdata(params.ServiceName);
         setData(result);
-
-        console.log(result);
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -42,10 +40,6 @@ const Details = () => {
     }
   }, [data]);
 
-  // const handleNavigate = (serviceName) => {
-  //   navigate(`/moreDetails/mr/${serviceName}`);
-  // };
-
   const fetchAllData = async () => {
     try {
       setLoading(true); // Set loading to true before fetching
@@ -57,7 +51,6 @@ const Details = () => {
         })
       );
 
-      console.log(results);
       setAllData(results); // Set the fetched data into state after all API calls are done
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -100,9 +93,6 @@ const Details = () => {
 
                       <ul className="list-disc ml-8 capitalize font-medium text-xl md:text-2xl">
                         <li>{data.recommendedOn}</li>
-                        {/* {data?.points.map((point, index) => {
-                       return <li key={index}>{point}</li>;
-                     })} */}
                       </ul>
                     </div>
                   </div>
@@ -129,37 +119,3 @@ const Details = () => {
 };
 
 export default Details;
-// {loading ? (
-//   <Loading />
-// ) : (
-//   <div className="grid grid-cols-12 gap-4 ">
-//     {data?.map((item, index) => {
-//       return (
-//         <div
-//           className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly"
-//           onClick={() => {
-//             handleNavigate(item.serviceName);
-//           }}
-//           key={index}
-//         >
-//           <div className="grid grid-cols-12 gap-5 ">
-//             <div className="col-span-4 ">
-//               <img
-//                 src="/no-img.png"
-//                 className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
-//                 alt=""
-//               />
-//             </div>
-//             <div className="col-span-8 flex flex-col gap-3 ">
-//               {item.serviceName && (
-//                 <h4 className="text-2xl md:text-4xl font-semibold capitalize">
-//                   {item.serviceName}
-//                 </h4>
-//               )}
-//             </div>
-//           </div>
-//         </div>
-//       );
-//     })}
-//   </div>
-// )}

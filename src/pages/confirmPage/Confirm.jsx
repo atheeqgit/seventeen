@@ -1,6 +1,6 @@
 import React from "react";
 import "./confirm.css";
-import Mybutton from "../../components/mybutton/MyButton";
+import Mybutton from "../../components/mybutton/Mybutton";
 
 const Confirm = () => {
   return (

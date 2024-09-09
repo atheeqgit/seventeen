@@ -6,12 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const navigate = useNavigate();
-
   const { cartData, removeFromCart, notify } = useGlobalContext();
 
-  useEffect(() => {
-    console.log(totalPrice);
-  }, [cartData]);
+  useEffect(() => {}, [cartData]);
 
   const totalPrice = cartData.reduce((total, product) => {
     return total + product.price;

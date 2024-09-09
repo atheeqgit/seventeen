@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext, useMemo } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,17 +20,29 @@ export function GlobalProvider({ children }) {
     return data ? JSON.parse(data) : null;
   };
 
+  const getLocalStorageCart = () => {
+    const data = localStorage.getItem("cartData");
+    return data ? JSON.parse(data) : [];
+  };
+
+  // const visibleTodos = useMemo(() => {
+  //   filterTodos(todos, tab);
+  // }, [todos, tab]);
+
   const getFrmLS = () => {
     const lsData = getLocalStorage();
     if (lsData) {
       setLogin(lsData);
     }
   };
+
   useEffect(() => {
     getFrmLS();
   }, []);
 
   useEffect(() => {
+    const lsCart = getLocalStorageCart();
+    setCartData(lsCart);
     fetchAllServices();
     getBookings();
   }, [login]);
@@ -170,12 +182,13 @@ export function GlobalProvider({ children }) {
 
   const addToCart = (data) => {
     setCartData([...cartData, data]);
+    localStorage.setItem("cartData", JSON.stringify([...cartData, data]));
     notify("item added to cart", true);
-    console.log(cartData);
   };
 
   const removeFromCart = (data) => {
     const updatedCart = cartData.filter((item) => item.id !== data.id);
+    localStorage.setItem("cartData", JSON.stringify(updatedCart));
     setCartData(updatedCart);
     notify("item Removed From cart", true);
   };
@@ -183,32 +196,47 @@ export function GlobalProvider({ children }) {
   const postBooking = async (preferred) => {
     if (!preferred.time || !preferred.date) {
       notify("Please select preferred Date and Time", false);
-      return null;
+      return false;
     }
     if (cartData.length > 0) {
       let bod = cartData.map((item) => {
         return item.id;
       });
 
+      console.log({
+        mobile: login.mobile,
+        model: login.model_name,
+        preferredDate: preferred.date,
+        preferredTime: preferred.time,
+        cart: bod,
+        bookingPoint: login.userLatLng,
+      });
       try {
         const response = await fetchFunc("post", "/gc/bookService", {
           mobile: login.mobile,
           model: login.model_name,
-          cart: bod,
           preferredDate: preferred.date,
           preferredTime: preferred.time,
+          cart: bod,
+          bookingPoint: login.userLatLng,
         });
         if (response.status === 200) {
           notify(response.data, true);
           getBookings();
+
+          setCartData([]);
+          localStorage.removeItem("cartData");
+          return true;
         } else {
           notify("Something went wrong while booking", false);
         }
       } catch (err) {
         console.log(err);
+        return false;
       }
     } else {
       notify("The Cart Has No items...", false);
+      return false;
     }
   };
 
@@ -228,6 +256,15 @@ export function GlobalProvider({ children }) {
     }
   };
   const cancelBookings = async (num) => {};
+
+  const logoutFunc = () => {
+    setLogin(null);
+    setCartData([]);
+    localStorage.removeItem("cartData");
+    localStorage.removeItem("profile");
+    toast.success("logged out successfully");
+    return true;
+  };
 
   return (
     <Context.Provider
@@ -253,6 +290,7 @@ export function GlobalProvider({ children }) {
         loading,
         getBookings,
         setLoading,
+        logoutFunc,
       }}
     >
       {children}

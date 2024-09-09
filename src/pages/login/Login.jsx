@@ -357,6 +357,7 @@ const AddVehicle = ({ SetBrandName, setBody, body }) => {
             e.preventDefault();
             SetBrandName(null);
             setModels([]);
+            fetchBrandNames();
             setBody({ ...body, model_name: null });
           }}
           className="p-2 px-2 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize"

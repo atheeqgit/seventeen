@@ -35,7 +35,7 @@ const profileData = [
 ];
 
 const Profile = () => {
-  const { login, setLogin } = useGlobalContext();
+  const { login, logoutFunc } = useGlobalContext();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -69,10 +69,9 @@ const Profile = () => {
             </div>
             <button
               onClick={() => {
-                setLogin(null);
-                localStorage.removeItem("profile");
-                navigate("/");
-                toast.success("logged out successfully");
+                if (logoutFunc()) {
+                  navigate("/");
+                }
               }}
               class="p-2 px-4 cursor-pointer font-inherit border-none bg-[#fbfaff] text-black rounded-md text-2xl transition duration-300 hover:bg-[#d5d2ff] w-fit mt-3 capitalize"
             >

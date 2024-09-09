@@ -13,7 +13,7 @@ const AboutApp = () => {
         About App
       </h1>
       <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-10 pb-10">
-        <div className="flex flex-col justify-between items-center gap-6 whitespace-nowrap ">
+        <div className="flex flex-col justify-between items-center gap-6">
           <h1>terms & Conditions</h1>
           <p className="md:w-2/3 text-wrap p-4">
             Last Updated: 8/09/24

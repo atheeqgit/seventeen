@@ -24,18 +24,13 @@ const Home = () => {
     loading,
     cartData,
   } = useGlobalContext();
-  const [count, setCount] = useState(0);
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
     });
   }, []);
-  useEffect(() => {
-    // const topNav = document.getElementById("top-nav").offsetHeight;
-    // setCount(topNav);
-    // console.log(topNav);
-  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -66,7 +61,7 @@ const Home = () => {
             </p>
           </div>
           <Featured title="value added services" data={valueAddedServices} />
-          <div className="ad-div flex flex-col gap-4">
+          {/* <div className="ad-div flex flex-col gap-4">
             <h4 className="text-2xl md:text-4xl font-medium capitalize">
               Most booked services
             </h4>
@@ -74,8 +69,8 @@ const Home = () => {
               <div className="ad-box col-span-1">most booked</div>
               <div className="ad-box col-span-1">most booked</div>
             </div>
-          </div>
-          <SpareParts />
+          </div> */}
+          {/* <SpareParts /> */}
           <Featured title="Todo guarentee" data={seventeenGuaranteeData} />
         </div>
       )}
