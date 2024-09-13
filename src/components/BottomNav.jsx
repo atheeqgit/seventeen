@@ -47,8 +47,7 @@ const BottomNav = () => {
           isPending ? "nav-button " : isActive ? "nav-button link-active" : ""
         }
       >
-        <span></span>
-        <i className="fa-solid fa-wallet"></i>
+        <i class="fa-solid fa-cart-shopping"></i>
         <p>cart</p>
       </NavLink>
       <NavLink

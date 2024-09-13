@@ -1,28 +1,23 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import { useGlobalContext } from "../context";
-
-import "react-datepicker/dist/react-datepicker.css";
-import "react-datepicker/dist/react-datepicker-cssmodules.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const getNextWeekDates = () => {
   const today = new Date();
   const nextWeekDates = [];
 
-  // Function to format the date as "DD-MM-YYYY"
   const formatDate = (date) => {
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Months are 0-indexed
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
   };
 
-  // Loop to get the next 7 dates
   for (let i = 0; i < 7; i++) {
     const nextDate = new Date(today);
-    nextDate.setDate(today.getDate() + i); // Add i days to today's date
-    nextWeekDates.push(formatDate(nextDate)); // Format the date as "DD-MM-YYYY"
+    nextDate.setDate(today.getDate() + i);
+    nextWeekDates.push(formatDate(nextDate));
   }
 
   return nextWeekDates;
@@ -30,7 +25,7 @@ const getNextWeekDates = () => {
 
 const CheckinPage = () => {
   const navigate = useNavigate();
-  const { cartData, login, postBooking } = useGlobalContext();
+  const { cartData, login, postBooking, getImgUrl } = useGlobalContext();
   const date = new Date();
   const [cart, setCart] = useState(null);
   const [preferred, setPreferred] = useState({
@@ -109,11 +104,19 @@ const CheckinPage = () => {
                 return (
                   <li
                     key={idx}
-                    className=" p-4 bg-gray-200 flex flex-row justify-between px-5 md:px-10"
+                    className="items-center p-4 bg-gray-200 flex flex-row justify-between px-5 md:px-10"
                   >
-                    <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
+                    {" "}
+                    <p className="text-2xl mr-6 lg:text-3xl capitalize font-semibold capitalize ">
                       {idx + 1}
                     </p>
+                    <div className="w-24">
+                      <img
+                        src={item?.serviceName && getImgUrl(item?.serviceName)}
+                        className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                        alt=""
+                      />
+                    </div>
                     <div className="flex flex-row justify-between px-4 md:px-10 w-full">
                       <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
                         {item.serviceName}
@@ -175,9 +178,10 @@ const CheckinPage = () => {
             </p>
           </div>
           <ul className="grid grid-cols-4 flex-wrap gap-2">
-            {timeData?.map((time) => {
+            {timeData?.map((time, idx) => {
               return (
                 <li
+                  key={idx}
                   className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                       ${
                         preferred.time == time[24]
@@ -206,9 +210,10 @@ const CheckinPage = () => {
             </p>
           </div>
           <ul className="grid grid-cols-4 flex-wrap gap-2">
-            {weekDates?.map((date) => {
+            {weekDates?.map((date, idx) => {
               return (
                 <li
+                  key={idx}
                   className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                      ${
                        preferred.date == date
@@ -235,7 +240,6 @@ const CheckinPage = () => {
             className="w-full border-0 border-solid p-6 mt-5 rounded capitalize  text-white rounded-md bg-[#2459e0]  transition-colors hover:opacity-85 cursor-pointer"
             onClick={async () => {
               const result = await postBooking(preferred);
-              console.log(result);
               if (result) {
                 navigate("/confirmed");
               }

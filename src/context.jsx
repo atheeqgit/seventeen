@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect, useContext, useMemo } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export const Context = createContext();
@@ -14,7 +14,7 @@ export function GlobalProvider({ children }) {
   const [valueAddedServices, setValueAddedServices] = useState([]);
   const [cartData, setCartData] = useState([]);
 
-  //import.meta.env.VITE_SERVER_PROXY
+  //import.meta.env.VITE_REACT_APP_SERVER_PROXY
   const getLocalStorage = () => {
     const data = localStorage.getItem("profile");
     return data ? JSON.parse(data) : null;
@@ -67,7 +67,7 @@ export function GlobalProvider({ children }) {
     if (method == "get") {
       try {
         const response = await axios.get(
-          "https://todo-proxy-setup.vercel.app/api" + url,
+          import.meta.env.VITE_SERVER_PORT + url,
           {
             headers: url.includes("/ac")
               ? headers
@@ -87,7 +87,7 @@ export function GlobalProvider({ children }) {
     } else if (method == "post") {
       try {
         const response = await axios.post(
-          "https://todo-proxy-setup.vercel.app/api" + url,
+          import.meta.env.VITE_SERVER_PORT + url,
           body,
           {
             headers: url.includes("/ac")
@@ -203,14 +203,6 @@ export function GlobalProvider({ children }) {
         return item.id;
       });
 
-      console.log({
-        mobile: login.mobile,
-        model: login.model_name,
-        preferredDate: preferred.date,
-        preferredTime: preferred.time,
-        cart: bod,
-        bookingPoint: login.userLatLng,
-      });
       try {
         const response = await fetchFunc("post", "/gc/bookService", {
           mobile: login.mobile,
@@ -223,7 +215,6 @@ export function GlobalProvider({ children }) {
         if (response.status === 200) {
           notify(response.data, true);
           getBookings();
-
           setCartData([]);
           localStorage.removeItem("cartData");
           return true;
@@ -255,7 +246,17 @@ export function GlobalProvider({ children }) {
       console.log(err);
     }
   };
-  const cancelBookings = async (num) => {};
+  const cancelBookings = async (num) => {
+    try {
+      const response = await fetchFunc("get", `/gc/cancelBooking?id=${num}`);
+      if (response.status === 200) {
+        notify("you booking has cancelled", true);
+        getBookings();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const logoutFunc = () => {
     setLogin(null);
@@ -265,10 +266,43 @@ export function GlobalProvider({ children }) {
     toast.success("logged out successfully");
     return true;
   };
+  const totalPrice = (data) => {
+    data.reduce((total, product) => {
+      return total + product.price;
+    }, 0);
+  };
+
+  const getImgUrl = (str) => {
+    if (str) {
+      const camel = str
+        .trim() // Remove leading or trailing whitespace
+        .split(" ") // Split the string into an array by spaces
+        .map(
+          (word, index) =>
+            index === 0
+              ? word.toLowerCase() // Lowercase the first word
+              : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() // Capitalize the first letter of the rest
+        )
+        .join(""); // Join the array back into a single string
+
+      const joined =
+        "http://82.112.226.128:8000/" +
+        camel.charAt(0).toUpperCase() +
+        camel.slice(1) +
+        ".png";
+      // Capitalize the first letter of the entire camel case string
+      return joined;
+    } else {
+      return "/icon-not-found.png";
+    }
+  };
 
   return (
     <Context.Provider
       value={{
+        getImgUrl,
+        totalPrice,
+        cancelBookings,
         getLocalStorage,
         fetchAllServices,
         login,

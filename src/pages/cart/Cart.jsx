@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const { cartData, removeFromCart, notify } = useGlobalContext();
+  const { cartData, removeFromCart, notify, getImgUrl } = useGlobalContext();
 
   useEffect(() => {}, [cartData]);
 
@@ -23,7 +23,14 @@ const Cart = () => {
             return (
               <div className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly">
                 <div className="grid grid-cols-12 gap-5 ">
-                  <div className="col-span-12 flex flex-col gap-3 ">
+                  <div className="col-span-4">
+                    <img
+                      src={data?.serviceName && getImgUrl(data?.serviceName)}
+                      className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-span-8 flex flex-col gap-3 ">
                     {data?.serviceName && (
                       <h4 className="text-4xl font-semibold capitalize">
                         {data?.serviceName}

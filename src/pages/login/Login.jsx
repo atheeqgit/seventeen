@@ -75,7 +75,6 @@ const Login = () => {
     try {
       const response = await fetchFunc("post", "/ac/auth/register", body);
       if (response.status === 200) {
-        console.log({ ...response.data, ...body });
         setLogin({ ...response.data, ...body });
         setLocalStorage({ ...response.data, ...body });
       }

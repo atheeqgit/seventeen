@@ -18,7 +18,7 @@ const CartNav = ({ fullbody }) => {
       <p className="font-medium text-center ">
         view {cartData.length} items in cart
       </p>
-      <p className="font-medium text-center text-[#001ec9]">click here</p>
+      <p className="font-medium text-center text-[#001ec9]">view cart</p>
     </div>
   );
 };

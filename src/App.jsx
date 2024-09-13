@@ -14,7 +14,6 @@ import Details from "./pages/details/Details";
 import MoreDetails from "./pages/moredetails/MoreDetails";
 import Cart from "./pages/cart/Cart";
 import Confirm from "./pages/confirmPage/Confirm";
-import Booking from "./pages/booking/Booking";
 import LandingPage from "./pages/landing/LandingPage";
 import Mybookings from "./pages/Mybookings/Mybookings";
 import Orderdetails from "./pages/orderdetails/Orderdetails";
@@ -57,7 +56,6 @@ function App() {
                   path="/moreDetails/mr/:ServiceDetails"
                   element={<MoreDetails />}
                 />
-                <Route path="/confirmBooking" element={<Booking />} />
                 <Route path="/checkin" element={<CheckinPage />} />
                 <Route path="/confirmed" element={<Confirm />} />
                 <Route path="/Mybooking" element={<Mybookings />} />

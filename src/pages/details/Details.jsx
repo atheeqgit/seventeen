@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./details.css";
-import { details } from "../../utils/data";
 import { useParams } from "react-router-dom";
 import NavigateComp from "../../components/navigateComp/NavigateComp";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +7,15 @@ import Loading from "../../components/Loading";
 import CartNav from "../../components/CartNav";
 
 const Details = () => {
-  const { getMRdata, getMRDetails, setLoading, loading, addToCart, cartData } =
-    useGlobalContext();
+  const {
+    getMRdata,
+    getMRDetails,
+    setLoading,
+    loading,
+    addToCart,
+    cartData,
+    getImgUrl,
+  } = useGlobalContext();
   const navigate = useNavigate();
   const params = useParams();
   const [data, setData] = useState([]);
@@ -46,7 +51,7 @@ const Details = () => {
       const results = await Promise.all(
         data.map(async ({ serviceName }) => {
           const replacedStr = serviceName.replace(/%20/g, " "); // Replace %20 with spaces
-          const res = await getMRDetails(replacedStr); // Fetch data based on the service name
+          const res = await getMRDetails(replacedStr); // Fetch data based on the service
           return res; // Return the result from the API call
         })
       );
@@ -79,7 +84,7 @@ const Details = () => {
                   <div className="grid grid-cols-12 gap-5 ">
                     <div className="col-span-4 ">
                       <img
-                        src="/landing1.png"
+                        src={getImgUrl(data?.serviceName)}
                         className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
                         alt=""
                       />
