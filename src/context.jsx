@@ -68,7 +68,7 @@ export function GlobalProvider({ children }) {
     if (method == "get") {
       try {
         const response = await axios.get(
-          import.meta.env.VITE_SERVER_PORT + url,
+          import.meta.env.VITE_SERVER_PROXY + url,
           {
             headers: url.includes("/ac")
               ? headers
@@ -88,7 +88,7 @@ export function GlobalProvider({ children }) {
     } else if (method == "post") {
       try {
         const response = await axios.post(
-          import.meta.env.VITE_SERVER_PORT + url,
+          import.meta.env.VITE_SERVER_PROXY + url,
           body,
           {
             headers: url.includes("/ac")
