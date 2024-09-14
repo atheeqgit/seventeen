@@ -7,6 +7,7 @@ import Mybutton from "../../components/mybutton/Mybutton";
 import { Outlet, useNavigate } from "react-router-dom";
 import Map from "../MapComp";
 import Loading from "../../components/Loading";
+import { calcLength } from "framer-motion";
 
 const setLocalStorage = (data) => {
   localStorage.setItem("profile", JSON.stringify(data));
@@ -84,8 +85,8 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex justify-center items-center bg-[#fcf0ff] relative flex-col gap-5 p-10 ">
-      <div className="w-full md:w-[60%] lg:w-[50%] bg-white p-6 rounded-2xl shadow-xl">
+    <div className="w-full min-h-screen flex justify-center items-center  relative flex-col gap-5 p-10 bg-white bg-gradient-to-br from-white to-[rgba(10,72,255,0.23)]">
+      <div className="w-full md:w-[60%] lg:w-[50%] bg-transparent p-6 rounded-2xl ">
         <div className="w-2/5 m-auto">
           <img src="/logo.png" className="w-full" alt="" />
         </div>
@@ -122,7 +123,7 @@ const LoginForm = ({ handleLogin }) => {
       <p className="text-2xl text-center capitalize font-semibold text-[#2516ff]">
         Hey! Welcome back! Please login to your account
       </p>
-      <div className="form-control w-full flex border-2 border-[#ccc] rounded-md">
+      <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
         <select className="p-2 border-r-2 border-[#ccc]">
           <option default value="91">
             +91
@@ -130,19 +131,20 @@ const LoginForm = ({ handleLogin }) => {
           <option value="92">+91</option>
         </select>
         <input
+          className="p-2 px-4 font-inherit w-4/5 border-none bg-transparent text-2xl outline-none"
           type="number"
           value={number}
           onChange={(e) => setNumber(e.target.value)}
           placeholder="Enter your number"
-          className="p-2 px-4 font-inherit border-none w-full text-2xl outline-none"
         />
       </div>
+
       <button
         onClick={(e) => {
           e.preventDefault();
           handleLogin(number);
         }}
-        className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-full mt-3"
+        className="p-4 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-xl text-2xl transition duration-300 hover:bg-[#4f43ff] w-[50%] block mx-auto mt-3 md:text-3xl "
       >
         Login
       </button>
@@ -154,6 +156,7 @@ const SignUpForm = ({ handleSignup }) => {
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [openMap, setOpenMap] = useState(false);
   const [brandName, SetBrandName] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const [body, setBody] = useState({
     mobile: "",
     name: "",
@@ -172,7 +175,7 @@ const SignUpForm = ({ handleSignup }) => {
           {["mobile", "name", "email"].map((field, index) => (
             <div
               key={index}
-              className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg"
+              className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white"
             >
               <div className="p-2 flex justify-center items-center w-1/5">
                 <p className="font-semibold capitalize text-xl md:text-2xl text-[#0d0d0f]">
@@ -195,7 +198,7 @@ const SignUpForm = ({ handleSignup }) => {
             </div>
           ))}
           {brandName && (
-            <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
               <div className="p-2 flex justify-center items-center w-1/5">
                 <p className="font-semibold capitalize text-xl md:text-2xl text-[#0d0d0f]">
                   Bike brand
@@ -211,7 +214,7 @@ const SignUpForm = ({ handleSignup }) => {
             </div>
           )}
           {body.model_name && (
-            <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
               <div className="p-2 flex justify-center items-center w-1/5">
                 <p className="font-semibold capitalize text-xl md:text-2xl text-[#0d0d0f]">
                   Bike Model
@@ -224,13 +227,35 @@ const SignUpForm = ({ handleSignup }) => {
                 placeholder={`Model name`}
                 value={body.model_name}
               />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  SetBrandName(null);
+                  setShowModal(true);
+                  setBody({ ...body, model_name: null });
+                }}
+                className="p-2 px-2 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize"
+              >
+                Re-enter model
+              </button>
             </div>
           )}
         </div>
-        <AddVehicle SetBrandName={SetBrandName} setBody={setBody} body={body} />
+        {!body.model_name && (
+          <div className="flex flex-row justify-evenly gap-3 bg-white">
+            <div
+              className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#2d3fdd] cursor-pointer w-full"
+              onClick={() => {
+                setShowModal(true);
+              }}
+            >
+              ADD Vehicle
+            </div>
+          </div>
+        )}
         {body.userLatLng && (
           <>
-            <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg">
+            <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
               <div className="p-2 flex justify-center items-center w-1/5">
                 <p className="font-semibold capitalize text-xl md:text-2xl text-[#0d0d0f]">
                   your location
@@ -243,16 +268,16 @@ const SignUpForm = ({ handleSignup }) => {
                 placeholder={`Model name`}
                 value={location.latitude + " | " + location.longitude}
               />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setOpenMap(true);
+                }}
+                className="p-2  cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize block m-auto"
+              >
+                Re-enter location
+              </button>
             </div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setOpenMap(true);
-              }}
-              className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize block m-auto"
-            >
-              Re-enter location
-            </button>
           </>
         )}
         {openMap && (
@@ -298,17 +323,39 @@ const SignUpForm = ({ handleSignup }) => {
             e.preventDefault();
             handleSignup(body);
           }}
-          className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-full mt-3 capitalize"
+          className="p-4 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-xl text-2xl transition duration-300 hover:bg-[#4f43ff] w-[50%] block mx-auto mt-3 md:text-3xl "
         >
           Sign up
         </button>
       </form>
+      {showModal && (
+        <div className="fixed inset-0 flex justify-center items-center bg-white  ">
+          <div className="bg-white p-8 rounded-lg text-center">
+            <AddVehicle
+              SetBrandName={SetBrandName}
+              setShowModal={setShowModal}
+              setBody={setBody}
+              body={body}
+            />
+            <div className="flex justify-around gap-3 text-nowrap">
+              <button
+                className="px-4 py-2 bg-gray-300 text-black rounded-lg"
+                onClick={() => {
+                  setShowModal(!showModal);
+                }}
+              >
+                No, Go Back
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-const AddVehicle = ({ SetBrandName, setBody, body }) => {
-  const { fetchFunc, notify, setLogin, login, loading } = useGlobalContext();
+const AddVehicle = ({ SetBrandName, setBody, body, setShowModal }) => {
+  const { fetchFunc, loading, getImgUrl } = useGlobalContext();
   const [brandSearchName, setSearchBrandName] = useState("");
   const [modelSearchName, setSearchmodelName] = useState("");
   const [brands, setBrands] = useState([]);
@@ -349,90 +396,86 @@ const AddVehicle = ({ SetBrandName, setBody, body }) => {
   return loading ? (
     <Loading />
   ) : (
-    <div className="w-full  rounded-2xl ">
-      {body.model_name ? (
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            SetBrandName(null);
-            setModels([]);
-            fetchBrandNames();
-            setBody({ ...body, model_name: null });
+    <div className="w-[90vw] h-[90vh]  rounded-2xl ">
+      <p className="text-2xl text-center capitalize font-semibold text-[#2516ff]">
+        Please select your bike brand and model.
+      </p>
+      <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg mt-4">
+        <div className="p-2 flex justify-center items-center">
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <input
+          className="p-2 px-4 font-inherit border-none bg-transparent text-2xl outline-none w-full"
+          type="text"
+          value={models.length > 0 ? modelSearchName : brandSearchName}
+          onChange={(e) => {
+            {
+              models.length > 0
+                ? setSearchmodelName(e.target.value)
+                : setSearchBrandName(e.target.value);
+            }
           }}
-          className="p-2 px-2 cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize"
-        >
-          Re-enter model
-        </button>
-      ) : (
-        <>
-          <p className="text-2xl text-center capitalize font-semibold text-[#2516ff]">
-            Please select your bike brand and model.
-          </p>
-          <div className="form-control w-full flex border-2 p-3 border-[#cccccc] rounded-lg mt-4">
-            <div className="p-2 flex justify-center items-center">
-              <i className="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <input
-              className="p-2 px-4 font-inherit border-none bg-transparent text-2xl outline-none w-full"
-              type="text"
-              value={models.length > 0 ? modelSearchName : brandSearchName}
-              onChange={(e) => {
-                {
-                  models.length > 0
-                    ? setSearchmodelName(e.target.value)
-                    : setSearchBrandName(e.target.value);
-                }
-              }}
-              placeholder={`Search your ${
-                brandSearchName != ""
-                  ? "brand name"
-                  : brandSearchName + " model"
-              } name`}
-            />
-          </div>
-          <div className="max-h-[40vh] overflow-y-scroll">
-            {(brands.length > 0) & (models.length < 1) && (
-              <ul className="mt-4 grid grid-cols-12 gap-4">
-                {brands
-                  .filter((brand) =>
-                    brand.toLowerCase().includes(brandSearchName.toLowerCase())
-                  )
-                  .map((brand, idx) => (
-                    <li
-                      key={idx}
-                      onClick={() => {
-                        fetchModelNames(brand);
-                        SetBrandName(brand);
-                      }}
-                      className="col-span-12 md:col-span-6 p-4 rounded-lg text-center border border-solid border-[#ccc] card shadow-lg cursor-pointer"
-                    >
-                      {brand}
-                    </li>
-                  ))}
-              </ul>
-            )}
-            {models.length > 0 && (
-              <ul className="mt-4 grid grid-cols-12 gap-4">
-                {models
-                  .filter((model) =>
-                    model.toLowerCase().includes(modelSearchName.toLowerCase())
-                  )
-                  .map((model, idx) => (
-                    <li
-                      key={idx}
-                      onClick={() => {
-                        setBody({ ...body, model_name: model });
-                      }}
-                      className="col-span-12 md:col-span-6  p-4 rounded-lg text-center border border-solid border-[#ccc] card shadow-lg cursor-pointer"
-                    >
-                      {model}
-                    </li>
-                  ))}
-              </ul>
-            )}
-          </div>
-        </>
-      )}
+          placeholder={`Search your ${
+            brandSearchName != "" ? "brand name" : brandSearchName + " model"
+          } name`}
+        />
+      </div>
+      <div className="max-h-[75vh] overflow-y-scroll">
+        {(brands.length > 0) & (models.length < 1) && (
+          <ul className="mt-4 grid grid-cols-12 gap-4">
+            {brands
+              .filter((brand) =>
+                brand.toLowerCase().includes(brandSearchName.toLowerCase())
+              )
+              .map((brand, idx) => (
+                <li
+                  key={idx}
+                  onClick={() => {
+                    fetchModelNames(brand);
+                    SetBrandName(brand);
+                  }}
+                  className="col-span-6 md:col-span-4 w-full p-4 rounded-lg text-center border border-solid border-[#ccc] card shadow-lg cursor-pointer flex flex-col gap-2 items-center justify-evenly lg:flex-row"
+                >
+                  <div className="w-40">
+                    <img
+                      src={getImgUrl(brand)}
+                      className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                      alt=""
+                    />
+                  </div>
+                  {brand}
+                </li>
+              ))}
+          </ul>
+        )}
+        {models.length > 0 && (
+          <ul className="mt-4 grid grid-cols-12 gap-4">
+            {models
+              .filter((model) =>
+                model.toLowerCase().includes(modelSearchName.toLowerCase())
+              )
+              .map((model, idx) => (
+                <li
+                  key={idx}
+                  onClick={() => {
+                    setBody({ ...body, model_name: model });
+                    setShowModal(false);
+                  }}
+                  className="col-span-6 md:col-span-4 w-full p-4 rounded-lg text-center border border-solid border-[#ccc] card shadow-lg cursor-pointer flex flex-col gap-2 items-center justify-evenly lg:flex-row"
+                >
+                  <div className="w-40">
+                    <img
+                      src={getImgUrl(model)}
+                      className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                      alt=""
+                    />
+                  </div>
+                  {model}
+                </li>
+              ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

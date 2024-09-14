@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { staticAllData } from "./utils/data";
 
 export const Context = createContext();
 
@@ -152,14 +153,16 @@ export function GlobalProvider({ children }) {
   const fetchAllServices = async () => {
     if (login) {
       try {
-        const response = await fetchFunc("get", "/gc/getAllServices", {});
-        if (response.status === 200) {
+        // const response = await fetchFunc("get", "/gc/getAllServices", {});
+        const response = staticAllData;
+        // if (response.status === 200) {
+        if (response) {
           const scheduledServices = [];
           const mechanicalRepairs = [];
           const valueAddedServices = [];
-
-          response.data?.forEach((service) => {
-            const updatedService = { ...service, icon: "icon-not-found.png" };
+          // response.data?.forEach((service) => {
+          response.forEach((service) => {
+            const updatedService = { ...service };
 
             if (service.type === "ScheduledService") {
               scheduledServices.push(updatedService);
@@ -273,7 +276,7 @@ export function GlobalProvider({ children }) {
   };
 
   const getImgUrl = (str) => {
-    if (str) {
+    if (str != "") {
       const camel = str
         .trim() // Remove leading or trailing whitespace
         .split(" ") // Split the string into an array by spaces

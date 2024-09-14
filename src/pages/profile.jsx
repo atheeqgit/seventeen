@@ -23,14 +23,19 @@ const profileData = [
   },
 
   {
+    title: "About App",
+    icon: "icon-settings-about-app.png",
+    link: "aboutapp",
+  },
+  {
     title: "Help & Support",
     icon: "icon-settings-customer-support.png",
     link: "help&support",
   },
   {
-    title: "About App",
+    title: "Privacy Policy",
     icon: "icon-settings-about-app.png",
-    link: "aboutapp",
+    link: "PrivacyPolicy",
   },
 ];
 
@@ -80,7 +85,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="down-div ">
-          <ul className="my-list flex flex-col gap-4 list-none">
+          <ul className="my-list flex flex-col gap-6 list-none bg-white rounded-2xl shadow-md p-4">
             {profileData.map((data, index) => {
               return (
                 <li
@@ -88,17 +93,18 @@ const Profile = () => {
                   onClick={() => {
                     navigate(`/${data.link}`);
                   }}
-                  className="flex flex-row gap-1 justify-between items-center px-4 py-3 bg-white rounded-2xl shadow-md"
+                  className="flex  bg-[#ffffff] cursor-pointer
+                     hover:bg-[#e9e9e9] rounded-2xl flex-row gap-1 justify-between items-center px-4 py-3  "
                 >
                   <div className="flex flex-row gap-4 items-center justify-center">
-                    <div className=" p-6 rounded-full bg-[#eae9ff]">
+                    <div className=" p-6 rounded-full bg-[#eae9ff] ">
                       <img
                         src={"./" + data.icon}
                         className="w-8 md:w-10"
                         alt=""
                       />
                     </div>
-                    <p className="font-medium font-lg md:font-xl text-capitalize ">
+                    <p className="font-medium text-2xl md:text-3xl  text-capitalize ">
                       {data.title}
                     </p>
                   </div>

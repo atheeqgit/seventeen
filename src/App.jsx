@@ -24,12 +24,14 @@ import Sos from "./pages/Sos";
 import RefEarn from "./pages/RefEarn";
 import HelpSupport from "./pages/HelpSupport";
 import AboutApp from "./pages/AboutApp";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+PrivacyPolicy;
 
 function App() {
   const { getLocalStorage, login, cartData } = useGlobalContext();
 
   return (
-    <div className="app">
+    <div className="app font-poppins">
       <ToastContainer />
       <Router>
         {getLocalStorage() == null ? (
@@ -47,9 +49,6 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/profile" element={<Profile />}></Route>
                 <Route path="/sos" element={<Sos />} />
-                <Route path="/refer&earn" element={<RefEarn />} />
-                <Route path="/help&support" element={<HelpSupport />} />
-                <Route path="/aboutapp" element={<AboutApp />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/details/mr/:ServiceName" element={<Details />} />
                 <Route
@@ -62,6 +61,10 @@ function App() {
                 <Route path="/orderdetails/:id" element={<Orderdetails />} />
                 <Route path="/trackorder/:id" element={<Trackorder />} />
                 <Route path="*" element={<Notfound />} />
+                <Route path="/refer&earn" element={<RefEarn />} />
+                <Route path="/help&support" element={<HelpSupport />} />
+                <Route path="/aboutapp" element={<AboutApp />} />
+                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
               </Routes>
               <BottomNav />
             </AnimatePresence>

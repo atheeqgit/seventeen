@@ -2,12 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./pages.css";
 import Featured from "../components/featured/Featured";
-import {
-  sheduledServicesData,
-  mechanicalRepairsData,
-  valueAddedServicesData,
-  seventeenGuaranteeData,
-} from "../utils/data";
 import Banner from "../components/banner/Banner";
 import SpareParts from "../components/spareParts/SpareParts";
 import { useGlobalContext } from "../context";
@@ -71,7 +65,6 @@ const Home = () => {
             </div>
           </div> */}
           {/* <SpareParts /> */}
-          <Featured title="Todo guarentee" data={seventeenGuaranteeData} />
         </div>
       )}
     </motion.div>

@@ -1,3 +1,102 @@
+export const staticAllData = [
+  {
+    type: "ScheduledService",
+    serviceName: "General Service",
+    icon: "icons-scheduled-service-general-service.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Water Wash",
+    icon: "icons-Scheduled-services-water-service.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Tyres and Wheels",
+    icon: "icons-Scheduled-services-tyres-and-wheel.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Bike Inspection",
+    icon: "icons-Scheduled-services-bike-inspection.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Brakes",
+    icon: "icons-Mechanical-services-brakes.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Chain",
+    icon: "icons-Mechanical-services-chain-issue.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Starting Issue",
+    icon: "icons-Mechanical-services-starting-issue.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Horns and Lights",
+    icon: "icons-Mechanical-services-horns-and-lights.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Oil Change",
+    icon: "icons-Mechanical-services-oil-change.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Engine",
+    icon: "icons-Mechanical-services-engine.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Wheel Alignment",
+    icon: "icons-Mechanical-services-wheel-alignment.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Battery",
+    icon: "icons-Mechanical-services-battery.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Clutch Issues",
+    icon: "icons-Mechanical-services-cluctch-issue.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Switches and Stands",
+    icon: "icons-Mechanical-services-switch-and-stands.png",
+  },
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Don't know what's the Issue?",
+    icon: "icons-Mechanical-services-dont-know-what-issue-is.png",
+  },
+  {
+    type: "ValueAddedServices",
+    serviceName: "Stickering",
+    icon: "icon-valueadded-stickering.png",
+  },
+  {
+    type: "ValueAddedServices",
+    icon: "icon-valueadded-modification.png",
+
+    serviceName: "Bike Modification",
+  },
+  {
+    type: "ValueAddedServices",
+    serviceName: "Detailing",
+    icon: "icon-valueadded-detailing.png",
+  },
+  {
+    type: "ValueAddedServices",
+    serviceName: "Seat Covers",
+    icon: "icon-valueadded-modification.png",
+  },
+];
+
 export const sheduledServicesData = [
   {
     icon: "icons-scheduled-service-general-service.png",
@@ -18,6 +117,26 @@ export const sheduledServicesData = [
     icon: "icons-Scheduled-services-water-service.png",
     serviceName: "water wash",
     id: 11,
+  },
+  {
+    icon: "icon-not-found.png",
+    serviceName: "stickering",
+    id: 21,
+  },
+  {
+    icon: "icon-not-found.png",
+    serviceName: "detailing",
+    id: 21,
+  },
+  {
+    icon: "icon-not-found.png",
+    serviceName: "custamizations",
+    id: 21,
+  },
+  {
+    icon: "icon-not-found.png",
+    serviceName: "inspections",
+    id: 21,
   },
 ];
 
@@ -77,6 +196,28 @@ export const mechanicalRepairsData = [
     icon: "icons-Mechanical-services-dont-know-what-issue-is.png",
     serviceName: "Dont know problem",
     id: 21,
+  },
+];
+export const BoostData = [
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Oil Change",
+    icon: "icons-Mechanical-services-oil-change.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "General Service",
+    icon: "icons-scheduled-service-general-service.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Water Wash",
+    icon: "icons-Scheduled-services-water-service.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Bike Inspection",
+    icon: "icons-Scheduled-services-bike-inspection.png",
   },
 ];
 

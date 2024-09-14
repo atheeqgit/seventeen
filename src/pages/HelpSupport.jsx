@@ -9,9 +9,7 @@ const HelpSupport = () => {
   return (
     <div className="full-body p-4">
       <NavigateComp title="Help and Support" />
-      <h1 className="font-semibold capitalize text-3xl lg:text-4xl p-6 bottom-1 border-solid border-[#333]">
-        Help and Support
-      </h1>
+
       <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-10">
         <div className="w-28 md:w-44 ">
           <img
@@ -26,14 +24,14 @@ const HelpSupport = () => {
           </h1>
 
           <a
-            href="https://wa.me/+919566244054"
+            href="https://wa.me/+916382104561"
             className="font-medium flex justify-center capitalize text-2xl h-fit text-white px-6 py-3 md:px-8 w-96 md:py-4 rounded-md bg-[#2459e0] cursor-pointer hover:opacity-80"
             target="blank"
           >
             message us on whats-App
           </a>
           <a
-            href="tel:+919566244054"
+            href="tel:+916382104561"
             className="font-medium flex justify-center capitalize text-2xl h-fit text-white px-6 py-3 md:px-8 w-96 md:py-4 rounded-md bg-[#2459e0] cursor-pointer hover:opacity-80"
             target="blank"
           >

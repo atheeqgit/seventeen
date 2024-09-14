@@ -38,7 +38,7 @@ const TopNav = () => {
         <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-8">
           <div className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center ">
             <img
-              src={getImgUrl(login?.model_name ? login?.model_name : null)}
+              src={getImgUrl(login?.model_name ? login?.model_name : "")}
               className="w-28"
               alt=""
             />
