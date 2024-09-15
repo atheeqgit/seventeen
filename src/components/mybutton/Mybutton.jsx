@@ -4,21 +4,14 @@ import { useNavigate } from "react-router-dom";
 const Mybutton = ({ title, primary, onclick, wfull }) => {
   const navigate = useNavigate();
 
-  return primary ? (
+  return (
     <button
-      className={`font-medium flex justify-center capitalize text-2xl h-fit text-white px-6 py-3 md:px-8 md:py-4 rounded-md bg-[#2459e0] cursor-pointer ${
+      className={`font-medium flex justify-center capitalize text-2xl h-fit  px-6 py-3 md:px-8 md:py-4 rounded-xl  cursor-pointer shadow-2xl ${
         wfull ? " w-full" : ""
-      } `}
-      onClick={() => {
-        navigate(onclick);
-      }}
-    >
-      {title}
-    </button>
-  ) : (
-    <button
-      className={`font-medium flex justify-center capitalize text-2xl h-fit text-[#1e1e1e] px-6 py-3 md:px-8 md:py-4 rounded-md bg-[#f4f5f6] cursor-pointer border-2 ${
-        wfull ? " w-full" : ""
+      } ${
+        primary
+          ? "bg-[#2459e0] text-white hover:bg-[#1d11c4]"
+          : "bg-[#f4f5f6] text-[#1e1e1e] hover:bg-[#cfcfcf] border-2"
       } `}
       onClick={() => {
         navigate(onclick);

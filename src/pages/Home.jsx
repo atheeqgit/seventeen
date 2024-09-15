@@ -30,7 +30,7 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="home min-vh-100 pt-72 md:pt-56  px-9 bg-[#F4F5F6] relative"
+      className="home min-vh-100 pt-72 md:pt-56  px-4 md:px-9 bg-[#F4F5F6] relative"
     >
       <TopNav />
       {loading ? (

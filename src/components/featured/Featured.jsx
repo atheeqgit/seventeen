@@ -41,10 +41,10 @@ const Featured = (props) => {
                   className="lg:border-2 h-full lg:border-gray-300 gap-4 md:gap-6 w-full flex flex-col lg:flex-row items-center p-3 md:p-6 lg:bg-[#f3f3f3] rounded-2xl lg:shadow-md transition-all hover:scale-105   
               "
                 >
-                  <div className="w-24 h-24 md:w-28 md:h-28 flex justify-center items-center p-4 bg-[#fffafa] rounded-xl shadow-md">
+                  <div className="w-24 h-24 md:w-28 md:h-28 flex justify-center items-center  bg-[#fffafa] rounded-xl shadow-md">
                     <img
                       src={"/" + item.icon}
-                      className="w-[70%]"
+                      className="w-[100%]"
                       alt=""
                       srcSet=""
                     />{" "}

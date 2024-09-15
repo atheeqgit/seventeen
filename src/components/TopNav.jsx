@@ -11,10 +11,8 @@ const TopNav = () => {
 
   const controlNavbar = () => {
     if (window.scrollY > lastScrollY) {
-      // if scroll down, hide navbar
       setIsVisible(false);
     } else {
-      // if scroll up, show navbar
       setIsVisible(true);
     }
     setLastScrollY(window.scrollY);
@@ -34,7 +32,7 @@ const TopNav = () => {
       }`}
       id="top-nav"
     >
-      <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-4 md:p-6 pb-2 gap-4 md:pb-6 ">
+      <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-4 md:p-6 pb-2 gap-3 md:gap-4 md:pb-6 ">
         <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-8">
           <div className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center ">
             <img

@@ -68,7 +68,9 @@ export function GlobalProvider({ children }) {
     if (method == "get") {
       try {
         const response = await axios.get(
-          import.meta.env.VITE_SERVER_PROXY + url,
+          // import.meta.env.VITE_SERVER_PROXY + url,
+          "https://todo-proxy-setup.vercel.app/api" + url,
+          // "http://82.112.226.128:8099" + url,
           {
             headers: url.includes("/ac")
               ? headers
@@ -88,7 +90,9 @@ export function GlobalProvider({ children }) {
     } else if (method == "post") {
       try {
         const response = await axios.post(
-          import.meta.env.VITE_SERVER_PROXY + url,
+          // import.meta.env.VITE_SERVER_PROXY + url,
+          "https://todo-proxy-setup.vercel.app/api" + url,
+          // "http://82.112.226.128:8099" + url,
           body,
           {
             headers: url.includes("/ac")

@@ -124,7 +124,7 @@ const LoginForm = ({ handleLogin }) => {
         Hey! Welcome back! Please login to your account
       </p>
       <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
-        <select className="p-2 border-r-2 border-[#ccc]">
+        <select className="p-2 bg-transparent ">
           <option default value="91">
             +91
           </option>
@@ -280,41 +280,17 @@ const SignUpForm = ({ handleSignup }) => {
             </div>
           </>
         )}
-        {openMap && (
-          <>
-            <Map setLocation={setLocation} location={location} />
-            <button
-              onClick={(e) => {
-                if (location.latitude && location.longitude) {
-                  setOpenMap(!openMap);
-                  setBody({
-                    ...body,
-                    userLatLng: location.latitude + "|" + location.longitude,
-                  });
-                }
-              }}
-              className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-fit mt-3 capitalize block m-auto"
-            >
-              Confirm location
-            </button>
-          </>
-        )}
 
-        {!openMap && !body.userLatLng && (
-          <div className="border border-solid border-red-600 rounded-2xl w-fit block m-auto p-3">
-            <p className="text-2xl text-center capitalize font-semibold text-[#ce1c16] ">
-              Please allow the geo-location popup to get accurate location
-            </p>
-
-            <button
-              onClick={(e) => {
-                e.preventDefault();
+        {!openMap && !body.userLatLng && body.model_name && (
+          <div className="flex flex-row justify-evenly gap-3 bg-white">
+            <div
+              className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#2d3fdd] cursor-pointer w-full"
+              onClick={() => {
                 setOpenMap(!openMap);
               }}
-              className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-fit mt-3 capitalize block m-auto"
             >
-              Enter your location
-            </button>
+              Add Location
+            </div>
           </div>
         )}
 
@@ -328,6 +304,25 @@ const SignUpForm = ({ handleSignup }) => {
           Sign up
         </button>
       </form>
+      {openMap && (
+        <div className="fixed inset-0 flex justify-center items-center bg-white flex-col p-6 ">
+          <Map setLocation={setLocation} location={location} />
+          <button
+            onClick={(e) => {
+              if (location.latitude && location.longitude) {
+                setOpenMap(!openMap);
+                setBody({
+                  ...body,
+                  userLatLng: location.latitude + "|" + location.longitude,
+                });
+              }
+            }}
+            className="p-2 px-4 cursor-pointer font-inherit border-none bg-[#2516ff] text-white rounded-md text-2xl transition duration-300 hover:bg-[#4f43ff] w-fit mt-3 capitalize block m-auto"
+          >
+            Confirm location
+          </button>
+        </div>
+      )}
       {showModal && (
         <div className="fixed inset-0 flex justify-center items-center bg-white  ">
           <div className="bg-white p-8 rounded-lg text-center">

@@ -47,6 +47,7 @@ const Mybookings = () => {
       ) : bookings ? (
         <div className="container mt-3 flex m-auto flex-col gap-10 md:grid md:grid-cols-12 ">
           {bookings?.map((booking, idx) => {
+            console.log(booking);
             return (
               <div
                 key={idx}
@@ -75,15 +76,16 @@ const Mybookings = () => {
 
                 <div className="p-3 md:p-5 pb-0 flex flex-col gap-12 justify-between">
                   <div className="flex flex-row gap-6 items-top justify-around">
-                    <div>
-                      <h1 className="font-bold text-3xl lg:text-4xl">
-                        Cost : ₹{" "}
-                        {booking.cart.reduce(
-                          (total, item) => total + item.price,
-                          0
-                        )}
-                      </h1>
+                    <div className="w-36">
+                      <img
+                        src={
+                          login.model_name ? getImgUrl(login.model_name) : ""
+                        }
+                        alt=""
+                        srcset=""
+                      />
                     </div>
+
                     <div className="capitalize font-semibold">
                       <p className="text-3xl lg:text-3xl">
                         Bike model: {login.model_name}
@@ -91,6 +93,15 @@ const Mybookings = () => {
                       <p className="text-2xl md:text-2xl">
                         Mobile: {login.mobile}
                       </p>
+                    </div>
+                    <div>
+                      <h1 className="font-bold text-3xl lg:text-4xl">
+                        Cost : ₹
+                        {booking.cart.reduce(
+                          (total, item) => total + item.price,
+                          0
+                        )}
+                      </h1>
                     </div>
                   </div>
 

@@ -25,52 +25,71 @@ import RefEarn from "./pages/RefEarn";
 import HelpSupport from "./pages/HelpSupport";
 import AboutApp from "./pages/AboutApp";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-PrivacyPolicy;
+import { useNavigate } from "react-router-dom";
+//import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
 
 function App() {
   const { getLocalStorage, login, cartData } = useGlobalContext();
 
+  const navigate = useNavigate(); // Replacing useHistory with useNavigate
+
+  // useEffect(() => {
+  //   const backButtonListener = capApp.addListener("backButton", () => {
+  //     if (window.location.pathname === "/") {
+  //       // If the user is on the home page, exit the app
+  //       capApp.exitApp();
+  //     } else {
+  //       // Otherwise, go back in the history
+  //       navigate(-1); // Replaces history.goBack()
+  //     }
+  //   });
+
+  //   // Clean up the listener on component unmount
+  //   return () => {
+  //     backButtonListener.remove();
+  //   };
+  // }, [navigate]);
+
   return (
     <div className="app font-poppins">
       <ToastContainer />
-      <Router>
-        {getLocalStorage() == null ? (
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/landing" element={<LandingPage />} />
-            <Route path="*" element={<Notfound />} />
-          </Routes>
-        ) : (
-          <div className="lg:pl-40">
-            <AnimatePresence>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/wallet" element={<Wallet />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/profile" element={<Profile />}></Route>
-                <Route path="/sos" element={<Sos />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/details/mr/:ServiceName" element={<Details />} />
-                <Route
-                  path="/moreDetails/mr/:ServiceDetails"
-                  element={<MoreDetails />}
-                />
-                <Route path="/checkin" element={<CheckinPage />} />
-                <Route path="/confirmed" element={<Confirm />} />
-                <Route path="/Mybooking" element={<Mybookings />} />
-                <Route path="/orderdetails/:id" element={<Orderdetails />} />
-                <Route path="/trackorder/:id" element={<Trackorder />} />
-                <Route path="*" element={<Notfound />} />
-                <Route path="/refer&earn" element={<RefEarn />} />
-                <Route path="/help&support" element={<HelpSupport />} />
-                <Route path="/aboutapp" element={<AboutApp />} />
-                <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-              </Routes>
-              <BottomNav />
-            </AnimatePresence>
-          </div>
-        )}
-      </Router>
+
+      {getLocalStorage() == null ? (
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="*" element={<Notfound />} />
+        </Routes>
+      ) : (
+        <div className="lg:pl-40">
+          <AnimatePresence>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/sos" element={<Sos />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/details/mr/:ServiceName" element={<Details />} />
+              <Route
+                path="/moreDetails/mr/:ServiceDetails"
+                element={<MoreDetails />}
+              />
+              <Route path="/checkin" element={<CheckinPage />} />
+              <Route path="/confirmed" element={<Confirm />} />
+              <Route path="/Mybooking" element={<Mybookings />} />
+              <Route path="/orderdetails/:id" element={<Orderdetails />} />
+              <Route path="/trackorder/:id" element={<Trackorder />} />
+              <Route path="*" element={<Notfound />} />
+              <Route path="/refer&earn" element={<RefEarn />} />
+              <Route path="/help&support" element={<HelpSupport />} />
+              <Route path="/aboutapp" element={<AboutApp />} />
+              <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+            </Routes>
+            <BottomNav />
+          </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 }

@@ -51,7 +51,7 @@ const UserLocationWithClick = ({ setLocation, location }) => {
   }, []);
 
   return (
-    <div>
+    <div className="w-100">
       <p className="text-3xl text-center capitalize font-semibold text-[#2516ff] mb-4">
         Please verify and select your location correctly by clicking
       </p>
@@ -62,7 +62,7 @@ const UserLocationWithClick = ({ setLocation, location }) => {
           </p>
         </>
       ) : location.latitude && location.longitude ? (
-        <div className="h-[50vh] ">
+        <div className="h-[80vh] w-[100vw]">
           <MapContainer
             center={[location.latitude, location.longitude]}
             zoom={13}

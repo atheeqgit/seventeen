@@ -93,7 +93,7 @@ export const staticAllData = [
   {
     type: "ValueAddedServices",
     serviceName: "Seat Covers",
-    icon: "icon-valueadded-modification.png",
+    icon: "SeatCoverReplacement.png",
   },
 ];
 

@@ -5,7 +5,10 @@ import Mybutton from "../../components/mybutton/Mybutton";
 const Confirm = () => {
   return (
     <div className="full-body confirm">
-      <i class="fa-regular fa-circle-check"></i>
+      <div className="w-60">
+        <img src="./confirmgif.gif" alt="" />
+      </div>
+
       <h1 className="text-2xl md:text-4xl text-center font-semibold capitalize">
         your order has confirmed <br /> Thankyou for ordering
       </h1>
