@@ -12,6 +12,7 @@ const Mybookings = () => {
     useGlobalContext();
 
   const [showModal, setShowModal] = useState(false);
+  const [orderStatus, setOrderStatus] = useState(null);
   const [selectedBookingId, setSelectedBookingId] = useState(null);
 
   useEffect(() => {
@@ -47,7 +48,6 @@ const Mybookings = () => {
       ) : bookings ? (
         <div className="container mt-3 flex m-auto flex-col gap-10 md:grid md:grid-cols-12 ">
           {bookings?.map((booking, idx) => {
-            console.log(booking);
             return (
               <div
                 key={idx}
@@ -139,7 +139,7 @@ const Mybookings = () => {
                       ))}
                     </ul>
                   </div>
-
+                  {/* 
                   <div className="border-t-2 pt-2 font-semibold flex justify-between">
                     <p className="text-2xl lg:text-3xl">
                       Booked Date: {booking.bookingDate.split(" ")[0]}
@@ -147,9 +147,9 @@ const Mybookings = () => {
                     <p className="text-2xl lg:text-3xl">
                       Booked Time: {booking.bookingDate.split(" ")[1]}
                     </p>
-                  </div>
+                  </div> */}
 
-                  <div className="border-t-2 pt-2 border-solid border-[#2459E0]">
+                  <div className="">
                     <h1 className="text-3xl lg:text-4xl font-semibold">
                       Selected slot
                     </h1>
@@ -162,14 +162,27 @@ const Mybookings = () => {
                       </p>
                     </div>
                   </div>
-
                   {booking.status !== "CANCELLED" && (
-                    <div className="flex flex-row justify-evenly gap-3">
-                      <div
-                        className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#dd2d2d] cursor-pointer w-full"
-                        onClick={() => openCancelModal(booking.id)}
-                      >
-                        Cancel order
+                    <div className="flex flex-row gap-4 w-full">
+                      <div className="flex flex-row justify-evenly gap-3 w-full">
+                        <div
+                          className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#1641ff] cursor-pointer w-full"
+                          onClick={() => {
+                            setOrderStatus(booking);
+                            console.log(booking);
+                          }}
+                        >
+                          Track order
+                        </div>
+                      </div>
+
+                      <div className="flex flex-row justify-evenly gap-3 w-full">
+                        <div
+                          className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#dd2d2d] cursor-pointer w-full"
+                          onClick={() => openCancelModal(booking.id)}
+                        >
+                          Cancel order
+                        </div>
                       </div>
                     </div>
                   )}
@@ -187,7 +200,7 @@ const Mybookings = () => {
       )}
 
       {showModal && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 ">
+        <div className="fixed p-6 inset-0 flex justify-center items-center bg-black bg-opacity-50 ">
           <div className="bg-white p-8 rounded-lg shadow-lg  text-center">
             <p className="text-3xl font-bold text-red-600 mb-6">
               Are you sure you want to cancel this order?
@@ -206,6 +219,87 @@ const Mybookings = () => {
                 No, Go Back
               </button>
             </div>
+          </div>
+        </div>
+      )}
+      {orderStatus != null && (
+        <div className="lg:ml-44 fixed inset-0 p-6 min-h-[100vh] mb-20 w-100 flex flex-col justify-top items-center bg-white  ">
+          <div className="container md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white shadow-lg">
+            <h1 className="text-4xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
+              order Status
+            </h1>
+            <hr />
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                order Date :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                {orderStatus.bookingDate.split(" ")[0]}
+              </p>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                Order Time :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                {orderStatus.bookingDate.split(" ")[1]}
+              </p>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                scheduled Date :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                {orderStatus.scheduledDate.split(" ")[0]}
+              </p>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                scheduled Time :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                {orderStatus.scheduledTime}
+              </p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                Status :
+              </h1>
+              <ul className="flex flex-col gap-2">
+                {orderStatus.cart?.map((item, idx) => {
+                  return (
+                    <li
+                      key={idx}
+                      className="items-center flex flex-row gap-6 justify-between md:px-10"
+                    >
+                      <span
+                        className={`h-10 text-center flex justify-center items-center w-10 rounded-full ${
+                          item.status == "NOT_STARTED"
+                            ? " bg-red-600"
+                            : "bg-blue-600"
+                        }`}
+                      ></span>
+                      <div className="items-left md:items-center p-4 flex flex-col md:flex-row justify-between px-4 md:px-10 gap-4 w-full">
+                        <p className="text-2xl mr-6 lg:text-3xl capitalize font-semibold capitalize ">
+                          {item.serviceName}
+                        </p>
+                        <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
+                          {item.status}
+                        </p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+          <div className="flex justify-around gap-3 text-nowrap">
+            <button
+              className="px-4 py-2 mt-6 bg-gray-300 text-black rounded-lg"
+              onClick={() => setOrderStatus(null)}
+            >
+              Go Back
+            </button>
           </div>
         </div>
       )}

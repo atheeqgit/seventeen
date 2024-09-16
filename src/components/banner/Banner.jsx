@@ -35,7 +35,7 @@ const Banner = () => {
       showDots={true}
     >
       <div
-        className="banner"
+        className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{
           backgroundImage: `url("/landing1.png")`,
         }}
@@ -45,7 +45,7 @@ const Banner = () => {
         </p>
       </div>
       <div
-        className="banner"
+        className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{
           backgroundImage: `url("/landing2.png")`,
         }}
@@ -53,7 +53,7 @@ const Banner = () => {
         <p className="p-4 bg-white text-center capitalize">cleaning services</p>
       </div>
       <div
-        className="banner"
+        className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{
           backgroundImage: `url("/landing3.png")`,
         }}
@@ -63,7 +63,7 @@ const Banner = () => {
         </p>
       </div>
       <div
-        className="banner"
+        className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{
           backgroundImage: `url("/landing4.png")`,
         }}

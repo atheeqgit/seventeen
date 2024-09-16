@@ -26,6 +26,7 @@ import HelpSupport from "./pages/HelpSupport";
 import AboutApp from "./pages/AboutApp";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { useNavigate } from "react-router-dom";
+import Search from "./pages/Search";
 //import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
 
 function App() {
@@ -61,7 +62,7 @@ function App() {
           <Route path="*" element={<Notfound />} />
         </Routes>
       ) : (
-        <div className="lg:pl-40">
+        <div className="lg:pl-36">
           <AnimatePresence>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -85,6 +86,7 @@ function App() {
               <Route path="/help&support" element={<HelpSupport />} />
               <Route path="/aboutapp" element={<AboutApp />} />
               <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="/search" element={<Search />} />
             </Routes>
             <BottomNav />
           </AnimatePresence>

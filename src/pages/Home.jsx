@@ -8,6 +8,8 @@ import { useGlobalContext } from "../context";
 import TopNav from "../components/TopNav";
 import Loading from "../components/Loading";
 import CartNav from "../components/CartNav";
+import { MostBookedData } from "../utils/data";
+import MostBooked from "../components/MostBooked/MostBooked";
 
 const Home = () => {
   const {
@@ -30,7 +32,7 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="home min-vh-100 pt-72 md:pt-56  px-4 md:px-9 bg-[#F4F5F6] relative"
+      className="home min-vh-100 pt-52 md:pt-52  px-4 md:px-9 bg-[#F4F5F6] relative"
     >
       <TopNav />
       {loading ? (
@@ -46,14 +48,14 @@ const Home = () => {
           title="mechanical Services"
           data={Issues ? Issues : mechanicalRepairsData}
         /> */}
-          <div className="w-full py-10 px-5 text-center bg-white rounded-lg border border-solid border-[#ccc] shadow-lg">
-            <p className="capitalize font-medium text-2xl">
-              don't know what the issue is?{" "}
-              <span className="text-[#115ab9] capitalize font-bold">
-                know more
-              </span>
+          <div className="w-full py-5 px-3 md:py-7 md:px-4 text-center  bg-white rounded-2xl border-2 border-solid border-[#115ab9] shadow-lg">
+            <p className="dont-know-box  text-[#1013bb] font-medium  text-2xl md:text-4xl ">
+              I Don't know what the issue is with my bike?
             </p>
           </div>
+
+          <MostBooked title="Most Booked" data={MostBookedData} />
+
           <Featured title="value added services" data={valueAddedServices} />
           {/* <div className="ad-div flex flex-col gap-4">
             <h4 className="text-2xl md:text-4xl font-medium capitalize">

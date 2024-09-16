@@ -66,7 +66,7 @@ const Details = () => {
 
   return (
     <div className="full-body relative">
-      {cartData.length > 0 && <CartNav fullbody={true} />}
+      {/* {cartData.length > 0 && <CartNav fullbody={true} />} */}
       <div className="details">
         <NavigateComp title="provided services" />
       </div>

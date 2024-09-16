@@ -157,7 +157,8 @@ export function GlobalProvider({ children }) {
   const fetchAllServices = async () => {
     if (login) {
       try {
-        // const response = await fetchFunc("get", "/gc/getAllServices", {});
+        const REresponse = await fetchFunc("get", "/gc/getAllServices", {});
+        console.log(REresponse);
         const response = staticAllData;
         // if (response.status === 200) {
         if (response) {

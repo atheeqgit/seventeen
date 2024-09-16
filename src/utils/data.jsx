@@ -50,9 +50,19 @@ export const staticAllData = [
     icon: "icons-Mechanical-services-engine.png",
   },
   {
+    serviceName: "Cable and Wiring",
+    type: "MechanicalRepairs",
+    icon: "icon-Cable-Wiring.png",
+  },
+  {
     type: "MechanicalRepairs",
     serviceName: "Wheel Alignment",
     icon: "icons-Mechanical-services-wheel-alignment.png",
+  },
+  {
+    serviceName: "Body parts and Extra Fittings",
+    type: "MechanicalRepairs",
+    icon: "icon-Body-Parts.png",
   },
   {
     type: "MechanicalRepairs",
@@ -69,11 +79,11 @@ export const staticAllData = [
     serviceName: "Switches and Stands",
     icon: "icons-Mechanical-services-switch-and-stands.png",
   },
-  {
-    type: "MechanicalRepairs",
-    serviceName: "Don't know what's the Issue?",
-    icon: "icons-Mechanical-services-dont-know-what-issue-is.png",
-  },
+  // {
+  //   type: "MechanicalRepairs",
+  //   serviceName: "Don't know what's the Issue?",
+  //   icon: "icons-Mechanical-services-dont-know-what-issue-is.png",
+  // },
   {
     type: "ValueAddedServices",
     serviceName: "Stickering",
@@ -82,7 +92,6 @@ export const staticAllData = [
   {
     type: "ValueAddedServices",
     icon: "icon-valueadded-modification.png",
-
     serviceName: "Bike Modification",
   },
   {
@@ -94,6 +103,18 @@ export const staticAllData = [
     type: "ValueAddedServices",
     serviceName: "Seat Covers",
     icon: "SeatCoverReplacement.png",
+  },
+];
+export const MostBookedData = [
+  {
+    type: "MechanicalRepairs",
+    serviceName: "Oil Change",
+    icon: "most-booked-oil.jpeg",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Water Wash",
+    icon: "most-booked-water-wash.jpeg",
   },
 ];
 

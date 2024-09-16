@@ -36,7 +36,7 @@ const Cart = () => {
                     </div>
                     <div className="col-span-8 flex flex-col gap-3 ">
                       {data?.serviceName && (
-                        <h4 className="text-4xl font-semibold capitalize">
+                        <h4 className="text-2xl md:text-3 font-semibold capitalize">
                           {data?.serviceName}
                         </h4>
                       )}

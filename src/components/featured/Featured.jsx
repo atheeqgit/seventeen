@@ -44,7 +44,7 @@ const Featured = (props) => {
                   <div className="w-24 h-24 md:w-28 md:h-28 flex justify-center items-center  bg-[#fffafa] rounded-xl shadow-md">
                     <img
                       src={"/" + item.icon}
-                      className="w-[100%]"
+                      className="w-[100%] rounded-xl shadow-md"
                       alt=""
                       srcSet=""
                     />{" "}

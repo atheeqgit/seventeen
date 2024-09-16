@@ -1,0 +1,8 @@
+make the bigFutured
+remove dont know
+addfew missing  from the figma
+make the cart nav ui good
+reduce the bottom nave size small
+change the top nav Bikemodel,location texts and change the input
+create a page between checkin and cart
+make the profile picture

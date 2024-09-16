@@ -9,7 +9,6 @@ const AboutApp = () => {
   return (
     <div className="full-body px-4 py-6 ">
       <NavigateComp title="About App" />
-
       <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-10 pb-10">
         <h1>About app</h1>
         <div

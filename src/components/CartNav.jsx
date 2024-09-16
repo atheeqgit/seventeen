@@ -6,19 +6,30 @@ const CartNav = ({ fullbody }) => {
   const navigate = useNavigate();
   const { cartData } = useGlobalContext();
 
+  const totalPrice = cartData.reduce((total, product) => {
+    return total + product.price;
+  }, 0);
+
   return (
     <div
-      className={`fixed  w-[90vw] left-[5%] lg:bottom-28 md:w-[40vw] md:left-[55%] z-[108] px-6 py-5 rounded-xl bg-white shadow-xl border border-solid border-[#cecece] border-b-4 border-b-[#001ec9] capitalize cursor-pointer flex flex-row justify-between hover:bg-[#e4e4e4] text-2xl  lg:text-3xl ${
-        fullbody ? "bottom-20" : "bottom-40"
+      className={`  bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 md:w-[40vw] md:left-[55%] z-[108] px-6 py-3 lg:py-5 lg:px-5 lg:rounded-xl bg-[#76adff] border-b-2 border-solid  capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl ${
+        fullbody ? "bottom-20" : "bottom-24"
       }`}
       onClick={() => {
         navigate("/cart");
       }}
     >
-      <p className="font-medium text-center ">
-        view {cartData.length} items in cart
+      <div className="flex gap-4 justify-center items-center">
+        <i class="fa-solid fa-cart-shopping text-4xl text-blue-700"></i>
+
+        <p className="font-semibold text-left text-2xl flex flex-col  ">
+          {cartData.length} services Added
+          <span className="text-lg">₹{totalPrice}</span>
+        </p>
+      </div>
+      <p className="text-center text-lg text-white px-3 py-1 rounded-full bg-[#1430cf]">
+        view cart {">"}
       </p>
-      <p className="font-medium text-center text-[#001ec9]">view cart</p>
     </div>
   );
 };

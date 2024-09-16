@@ -1,21 +1,9 @@
 .home {
   display: flex;
   flex-direction: column;
-  padding-bottom: 10rem;
+  padding-bottom: 8rem;
   gap: 1rem;
 }
-/* 
-.banner-bottom {
-  height: 25vh;
-  width: 100%;
-  background: brown;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2rem;
-  color: white;
-} */
-
 .ad-div {
   width: 100%;
   display: flex;
