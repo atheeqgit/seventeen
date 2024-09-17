@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import {
   MapContainer,
   TileLayer,
   Marker,
   Popup,
+  useMap,
   useMapEvents,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import { useGlobalContext } from "../context";
-import Mybutton from "../components/mybutton/Mybutton";
 
 // Fixing marker icon issue in Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -21,24 +19,37 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png",
 });
 
+// Component to update map center on location change
+const ChangeView = ({ center }) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView(center, map.getZoom());
+  }, [center, map]);
+  return null;
+};
+
+// Component to handle user click events and update location
 const LocationMarker = ({ setLocation }) => {
   useMapEvents({
     click(e) {
       const { lat, lng } = e.latlng;
-      setLocation({ latitude: lat, longitude: lng });
+      setLocation({ latitude: lat, longitude: lng }); // Update location when map is clicked
     },
   });
 
   return null;
 };
 
-const UserLocationWithClick = ({ setLocation, location }) => {
+const MapComp = ({ setLocation, location, setCurLocation }) => {
   const [error, setError] = useState(null);
 
+  // Fetch user's current geolocation
   const getGeolocation = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
+        setCurLocation({ latitude, longitude });
+        console.log;
         setLocation({ latitude, longitude });
       },
       (err) => {
@@ -46,8 +57,9 @@ const UserLocationWithClick = ({ setLocation, location }) => {
       }
     );
   };
+
   useEffect(() => {
-    getGeolocation();
+    getGeolocation(); // Fetch user's current location when component loads
   }, []);
 
   return (
@@ -58,13 +70,13 @@ const UserLocationWithClick = ({ setLocation, location }) => {
       {error ? (
         <>
           <p className="text-2xl text-center capitalize font-semibold text-[#ce1616] mb-4">
-            Error:{error}
+            Error: {error}
           </p>
         </>
       ) : location.latitude && location.longitude ? (
         <div className="h-[80vh] w-[100vw]">
           <MapContainer
-            center={[location.latitude, location.longitude]}
+            center={[location.latitude, location.longitude]} // Initially center the map at the current location
             zoom={13}
             style={{ height: "100%", width: "100%" }}
           >
@@ -74,6 +86,9 @@ const UserLocationWithClick = ({ setLocation, location }) => {
             />
             {/* When user clicks on map, it updates location */}
             <LocationMarker setLocation={setLocation} />
+
+            {/* Automatically update map center when the location changes */}
+            <ChangeView center={[location.latitude, location.longitude]} />
 
             {/* Show marker at current location */}
             {location.latitude && location.longitude && (
@@ -93,4 +108,4 @@ const UserLocationWithClick = ({ setLocation, location }) => {
   );
 };
 
-export default UserLocationWithClick;
+export default MapComp;

@@ -3,10 +3,19 @@ import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import Loading from "../components/Loading";
+import Featured from "../components/featured/Featured";
+import { BoostData, MostBookedData } from "../utils/data";
+import MostBooked from "../components/MostBooked/MostBooked";
+import TodoG from "../components/todoG";
 
 const Search = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   const navigate = useNavigate();
-  const { fetchFunc, getImgUrl, loading, setLoading } = useGlobalContext();
+  const { fetchFunc, loading, setLoading, getCamelImgUrl } = useGlobalContext();
   const [searchTerm, setSearchTerm] = useState(""); // Current input value
   const [debouncedTerm, setDebouncedTerm] = useState(""); // Value used for search
   const [searchData, setSearchData] = useState(null); // Value used for search
@@ -26,7 +35,12 @@ const Search = () => {
   // Simulate search logic
   useEffect(() => {
     if (debouncedTerm) {
-      searchFunction(debouncedTerm);
+      if (debouncedTerm.length > 2) {
+        searchFunction(debouncedTerm);
+      } else {
+        setNotAvail(false);
+        setSearchData(null);
+      }
     }
   }, [debouncedTerm]);
 
@@ -37,11 +51,10 @@ const Search = () => {
       if (response.data.length > 0) {
         setSearchData(response.data);
       } else {
-        console.log(response.data);
+        setSearchData([]);
         setNotAvail(true);
       }
     }
-
     console.log(notAvail);
   };
 
@@ -60,6 +73,13 @@ const Search = () => {
           }}
         />
       </div>
+      {!searchData && (
+        <>
+          <MostBooked title="Most Booked" data={MostBookedData} />
+          <Featured title="Frequently Searched" data={BoostData} />
+          <TodoG />
+        </>
+      )}
       {loading ? (
         <Loading />
       ) : (
@@ -75,7 +95,7 @@ const Search = () => {
                     <div className="grid grid-cols-12 gap-5 ">
                       <div className="col-span-4">
                         <img
-                          src={getImgUrl(
+                          src={getCamelImgUrl(
                             data?.serviceName ? data.serviceName : ""
                           )}
                           className="w-full rounded-xl shadow border border-[#ccc] border-solid"

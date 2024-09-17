@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import CartNav from "../components/CartNav";
 import { MostBookedData } from "../utils/data";
 import MostBooked from "../components/MostBooked/MostBooked";
+import TodoG from "../components/todoG";
 
 const Home = () => {
   const {
@@ -32,7 +33,7 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="home min-vh-100 pt-52 md:pt-52  px-4 md:px-9 bg-[#F4F5F6] relative"
+      className="home min-vh-100 pt-56 md:pt-52  px-4 pb-44 bg-[#F4F5F6] relative"
     >
       <TopNav />
       {loading ? (
@@ -57,6 +58,7 @@ const Home = () => {
           <MostBooked title="Most Booked" data={MostBookedData} />
 
           <Featured title="value added services" data={valueAddedServices} />
+          <TodoG />
           {/* <div className="ad-div flex flex-col gap-4">
             <h4 className="text-2xl md:text-4xl font-medium capitalize">
               Most booked services

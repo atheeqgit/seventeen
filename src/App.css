@@ -1,5 +1,4 @@
 .app {
-  background-color: rgb(230, 230, 230);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
@@ -14,7 +13,7 @@
 }
 .full-body {
   padding: 1rem;
-  padding-bottom: 9rem;
+  padding-bottom: 10rem;
   min-height: 100vh;
   position: relative;
   z-index: 105;
@@ -23,7 +22,7 @@
 
 .part-body {
   padding: 1rem;
-  padding-bottom: 9rem;
+  padding-bottom: 12rem;
   min-height: 100vh;
   position: relative;
   z-index: 101;

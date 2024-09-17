@@ -69,10 +69,10 @@ const Login = () => {
       toast.error("Please provide a model name");
       return null;
     }
-    if (!body.userLatLng) {
-      toast.error("Please provide your location using Map");
-      return null;
-    }
+    // if (!body.userLatLng) {
+    //   toast.error("Please provide your location using Map");
+    //   return null;
+    // }
     try {
       const response = await fetchFunc("post", "/ac/auth/register", body);
       if (response.status === 200) {
@@ -86,7 +86,7 @@ const Login = () => {
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center  relative flex-col gap-5 p-10 bg-white bg-gradient-to-br from-white to-[rgba(10,72,255,0.23)]">
-      <div className="w-full md:w-[60%] lg:w-[50%] bg-transparent p-6 rounded-2xl ">
+      <div className="w-full md:w-[60%] lg:w-[50%] bg-transparent rounded-2xl ">
         <div className="w-2/5 m-auto">
           <img src="/logo.png" className="w-full" alt="" />
         </div>
@@ -162,7 +162,7 @@ const SignUpForm = ({ handleSignup }) => {
     name: "",
     email: "",
     model_name: null,
-    userLatLng: null,
+    userLatLng: `${location.latitude} +"|" +${location.longitude}`,
   });
 
   return (
@@ -253,7 +253,7 @@ const SignUpForm = ({ handleSignup }) => {
             </div>
           </div>
         )}
-        {body.userLatLng && (
+        {/* {body.userLatLng && (
           <>
             <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
               <div className="p-2 flex justify-center items-center w-1/5">
@@ -279,9 +279,9 @@ const SignUpForm = ({ handleSignup }) => {
               </button>
             </div>
           </>
-        )}
+        )} */}
 
-        {!openMap && !body.userLatLng && body.model_name && (
+        {/* {!openMap && !body.userLatLng && body.model_name && (
           <div className="flex flex-row justify-evenly gap-3 bg-white">
             <div
               className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#2d3fdd] cursor-pointer w-full"
@@ -292,7 +292,7 @@ const SignUpForm = ({ handleSignup }) => {
               Add Location
             </div>
           </div>
-        )}
+        )} */}
 
         <button
           onClick={(e) => {
@@ -304,7 +304,7 @@ const SignUpForm = ({ handleSignup }) => {
           Sign up
         </button>
       </form>
-      {openMap && (
+      {/* {openMap && (
         <div className="fixed inset-0 flex justify-center items-center bg-white flex-col p-6 ">
           <Map setLocation={setLocation} location={location} />
           <button
@@ -322,7 +322,7 @@ const SignUpForm = ({ handleSignup }) => {
             Confirm location
           </button>
         </div>
-      )}
+      )} */}
       {showModal && (
         <div className="fixed inset-0 flex justify-center items-center bg-white  ">
           <div className="bg-white p-8 rounded-lg text-center">
@@ -433,8 +433,8 @@ const AddVehicle = ({ SetBrandName, setBody, body, setShowModal }) => {
                 >
                   <div className="w-40">
                     <img
-                      src={getImgUrl(brand)}
-                      className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                      src={"https://justtodo.in/brands/" + getImgUrl(brand)}
+                      className="w-full rounded-xl"
                       alt=""
                     />
                   </div>
@@ -460,8 +460,10 @@ const AddVehicle = ({ SetBrandName, setBody, body, setShowModal }) => {
                 >
                   <div className="w-40">
                     <img
-                      src={getImgUrl(model)}
-                      className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                      // src={getImgUrl(model)}
+
+                      src={"https://justtodo.in/models/" + getImgUrl(model)}
+                      className="w-full rounded-xl "
                       alt=""
                     />
                   </div>

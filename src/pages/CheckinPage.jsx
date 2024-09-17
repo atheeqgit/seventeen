@@ -24,6 +24,11 @@ const getNextWeekDates = () => {
 };
 
 const CheckinPage = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   const navigate = useNavigate();
   const { cartData, login, postBooking, getImgUrl } = useGlobalContext();
   const date = new Date();
@@ -173,66 +178,84 @@ const CheckinPage = () => {
             <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
               Preffered Time
             </h1>
-            <p className="text-2xl lg:text-3xl capitalize font-semibold">
+            <p
+              className="text-2xl lg:text-3xl capitalize font-semibold"
+              onClick={() => {
+                if (preferred.time) {
+                  setPreferred({ ...preferred, time: null });
+                }
+              }}
+            >
               {preferred.time ? preferred.time : "please select time"}
             </p>
           </div>
-          <ul className="grid grid-cols-4 flex-wrap gap-2">
-            {timeData?.map((time, idx) => {
-              return (
-                <li
-                  key={idx}
-                  className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
+          {!preferred.time && (
+            <ul className="grid grid-cols-4 flex-wrap gap-2">
+              {timeData?.map((time, idx) => {
+                return (
+                  <li
+                    key={idx}
+                    className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                       ${
                         preferred.time == time[24]
                           ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"
                           : "bg-slate-200 hover:bg-slate-300"
                       }`}
-                  onClick={() => {
-                    if (preferred.time !== time[24]) {
-                      setPreferred({ ...preferred, time: time[24] });
-                    } else {
-                      setPreferred({ ...preferred, time: null });
-                    }
-                  }}
-                >
-                  {time[12]}
-                </li>
-              );
-            })}
-          </ul>
+                    onClick={() => {
+                      if (preferred.time !== time[24]) {
+                        setPreferred({ ...preferred, time: time[24] });
+                      } else {
+                        setPreferred({ ...preferred, time: null });
+                      }
+                    }}
+                  >
+                    {time[12]}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           <div className="flex flex-row justify-between ">
             <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
               prefered :date
             </h1>
-            <p className="text-2xl lg:text-3xl capitalize font-semibold">
+            <p
+              className="text-2xl lg:text-3xl capitalize font-semibold"
+              onClick={() => {
+                if (preferred.date) {
+                  setPreferred({ ...preferred, date: null });
+                }
+              }}
+            >
               {preferred.date ? preferred.date : "please select date"}
             </p>
           </div>
-          <ul className="grid grid-cols-4 flex-wrap gap-2">
-            {weekDates?.map((date, idx) => {
-              return (
-                <li
-                  key={idx}
-                  className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
+          {!preferred.date && (
+            <ul className="grid grid-cols-4 flex-wrap gap-2">
+              {weekDates?.map((date, idx) => {
+                return (
+                  <li
+                    key={idx}
+                    className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                      ${
                        preferred.date == date
                          ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"
                          : "bg-slate-200 hover:bg-slate-300"
                      }`}
-                  onClick={() => {
-                    if (preferred.date !== date) {
-                      setPreferred({ ...preferred, date });
-                    } else {
-                      setPreferred({ ...preferred, date: null });
-                    }
-                  }}
-                >
-                  {date}
-                </li>
-              );
-            })}
-          </ul>
+                    onClick={() => {
+                      if (preferred.date !== date) {
+                        setPreferred({ ...preferred, date });
+                      } else {
+                        setPreferred({ ...preferred, date: null });
+                      }
+                    }}
+                  >
+                    {date}
+                  </li>
+                );
+              })}
+            </ul>
+          )}
           <p className="text-4xl font-semibold capitalize text-center">
             grand total : ₹{totalPrice}
           </p>{" "}
@@ -245,7 +268,7 @@ const CheckinPage = () => {
               }
             }}
           >
-            <p className="text-4xl font-medium capitalize text-center">
+            <p className="text-3xl font-medium capitalize text-center">
               PLACE ORDER
             </p>
           </div>

@@ -4,6 +4,7 @@ import NavigateComp from "../components/navigateComp/NavigateComp";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../context";
 import { ToastContainer, toast } from "react-toastify";
+import CartNav from "../components/CartNav";
 
 const profileData = [
   {
@@ -19,7 +20,7 @@ const profileData = [
   {
     title: "Manage Address",
     icon: "icon-settings-manage-address.png",
-    link: "null",
+    link: "ManageAddress",
   },
 
   {
@@ -40,7 +41,7 @@ const profileData = [
 ];
 
 const Profile = () => {
-  const { login, logoutFunc } = useGlobalContext();
+  const { login, logoutFunc, cartData } = useGlobalContext();
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -53,8 +54,10 @@ const Profile = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="part-body profile p-3 flex flex-col gap-3 "
+      className="part-body profile p-3 flex flex-col gap-3  "
     >
+      {cartData.length > 0 && <CartNav fullbody={false} />}
+
       <NavigateComp title="profile" />
       <div className="container mx-auto p-3 flex flex-col gap-3">
         <div className="p-6  flex flex-col  bg-[#2459E0] rounded-lg text-white mb-4">

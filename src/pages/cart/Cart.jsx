@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./cart.css";
 import { useGlobalContext } from "../../context";
 import NavigateComp from "../../components/navigateComp/NavigateComp";
 import { useNavigate } from "react-router-dom";
@@ -7,9 +6,20 @@ import Featured from "../../components/featured/Featured";
 import { BoostData } from "../../utils/data";
 
 const Cart = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   const navigate = useNavigate();
-  const { cartData, removeFromCart, notify, getImgUrl, sheduledServices } =
-    useGlobalContext();
+  const {
+    cartData,
+    removeFromCart,
+    notify,
+    getImgUrl,
+    sheduledServices,
+    getCamelImgUrl,
+  } = useGlobalContext();
 
   useEffect(() => {}, [cartData]);
 
@@ -20,8 +30,48 @@ const Cart = () => {
   return (
     <div className="part-body">
       <NavigateComp title="CART" />
+
       {cartData.length > 0 ? (
         <>
+          <div className="md:col-span-6 border  border-solid mb-3 border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white shadow-lg">
+            <h1 className="text-2xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
+              order Details :
+            </h1>
+            <hr />
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                Total Services :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                {cartData.length}
+              </p>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                Total Price :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                ₹{totalPrice}
+              </p>
+            </div>
+            <div className="flex flex-row justify-between ">
+              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                Convinence Fee :
+              </h1>
+              <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                ₹{0}
+              </p>
+            </div>
+
+            <div className="flex pt-4 flex-row justify-between  border-t-2 border-solid border-[#1e65ff]">
+              <h1 className="text-3xl lg:text-4xl capitalize  font-bold text-[#1e1f20]">
+                TOTAL PRICE :
+              </h1>
+              <p className="text-3xl lg:text-3xl capitalize font-bold">
+                ₹{totalPrice}/-
+              </p>
+            </div>
+          </div>
           <div className="grid grid-cols-12 gap-4 ">
             {cartData.map((data) => {
               return (
@@ -29,8 +79,10 @@ const Cart = () => {
                   <div className="grid grid-cols-12 gap-5 ">
                     <div className="col-span-4">
                       <img
-                        src={data?.serviceName && getImgUrl(data?.serviceName)}
-                        className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                        src={getCamelImgUrl(
+                          data?.serviceName ? getImgUrl(data?.serviceName) : ""
+                        )}
+                        className="w-full rounded-xl shadow border border-[#1b58ff] border-solid"
                         alt=""
                       />
                     </div>
@@ -68,7 +120,7 @@ const Cart = () => {
           </div>
 
           <Featured title="Frequently ordered" data={BoostData} />
-          <div
+          {/* <div
             className="w-full border-0 border-solid flex gap-3 p-8 mt-8 rounded capitalize  text-white  rounded-md bg-[#2459e0] justify-between transition-colors hover:opacity-85 cursor-pointer"
             onClick={() => {
               if (cartData.length > 0) {
@@ -79,11 +131,35 @@ const Cart = () => {
             }}
           >
             <p className="text-3xl font-semibold capitalize">
-              total : {totalPrice}
+              ₹ total : {totalPrice}/-
             </p>{" "}
             <p className="text-2xl font-medium capitalize">
-              proceed to checkin
+              proceed to checkOut
             </p>{" "}
+          </div> */}
+
+          <div
+            className={` bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[40vw] md:left-[55%] z-[108] px-6 py-3 lg:py-5 lg:px-5 lg:rounded-xl bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl  bottom-24
+        `}
+            onClick={() => {
+              if (cartData.length > 0) {
+                navigate("/checkin");
+              } else {
+                notify("The Cart Has No items...", false);
+              }
+            }}
+          >
+            <div className="flex gap-4 justify-center items-center">
+              <i class="fa-solid fa-cart-shopping text-4xl text-blue-700"></i>
+
+              <p className="font-semibold text-left text-2xl flex flex-col">
+                {cartData.length} services Added
+                <span className="text-lg">₹{totalPrice}</span>
+              </p>
+            </div>
+            <p className="text-center text-xl md:text-2xl text-white px-3 py-1 rounded-full bg-[#1430cf]">
+              Proceed to checkout{" >"}
+            </p>
           </div>
         </>
       ) : (

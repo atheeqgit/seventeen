@@ -2,6 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../context";
 import Mybutton from "../components/mybutton/Mybutton";
 import NavigateComp from "../components/navigateComp/NavigateComp";
+import { Link, NavLink } from "react-router-dom";
 
 const AboutApp = () => {
   const { login } = useGlobalContext();
@@ -9,11 +10,11 @@ const AboutApp = () => {
   return (
     <div className="full-body px-4 py-6 ">
       <NavigateComp title="About App" />
-      <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-10 pb-10">
-        <h1>About app</h1>
+      <div className="w-full min-h-[70vh] flex flex-col justify-center items-center mt-10 pb-10">
+        <h1 className="text-4xl font-bold capitalize ">Who are we?</h1>
         <div
           className="flex flex-col justify-between items-center 
-md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-6 text-2xl
+md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-10 font-semibold text-3xl
 "
         >
           <p className="">
@@ -39,10 +40,24 @@ md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-6 text-2xl
             Todo is here to make bike care easy, efficient, and
             transparent—giving you peace of mind with every service.
           </p>
-          <h1 className="font-medium capitalize text-center text-3xl lg:text-4xl">
+          {/* <h1 className="font-medium capitalize text-center text-3xl lg:text-4xl">
             Developed by Kulshai Technologies
             <br /> <br />© Khulshai Technologies India Pvt. Ltd.
+          </h1> */}
+          <h1 className="font-extrabold capitalize text-center text-3xl lg:text-4xl">
+            <br />© Khulshai Technologies India Pvt. Ltd.
           </h1>
+          <div className=" text-blue-500 flex justify-evenly font-semibold capitalize items-center gap-2 w-full">
+            <NavLink to="/">
+              <p>home</p>
+            </NavLink>
+            <NavLink to="/mybooking">
+              <p>bookings</p>
+            </NavLink>
+            <NavLink to="/cart">
+              <p>cart</p>
+            </NavLink>
+          </div>
         </div>
       </div>
     </div>

@@ -7,6 +7,28 @@ import { staticAllData } from "./utils/data";
 export const Context = createContext();
 
 export function GlobalProvider({ children }) {
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+          });
+          console.log({
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+          });
+        },
+        (err) => {
+          setError(err.message);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+    }
+  }, []);
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [loading, setLoading] = useState(true);
   const [login, setLogin] = useState(null);
   const [bookings, setBookings] = useState(null);
@@ -158,7 +180,6 @@ export function GlobalProvider({ children }) {
     if (login) {
       try {
         const REresponse = await fetchFunc("get", "/gc/getAllServices", {});
-        console.log(REresponse);
         const response = staticAllData;
         // if (response.status === 200) {
         if (response) {
@@ -189,16 +210,22 @@ export function GlobalProvider({ children }) {
   };
 
   const addToCart = (data) => {
-    setCartData([...cartData, data]);
-    localStorage.setItem("cartData", JSON.stringify([...cartData, data]));
-    notify("item added to cart", true);
+    const present = cartData.find((item) => {
+      return data.id == item.id; // Use strict equality to compare IDs
+    });
+
+    if (!present) {
+      setCartData([...cartData, data]);
+      localStorage.setItem("cartData", JSON.stringify([...cartData, data]));
+    } else {
+      notify("Item Already Present in Cart", false);
+    }
   };
 
   const removeFromCart = (data) => {
     const updatedCart = cartData.filter((item) => item.id !== data.id);
     localStorage.setItem("cartData", JSON.stringify(updatedCart));
     setCartData(updatedCart);
-    notify("item Removed From cart", true);
   };
 
   const postBooking = async (preferred) => {
@@ -211,28 +238,39 @@ export function GlobalProvider({ children }) {
         return item.id;
       });
 
-      try {
-        const response = await fetchFunc("post", "/gc/bookService", {
-          mobile: login.mobile,
-          model: login.model_name,
-          preferredDate: preferred.date,
-          preferredTime: preferred.time,
-          cart: bod,
-          bookingPoint: login.userLatLng,
-        });
-        if (response.status === 200) {
-          notify(response.data, true);
-          getBookings();
-          setCartData([]);
-          localStorage.removeItem("cartData");
-          return true;
-        } else {
-          notify("Something went wrong while booking", false);
-        }
-      } catch (err) {
-        console.log(err);
-        return false;
-      }
+      console.log({
+        mobile: login.mobile,
+        model: login.model_name,
+        preferredDate: preferred.date,
+        preferredTime: preferred.time,
+        cart: bod,
+        bookingPoint: location.latitude + "|" + location.longitude,
+      });
+      notify("booking will is urrently in development", false);
+      return false;
+
+      // try {
+      //   const response = await fetchFunc("post", "/gc/bookService", {
+      //     mobile: login.mobile,
+      //     model: login.model_name,
+      //     preferredDate: preferred.date,
+      //     preferredTime: preferred.time,
+      //     cart: bod,
+      //     bookingPoint: location.latitude +"|" +location.longitude,
+      //   });
+      //   if (response.status === 200) {
+      //     notify(response.data, true);
+      //     getBookings();
+      //     setCartData([]);
+      //     localStorage.removeItem("cartData");
+      //     return true;
+      //   } else {
+      //     notify("Something went wrong while booking", false);
+      //   }
+      // } catch (err) {
+      //   console.log(err);
+      //   return false;
+      // }
     } else {
       notify("The Cart Has No items...", false);
       return false;
@@ -269,6 +307,7 @@ export function GlobalProvider({ children }) {
   const logoutFunc = () => {
     setLogin(null);
     setCartData([]);
+    setBookings(null);
     localStorage.removeItem("cartData");
     localStorage.removeItem("profile");
     toast.success("logged out successfully");
@@ -282,6 +321,19 @@ export function GlobalProvider({ children }) {
 
   const getImgUrl = (str) => {
     if (str != "") {
+      const result = str
+        .trim() // Remove leading or trailing whitespace
+        .split(" ") // Split the string into an array by spaces
+        .join("_"); // Join the array with underscores
+
+      return result + ".png"; // Append .png to the result
+    } else {
+      return "/icon-not-found.png";
+    }
+  };
+
+  const getCamelImgUrl = (str) => {
+    if (str != "") {
       const camel = str
         .trim() // Remove leading or trailing whitespace
         .split(" ") // Split the string into an array by spaces
@@ -294,7 +346,7 @@ export function GlobalProvider({ children }) {
         .join(""); // Join the array back into a single string
 
       const joined =
-        "http://82.112.226.128:8000/" +
+        "https://justtodo.in/services/" +
         camel.charAt(0).toUpperCase() +
         camel.slice(1) +
         ".png";
@@ -308,6 +360,9 @@ export function GlobalProvider({ children }) {
   return (
     <Context.Provider
       value={{
+        location,
+        setLocation,
+        getCamelImgUrl,
         getImgUrl,
         totalPrice,
         cancelBookings,

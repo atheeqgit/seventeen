@@ -5,11 +5,19 @@ import Mybutton from "../../components/mybutton/Mybutton";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../../context";
 import Loading from "../../components/Loading";
+import CartNav from "../../components/CartNav";
 
 const Mybookings = () => {
   const navigate = useNavigate();
-  const { bookings, login, loading, getImgUrl, cancelBookings } =
-    useGlobalContext();
+  const {
+    bookings,
+    login,
+    loading,
+    getImgUrl,
+    cancelBookings,
+    getCamelImgUrl,
+    cartData,
+  } = useGlobalContext();
 
   const [showModal, setShowModal] = useState(false);
   const [orderStatus, setOrderStatus] = useState(null);
@@ -42,16 +50,17 @@ const Mybookings = () => {
       exit={{ opacity: 1 }}
       className="part-body"
     >
+      {cartData.length > 0 && <CartNav fullbody={false} />}
       <NavigateComp title="my bookings" />
       {loading ? (
         <Loading />
       ) : bookings ? (
-        <div className="container mt-3 flex m-auto flex-col gap-10 md:grid md:grid-cols-12 ">
+        <div className="container mt-3 flex m-auto flex-col gap-6 md:gap-10 md:grid md:grid-cols-12 ">
           {bookings?.map((booking, idx) => {
             return (
               <div
                 key={idx}
-                className="rounded-2xl border border-primary pb-3 shadow md:col-span-6 bg-white "
+                className="rounded-2xl border h-fit border-primary pb-3 shadow md:col-span-6 bg-white "
               >
                 <div
                   className={`flex flex-row justify-between w-full mb-3 rounded-2xl p-3 px-6 text-center capitalize shadow-lg text-2xl ${
@@ -74,12 +83,15 @@ const Mybookings = () => {
                   </div>
                 </div>
 
-                <div className="p-3 md:p-5 pb-0 flex flex-col gap-12 justify-between">
+                <div className="p-3 md:p-5 pb-0 flex flex-col gap-8 md:gap-12 justify-between">
                   <div className="flex flex-row gap-6 items-top justify-around">
                     <div className="w-36">
                       <img
                         src={
-                          login.model_name ? getImgUrl(login.model_name) : ""
+                          login.model_name
+                            ? "https://justtodo.in/models/" +
+                              getImgUrl(login.model_name)
+                            : ""
                         }
                         alt=""
                         srcset=""
@@ -87,21 +99,32 @@ const Mybookings = () => {
                     </div>
 
                     <div className="capitalize font-semibold">
-                      <p className="text-3xl lg:text-3xl">
-                        Bike model: {login.model_name}
-                      </p>
-                      <p className="text-2xl md:text-2xl">
-                        Mobile: {login.mobile}
-                      </p>
+                      <h4 className="text-2xl md:text-3xl text-blue-700  font-semibold capitalize">
+                        <span className="text-black text-xl"> Bike model:</span>
+                        <br />
+                        <p className="text-3xl md:text-4xl font-bold">
+                          {login.model_name}
+                        </p>
+                      </h4>
+                      <h4 className="text-2xl md:text-3xl text-blue-700  font-semibold capitalize">
+                        <span className="text-black text-xl"> mobile:</span>
+                        <br />
+                        <p className="text-3xl md:text-4xl font-bold">
+                          {login.mobile}
+                        </p>
+                      </h4>
                     </div>
-                    <div>
-                      <h1 className="font-bold text-3xl lg:text-4xl">
-                        Cost : ₹
+                    <div className="flex flex-col gap-4 items-center">
+                      <h1 className=" font-semibold capitalize">
+                        <span className="text-black text-2xl">Cost:</span>
+                      </h1>
+                      <p className="text-5xl text-blue-700 font-extrabold capitalize">
+                        ₹
                         {booking.cart.reduce(
                           (total, item) => total + item.price,
                           0
                         )}
-                      </h1>
+                      </p>
                     </div>
                   </div>
 
@@ -119,10 +142,9 @@ const Mybookings = () => {
                           </p>
                           <div className="w-24">
                             <img
-                              src={
-                                item?.serviceName &&
-                                getImgUrl(item?.serviceName)
-                              }
+                              src={getCamelImgUrl(
+                                item?.serviceName ? item.serviceName : ""
+                              )}
                               className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
                               alt=""
                             />
@@ -200,7 +222,7 @@ const Mybookings = () => {
       )}
 
       {showModal && (
-        <div className="fixed p-6 inset-0 flex justify-center items-center bg-black bg-opacity-50 ">
+        <div className="fixed z-[109] p-6 inset-0 flex justify-center items-center bg-black bg-opacity-50 ">
           <div className="bg-white p-8 rounded-lg shadow-lg  text-center">
             <p className="text-3xl font-bold text-red-600 mb-6">
               Are you sure you want to cancel this order?
@@ -223,83 +245,85 @@ const Mybookings = () => {
         </div>
       )}
       {orderStatus != null && (
-        <div className="lg:ml-44 fixed inset-0 p-6 min-h-[100vh] mb-20 w-100 flex flex-col justify-top items-center bg-white  ">
-          <div className="container md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white shadow-lg">
-            <h1 className="text-4xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
-              order Status
-            </h1>
-            <hr />
-            <div className="flex flex-row justify-between ">
-              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
-                order Date :
+        <div className="lg:ml-44 fixed  z-[109] inset-0 p-6 min-h-[100vh] overflow-scroll  mb-20 w-100  bg-white  ">
+          <div className="flex mb-32 flex-col justify-top items-center ">
+            <div className="container md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white shadow-lg">
+              <h1 className="text-4xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
+                order Status
               </h1>
-              <p className="text-2xl lg:text-3xl capitalize font-semibold">
-                {orderStatus.bookingDate.split(" ")[0]}
-              </p>
+              <hr />
+              <div className="flex flex-row justify-between ">
+                <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                  order Date :
+                </h1>
+                <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                  {orderStatus.bookingDate.split(" ")[0]}
+                </p>
+              </div>
+              <div className="flex flex-row justify-between ">
+                <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                  Order Time :
+                </h1>
+                <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                  {orderStatus.bookingDate.split(" ")[1]}
+                </p>
+              </div>
+              <div className="flex flex-row justify-between ">
+                <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                  scheduled Date :
+                </h1>
+                <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                  {orderStatus.scheduledDate.split(" ")[0]}
+                </p>
+              </div>
+              <div className="flex flex-row justify-between ">
+                <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                  scheduled Time :
+                </h1>
+                <p className="text-2xl lg:text-3xl capitalize font-semibold">
+                  {orderStatus.scheduledTime}
+                </p>
+              </div>
+              <div className="flex flex-col gap-3">
+                <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
+                  Status :
+                </h1>
+                <ul className="flex flex-col gap-2">
+                  {orderStatus.cart?.map((item, idx) => {
+                    return (
+                      <li
+                        key={idx}
+                        className="items-center flex flex-row gap-6 justify-between md:px-10"
+                      >
+                        <span
+                          className={`h-10 text-center flex justify-center items-center w-10 rounded-full ${
+                            item.status == "NOT_STARTED"
+                              ? " bg-red-600"
+                              : "bg-blue-600"
+                          }`}
+                        ></span>
+                        <div className="items-left md:items-center p-4 flex flex-col md:flex-row justify-between px-4 md:px-10 gap-4 w-full">
+                          <p className="text-2xl mr-6 lg:text-3xl capitalize font-semibold capitalize ">
+                            {item.serviceName}
+                          </p>
+                          <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
+                            {item.status}
+                          </p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </div>
-            <div className="flex flex-row justify-between ">
-              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
-                Order Time :
-              </h1>
-              <p className="text-2xl lg:text-3xl capitalize font-semibold">
-                {orderStatus.bookingDate.split(" ")[1]}
-              </p>
+            <div className="flex justify-around gap-3 text-nowrap">
+              <button
+                className="px-4 py-2 mt-6 bg-gray-300 text-black rounded-lg"
+                onClick={() => setOrderStatus(null)}
+              >
+                Go Back
+              </button>
             </div>
-            <div className="flex flex-row justify-between ">
-              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
-                scheduled Date :
-              </h1>
-              <p className="text-2xl lg:text-3xl capitalize font-semibold">
-                {orderStatus.scheduledDate.split(" ")[0]}
-              </p>
-            </div>
-            <div className="flex flex-row justify-between ">
-              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
-                scheduled Time :
-              </h1>
-              <p className="text-2xl lg:text-3xl capitalize font-semibold">
-                {orderStatus.scheduledTime}
-              </p>
-            </div>
-            <div className="flex flex-col gap-3">
-              <h1 className="text-xl lg:text-3xl capitalize font-semibold text-[#4E5562]">
-                Status :
-              </h1>
-              <ul className="flex flex-col gap-2">
-                {orderStatus.cart?.map((item, idx) => {
-                  return (
-                    <li
-                      key={idx}
-                      className="items-center flex flex-row gap-6 justify-between md:px-10"
-                    >
-                      <span
-                        className={`h-10 text-center flex justify-center items-center w-10 rounded-full ${
-                          item.status == "NOT_STARTED"
-                            ? " bg-red-600"
-                            : "bg-blue-600"
-                        }`}
-                      ></span>
-                      <div className="items-left md:items-center p-4 flex flex-col md:flex-row justify-between px-4 md:px-10 gap-4 w-full">
-                        <p className="text-2xl mr-6 lg:text-3xl capitalize font-semibold capitalize ">
-                          {item.serviceName}
-                        </p>
-                        <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
-                          {item.status}
-                        </p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-          <div className="flex justify-around gap-3 text-nowrap">
-            <button
-              className="px-4 py-2 mt-6 bg-gray-300 text-black rounded-lg"
-              onClick={() => setOrderStatus(null)}
-            >
-              Go Back
-            </button>
           </div>
         </div>
       )}

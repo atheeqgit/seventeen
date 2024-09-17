@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const TopNav = () => {
   const navigate = useNavigate();
-  const { login, getImgUrl } = useGlobalContext();
+  const { login, getImgUrl, location } = useGlobalContext();
 
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -29,16 +29,19 @@ const TopNav = () => {
 
   return (
     <div
-      className={`w-full bg-white fixed top-0 left-0 lg:pl-40 z-50 shadow-lg transition-transform duration-300 ${
+      className={`w-full bg-white fixed top-0 left-0 lg:pl-40 z-50 shadow-sm transition-transform duration-300 pb-1 ${
         isVisible ? "transform translate-y-0" : "transform -translate-y-full"
       }`}
       id="top-nav"
     >
       <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-4 md:p-6 pb-2 gap-3 md:gap-4 md:pb-6 ">
-        <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-6">
+        <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-3 md:gap-6">
           <div className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center ">
             <img
-              src={getImgUrl(login?.model_name ? login?.model_name : "")}
+              src={
+                "https://justtodo.in/models/" +
+                getImgUrl(login?.model_name ? login?.model_name : "")
+              }
               className="w-28"
               alt=""
             />
@@ -48,8 +51,10 @@ const TopNav = () => {
               {login?.model_name ? login?.model_name : "no model"}
             </h1>
             <p className="text-lg lg:text-2xl w-90 text-[rgb(63,62,62)] leading-8 font-medium truncate">
-              <i className="fa-solid fa-location-dot"></i> Location has been set
-              to the place you have marked
+              <i className="fa-solid fa-location-dot"></i>{" "}
+              {location.latitude
+                ? "your current has been set "
+                : "give location permission"}
             </p>
           </div>
         </div>

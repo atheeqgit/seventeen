@@ -14,7 +14,9 @@ const Details = () => {
     loading,
     addToCart,
     cartData,
+    getCamelImgUrl,
     getImgUrl,
+    removeFromCart,
   } = useGlobalContext();
   const navigate = useNavigate();
   const params = useParams();
@@ -63,10 +65,13 @@ const Details = () => {
       setLoading(false);
     }
   };
+  const isPresentInCart = (data) => {
+    return cartData.some((item) => item.id === data.id); // Return true if item is found
+  };
 
   return (
     <div className="full-body relative">
-      {/* {cartData.length > 0 && <CartNav fullbody={true} />} */}
+      {cartData.length > 0 && <CartNav fullbody={true} />}
       <div className="details">
         <NavigateComp title="provided services" />
       </div>
@@ -80,21 +85,21 @@ const Details = () => {
                 data.serviceName && (
                   <div
                     key={idx}
-                    className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly"
+                    className="col-span-12 md:col-span-6 flex flex-col gap-8  p-10 border rounded-3xl shadow-xl bg-white justify-evenly"
                   >
                     <div className="grid grid-cols-12 gap-5 ">
                       <div className="col-span-4 ">
                         <img
-                          src={getImgUrl(
+                          src={getCamelImgUrl(
                             data?.serviceName ? data.serviceName : ""
                           )}
-                          className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                          className="w-full rounded-xl shadow border border-[#101ff0] border-solid"
                           alt=""
                         />
                       </div>
                       <div className="col-span-8 flex flex-col gap-3 ">
                         {data.serviceName && (
-                          <h4 className="text-2xl md:text-4xl font-semibold capitalize">
+                          <h4 className="text-3xl md:text-4xl font-bold capitalize">
                             {data?.serviceName}
                           </h4>
                         )}
@@ -106,16 +111,32 @@ const Details = () => {
                     </div>
                     <div className="flex flex-row justify-around data?s-center gap-6">
                       <h4 className="text-3xl md:text-4xl font-bold capitalize">
-                        ₹{data?.price}
+                        ₹{data?.price}/-
                       </h4>
-                      <button
-                        className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
-                        onClick={() => {
-                          addToCart(data);
-                        }}
-                      >
-                        add to cart
-                      </button>
+                      {isPresentInCart(data) ? (
+                        <div className="flex gap-2">
+                          <button className="border-[#24e063] border-2 text-[#000000] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl">
+                            item in cart
+                          </button>
+                          <button
+                            className="border-[#e02424] border-2 text-[#e02424] border-solid bg-[#ffe9e9] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
+                            onClick={() => {
+                              removeFromCart(data);
+                            }}
+                          >
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-6 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
+                          onClick={() => {
+                            addToCart(data);
+                          }}
+                        >
+                          Add to Cart
+                        </button>
+                      )}
                     </div>
                   </div>
                 )

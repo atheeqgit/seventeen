@@ -27,6 +27,8 @@ import AboutApp from "./pages/AboutApp";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { useNavigate } from "react-router-dom";
 import Search from "./pages/Search";
+import ManageAdd from "./pages/ManageAdd";
+
 //import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
 
 function App() {
@@ -77,6 +79,7 @@ function App() {
                 element={<MoreDetails />}
               />
               <Route path="/checkin" element={<CheckinPage />} />
+              <Route path="/ManageAddress" element={<ManageAdd />} />
               <Route path="/confirmed" element={<Confirm />} />
               <Route path="/Mybooking" element={<Mybookings />} />
               <Route path="/orderdetails/:id" element={<Orderdetails />} />

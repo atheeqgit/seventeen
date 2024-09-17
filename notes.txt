@@ -1,8 +1,19 @@
-make the bigFutured
-remove dont know
-addfew missing  from the figma
-make the cart nav ui good
-reduce the bottom nave size small
-change the top nav Bikemodel,location texts and change the input
 create a page between checkin and cart
-make the profile picture
+make the profile picture 
+FAQs
+todo garuntee in home page
+change the cart checkout design
+make the bigFutured
+change the bottom nav icons
+
+======== DONE ==========
+remove notification from ad to cart
+make the search ui with most booked
+change checkout button ui
+login width
+make the padding for topnav and banner
+make the cart nav ui good 
+reduce the bottom nave size small
+addfew missing  from the figma
+remove dont know
+change the top nav Bikemodel,location texts and change the input

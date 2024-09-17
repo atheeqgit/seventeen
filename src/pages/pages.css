@@ -1,7 +1,6 @@
 .home {
   display: flex;
   flex-direction: column;
-  padding-bottom: 8rem;
   gap: 1rem;
 }
 .ad-div {

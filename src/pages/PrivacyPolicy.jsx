@@ -1,7 +1,8 @@
 import React from "react";
 import { useGlobalContext } from "../context";
-import Mybutton from "../components/mybutton/Mybutton";
 import NavigateComp from "../components/navigateComp/NavigateComp";
+import { NavLink } from "react-router-dom";
+NavLink;
 
 const PrivacyPolicy = () => {
   const { login } = useGlobalContext();
@@ -10,11 +11,11 @@ const PrivacyPolicy = () => {
     <div className="full-body px-4 py-6 ">
       <NavigateComp title="Tearms & conditions" />
 
-      <div className="w-full min-h-[70vh] flex flex-col justify-center items-center gap-10 pb-10">
-        <h1>terms & Conditions</h1>
+      <div className="w-full min-h-[70vh] flex flex-col justify-center items-center mt-10 pb-10">
+        <h1 className="text-4xl font-bold capitalize ">terms & Conditions</h1>
         <div
           className="flex flex-col justify-between items-center 
-md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-6 text-xl
+md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-12 capitalize font-semibold text-3xl
 "
         >
           <p className="">
@@ -80,10 +81,18 @@ md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-6 text-xl
             through the Platform, we encourage you to read the privacy policy of
             such third-party service providers.
           </p>
-          <h1 className="font-medium capitalize text-center text-3xl lg:text-4xl">
-            Developed by Kulshai Technologies
-            <br /> <br />© Khulshai Technologies India Pvt. Ltd.
-          </h1>
+
+          <div className=" text-blue-500 flex justify-evenly font-semibold capitalize items-center gap-2 w-full">
+            <NavLink to="/">
+              <p>home</p>
+            </NavLink>
+            <NavLink to="/mybooking">
+              <p>bookings</p>
+            </NavLink>
+            <NavLink to="/cart">
+              <p>cart</p>
+            </NavLink>
+          </div>
         </div>
       </div>
     </div>
