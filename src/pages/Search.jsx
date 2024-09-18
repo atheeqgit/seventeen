@@ -6,7 +6,7 @@ import Loading from "../components/Loading";
 import Featured from "../components/featured/Featured";
 import { BoostData, MostBookedData } from "../utils/data";
 import MostBooked from "../components/MostBooked/MostBooked";
-import TodoG from "../components/todoG";
+import TodoG from "../components/TodoG";
 
 const Search = () => {
   useEffect(() => {
