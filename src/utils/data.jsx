@@ -9,16 +9,7 @@ export const staticAllData = [
     serviceName: "Water Wash",
     icon: "icons-Scheduled-services-water-service.png",
   },
-  {
-    type: "ScheduledService",
-    serviceName: "Tyres and Wheels",
-    icon: "icons-Scheduled-services-tyres-and-wheel.png",
-  },
-  {
-    type: "ScheduledService",
-    serviceName: "Bike Inspection",
-    icon: "icons-Scheduled-services-bike-inspection.png",
-  },
+
   {
     type: "MechanicalRepairs",
     serviceName: "Brakes",
@@ -104,7 +95,18 @@ export const staticAllData = [
     serviceName: "Seat Covers",
     icon: "SeatCoverReplacement.png",
   },
+  {
+    type: "ScheduledService",
+    serviceName: "Tyres and Wheels",
+    icon: "icons-Scheduled-services-tyres-and-wheel.png",
+  },
+  {
+    type: "ScheduledService",
+    serviceName: "Bike Inspection",
+    icon: "icons-Scheduled-services-bike-inspection.png",
+  },
 ];
+
 export const MostBookedData = [
   {
     type: "MechanicalRepairs",

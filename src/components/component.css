@@ -37,6 +37,10 @@
   color: var(--primary-blue);
 }
 
+.bottom-nav .link-active svg path {
+  stroke: var(--primary-blue); /* For lines */
+}
+
 .bottom-nav a p {
   line-height: 2rem;
   font-size: 1.2rem;

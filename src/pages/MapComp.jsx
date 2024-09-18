@@ -40,7 +40,7 @@ const LocationMarker = ({ setLocation }) => {
   return null;
 };
 
-const MapComp = ({ setLocation, location, setCurLocation }) => {
+const MapComp = ({ setLocation, location }) => {
   const [error, setError] = useState(null);
 
   // Fetch user's current geolocation
@@ -48,8 +48,6 @@ const MapComp = ({ setLocation, location, setCurLocation }) => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        setCurLocation({ latitude, longitude });
-        console.log;
         setLocation({ latitude, longitude });
       },
       (err) => {
@@ -74,7 +72,7 @@ const MapComp = ({ setLocation, location, setCurLocation }) => {
           </p>
         </>
       ) : location.latitude && location.longitude ? (
-        <div className="h-[80vh] w-[100vw]">
+        <div className="h-[70vh] w-[95vw] md:w-[60vw]">
           <MapContainer
             center={[location.latitude, location.longitude]} // Initially center the map at the current location
             zoom={13}

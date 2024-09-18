@@ -1,12 +1,12 @@
-create a page between checkin and cart
+// - mcreate a page between checkin and cart
 make the profile picture 
 FAQs
-todo garuntee in home page
-change the cart checkout design
 make the bigFutured
 change the bottom nav icons
 
 ======== DONE ==========
+todo garuntee in home page
+change the cart checkout design
 remove notification from ad to cart
 make the search ui with most booked
 change checkout button ui

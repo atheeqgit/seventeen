@@ -80,7 +80,7 @@ const Cart = () => {
                     <div className="col-span-4">
                       <img
                         src={getCamelImgUrl(
-                          data?.serviceName ? getImgUrl(data?.serviceName) : ""
+                          data?.serviceName ? data?.serviceName : ""
                         )}
                         className="w-full rounded-xl shadow border border-[#1b58ff] border-solid"
                         alt=""

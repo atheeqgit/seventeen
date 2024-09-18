@@ -30,7 +30,8 @@ const CheckinPage = () => {
     });
   }, []);
   const navigate = useNavigate();
-  const { cartData, login, postBooking, getImgUrl } = useGlobalContext();
+  const { cartData, login, postBooking, getImgUrl, getCamelImgUrl } =
+    useGlobalContext();
   const date = new Date();
   const [cart, setCart] = useState(null);
   const [preferred, setPreferred] = useState({
@@ -117,7 +118,9 @@ const CheckinPage = () => {
                     </p>
                     <div className="w-24">
                       <img
-                        src={item?.serviceName && getImgUrl(item?.serviceName)}
+                        src={
+                          item?.serviceName && getCamelImgUrl(item?.serviceName)
+                        }
                         className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
                         alt=""
                       />

@@ -10,23 +10,27 @@ const Gdata = [
 
 const TodoG = () => {
   return (
-    <div className=" flex flex-col gap-2 mt-5 justify-center items-center mb-4">
-      <div className=" w-full flex flex-row gap-4 justify-between items-center mb-3 md:mb-6">
+    <div className="flex flex-col gap-2 mt-5 justify-center items-center mb-4">
+      <div className="w-full flex flex-row gap-4 justify-between items-center mb-3 md:mb-6">
         <h4 className="text-2xl md:text-4xl font-medium capitalize">
-          Todo gaurentees
+          Todo guarantees
         </h4>
       </div>
-      <div className="grid gap-5 grid-cols-6 ">
-        {Gdata.map((data, idx) => {
-          return (
-            <div
-              key={idx}
-              className="col-span-2 md:col-span-1 lg:col-span-1 gap-4"
-            >
-              <img src={data} className="rounded-xl shadow-lg" />
-            </div>
-          );
-        })}
+
+      {/* Scrollable container */}
+      <div className="todoG-scroll-container flex gap-5 overflow-x-auto w-full px-4">
+        {Gdata.map((data, idx) => (
+          <div
+            key={idx}
+            className="flex-shrink-0 w-1/3 md:w-1/6 lg:w-1/6 gap-4"
+          >
+            <img
+              src={data}
+              className="rounded-xl shadow-lg w-full h-auto"
+              alt="guarantee"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -35,11 +35,13 @@ const Login = () => {
             ...response.data,
             model_name: response.data.models[0],
             mobile: number,
+            models: response.data.models,
           });
           setLocalStorage({
             ...response.data,
             model_name: response.data.models[0],
             mobile: number,
+            models: response.data.models,
           });
         }
       } catch (err) {
@@ -73,6 +75,7 @@ const Login = () => {
     //   toast.error("Please provide your location using Map");
     //   return null;
     // }
+
     try {
       const response = await fetchFunc("post", "/ac/auth/register", body);
       if (response.status === 200) {
@@ -162,7 +165,7 @@ const SignUpForm = ({ handleSignup }) => {
     name: "",
     email: "",
     model_name: null,
-    userLatLng: `${location.latitude} +"|" +${location.longitude}`,
+    userLatLng: null,
   });
 
   return (

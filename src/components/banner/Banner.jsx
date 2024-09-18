@@ -37,21 +37,15 @@ const Banner = () => {
       <div
         className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{
-          backgroundImage: `url("/landing1.png")`,
+          backgroundImage: `url("/landing11.png")`,
         }}
-      >
-        <p className="p-4 bg-white text-center capitalize">
-          Mechanical services
-        </p>
-      </div>
+      ></div>
       <div
         className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{
-          backgroundImage: `url("/landing2.png")`,
+          backgroundImage: `url("/landing22.png")`,
         }}
-      >
-        <p className="p-4 bg-white text-center capitalize">cleaning services</p>
-      </div>
+      ></div>
       <div
         className="banner  min-h-[140px] h-[21vh] md:h-[30vh] rounded-xl"
         style={{

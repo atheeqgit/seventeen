@@ -67,7 +67,7 @@ const Profile = () => {
                 <>
                   {" "}
                   <h3 className="font-medium mb-8 text-3xl md:text-3xl">
-                    User Name : {login.name}
+                    {login.name}
                   </h3>
                   <p className="font-medium">mobile: {login.mobile}</p>
                 </>

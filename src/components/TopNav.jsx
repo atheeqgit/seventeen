@@ -36,7 +36,12 @@ const TopNav = () => {
     >
       <div className="container mx-auto top-nav flex flex-col md:grid grid-cols-12 p-4 md:p-6 pb-2 gap-3 md:gap-4 md:pb-6 ">
         <div className="top-nav-top md:col-span-6 flex items-center justify-center gap-3 md:gap-6">
-          <div className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center ">
+          <div
+            onClick={() => {
+              navigate("/ChangeModel");
+            }}
+            className="img-div w-1/5 justify-center h-24 flex gap-2 flex-col items-center "
+          >
             <img
               src={
                 "https://justtodo.in/models/" +
@@ -50,12 +55,32 @@ const TopNav = () => {
             <h1 className="text-3xl lg:text-4xl font-medium ">
               {login?.model_name ? login?.model_name : "no model"}
             </h1>
-            <p className="text-lg lg:text-2xl w-90 text-[rgb(63,62,62)] leading-8 font-medium truncate">
-              <i className="fa-solid fa-location-dot"></i>{" "}
-              {location.latitude
-                ? "your current has been set "
-                : "give location permission"}
-            </p>
+
+            <div
+              onClick={() => {
+                navigate("/ManageAddress");
+              }}
+            >
+              {login?.userLatLng ? (
+                <p className="text-lg lg:text-2xl w-90 text-[rgb(63,62,62)] leading-8 font-medium truncate">
+                  <i className="fa-solid fa-location-dot"></i> Your current
+                  location has been set.
+                </p>
+              ) : (
+                <>
+                  <p className="text-lg lg:text-2xl w-90 text-[rgb(212,10,10)] leading-8 font-medium truncate">
+                    <i className="fa-solid fa-circle-exclamation"></i> Please
+                    set your location.
+                  </p>
+                  {!location?.latitude && (
+                    <p className="text-lg lg:text-2xl w-90 text-[rgb(212,10,10)] leading-8 font-medium truncate">
+                      <i className="fa-solid fa-circle-exclamation"></i> Please
+                      allow location permission.
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </div>
 

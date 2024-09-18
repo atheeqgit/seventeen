@@ -128,14 +128,24 @@ const Details = () => {
                           </button>
                         </div>
                       ) : (
-                        <button
-                          className="border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] px-6 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
-                          onClick={() => {
-                            addToCart(data);
-                          }}
-                        >
-                          Add to Cart
-                        </button>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => {
+                              navigate("/moreDetails/" + data.serviceName);
+                            }}
+                            className="border-[#2495e0] border-2 text-[#000000] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-xl md:text-3xl"
+                          >
+                            view Details
+                          </button>
+                          <button
+                            className="border-[#2485e0] border-2 text-[#9cc4ff] border-solid bg-[#ffe9e9] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
+                            onClick={() => {
+                              addToCart(data);
+                            }}
+                          >
+                            <i class="fa-solid fa-cart-shopping text-3xl text-blue-700"></i>
+                          </button>
+                        </div>
                       )}
                     </div>
                   </div>

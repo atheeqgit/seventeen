@@ -3,31 +3,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { staticAllData } from "./utils/data";
+import { latLng } from "leaflet";
 
 export const Context = createContext();
 
 export function GlobalProvider({ children }) {
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            long: position.coords.longitude,
-          });
-          console.log({
-            lat: position.coords.latitude,
-            long: position.coords.longitude,
-          });
-        },
-        (err) => {
-          setError(err.message);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser.");
-    }
-  }, []);
   const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [loading, setLoading] = useState(true);
   const [login, setLogin] = useState(null);
@@ -36,7 +16,11 @@ export function GlobalProvider({ children }) {
   const [mechanicalRepairs, setMechanicalRepairs] = useState([]);
   const [valueAddedServices, setValueAddedServices] = useState([]);
   const [cartData, setCartData] = useState([]);
+  const [currentModel, setCurrentModel] = useState(null);
 
+  const setLocalStorage = (data) => {
+    localStorage.setItem("profile", JSON.stringify(data));
+  };
   //import.meta.env.VITE_REACT_APP_SERVER_PROXY
   const getLocalStorage = () => {
     const data = localStorage.getItem("profile");
@@ -48,19 +32,38 @@ export function GlobalProvider({ children }) {
     return data ? JSON.parse(data) : [];
   };
 
-  // const visibleTodos = useMemo(() => {
-  //   filterTodos(todos, tab);
-  // }, [todos, tab]);
+  const upLocationFunc = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLocation({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+        (err) => {
+          setError(err.message);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+    }
+  };
 
   const getFrmLS = () => {
     const lsData = getLocalStorage();
     if (lsData) {
-      setLogin(lsData);
+      setLogin({ ...lsData, userLatLng: null });
     }
   };
 
   useEffect(() => {
     getFrmLS();
+    upLocationFunc();
+  }, []);
+
+  useEffect(() => {
+    updateLocation(location.latitude, location.longitude);
   }, []);
 
   useEffect(() => {
@@ -106,6 +109,7 @@ export function GlobalProvider({ children }) {
         return response;
       } catch (err) {
         console.log(err);
+        setLoading(false);
         notify(err.message, false);
         return err;
       }
@@ -114,7 +118,7 @@ export function GlobalProvider({ children }) {
         const response = await axios.post(
           // import.meta.env.VITE_SERVER_PROXY + url,
           "https://todo-proxy-setup.vercel.app/api" + url,
-          // "http://82.112.226.128:8099" + url,
+          //"http://82.112.226.128:8099" + url,
           body,
           {
             headers: url.includes("/ac")
@@ -233,44 +237,49 @@ export function GlobalProvider({ children }) {
       notify("Please select preferred Date and Time", false);
       return false;
     }
+    if (!login.userLatLng) {
+      notify("Please Set your current location", false);
+      return false;
+    }
+
     if (cartData.length > 0) {
       let bod = cartData.map((item) => {
         return item.id;
       });
 
-      console.log({
-        mobile: login.mobile,
-        model: login.model_name,
-        preferredDate: preferred.date,
-        preferredTime: preferred.time,
-        cart: bod,
-        bookingPoint: location.latitude + "|" + location.longitude,
-      });
-      notify("booking will is urrently in development", false);
-      return false;
+      // console.log({
+      //   mobile: login.mobile,
+      //   model: login.model_name,
+      //   preferredDate: preferred.date,
+      //   preferredTime: preferred.time,
+      //   cart: bod,
+      //   bookingPoint: userLatLng,
+      // });
+      // notify("booking will is urrently in development", false);
+      // return false;
 
-      // try {
-      //   const response = await fetchFunc("post", "/gc/bookService", {
-      //     mobile: login.mobile,
-      //     model: login.model_name,
-      //     preferredDate: preferred.date,
-      //     preferredTime: preferred.time,
-      //     cart: bod,
-      //     bookingPoint: location.latitude +"|" +location.longitude,
-      //   });
-      //   if (response.status === 200) {
-      //     notify(response.data, true);
-      //     getBookings();
-      //     setCartData([]);
-      //     localStorage.removeItem("cartData");
-      //     return true;
-      //   } else {
-      //     notify("Something went wrong while booking", false);
-      //   }
-      // } catch (err) {
-      //   console.log(err);
-      //   return false;
-      // }
+      try {
+        const response = await fetchFunc("post", "/gc/bookService", {
+          mobile: login.mobile,
+          model: login.model_name,
+          preferredDate: preferred.date,
+          preferredTime: preferred.time,
+          cart: bod,
+          bookingPoint: login.userLatLng,
+        });
+        if (response.status === 200) {
+          notify(response.data, true);
+          getBookings();
+          setCartData([]);
+          localStorage.removeItem("cartData");
+          return true;
+        } else {
+          notify("Something went wrong while booking", false);
+        }
+      } catch (err) {
+        console.log(err);
+        return false;
+      }
     } else {
       notify("The Cart Has No items...", false);
       return false;
@@ -357,9 +366,55 @@ export function GlobalProvider({ children }) {
     }
   };
 
+  const updateModel = async (body) => {
+    try {
+      const response = await fetchFunc("post", `/gc/addVehicleToUser`, body);
+      if (response.status === 200) {
+        notify("you Model has added", true);
+        setLogin({
+          ...login,
+          model_Name: body.model,
+          models: [...login.models, body.model],
+        });
+        setLocalStorage({
+          ...login,
+          model_Name: body.model,
+          models: [...login.models, body.model],
+        });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const updateLocation = async (lat, long) => {
+    try {
+      const response = await fetchFunc("post", `/gc/changeAddress`, {
+        mobile: login.mobile,
+        latlng: lat + "|" + long,
+      });
+      if (response.status === 200) {
+        setLogin({
+          ...login,
+          userLatLng: lat + "|" + long,
+        });
+        setLocalStorage({
+          ...login,
+          userLatLng: lat + "|" + long,
+        });
+        notify("you location has updated", true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Context.Provider
       value={{
+        updateLocation,
+        updateModel,
+        currentModel,
+        setCurrentModel,
         location,
         setLocation,
         getCamelImgUrl,

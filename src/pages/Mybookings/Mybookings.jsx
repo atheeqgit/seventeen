@@ -161,15 +161,6 @@ const Mybookings = () => {
                       ))}
                     </ul>
                   </div>
-                  {/* 
-                  <div className="border-t-2 pt-2 font-semibold flex justify-between">
-                    <p className="text-2xl lg:text-3xl">
-                      Booked Date: {booking.bookingDate.split(" ")[0]}
-                    </p>
-                    <p className="text-2xl lg:text-3xl">
-                      Booked Time: {booking.bookingDate.split(" ")[1]}
-                    </p>
-                  </div> */}
 
                   <div className="">
                     <h1 className="text-3xl lg:text-4xl font-semibold">
@@ -191,7 +182,6 @@ const Mybookings = () => {
                           className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#1641ff] cursor-pointer w-full"
                           onClick={() => {
                             setOrderStatus(booking);
-                            console.log(booking);
                           }}
                         >
                           Track order

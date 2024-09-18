@@ -28,6 +28,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import { useNavigate } from "react-router-dom";
 import Search from "./pages/Search";
 import ManageAdd from "./pages/ManageAdd";
+import ChangeModel from "./pages/ChangeModel";
+import CurrentlyUA from "./pages/CurrentlyUA";
 
 //import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
 
@@ -73,9 +75,11 @@ function App() {
               <Route path="/profile" element={<Profile />}></Route>
               <Route path="/sos" element={<Sos />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/ChangeModel" element={<ChangeModel />} />
+              <Route path="/CurrentlyUA" element={<CurrentlyUA />} />
               <Route path="/details/mr/:ServiceName" element={<Details />} />
               <Route
-                path="/moreDetails/mr/:ServiceDetails"
+                path="/moreDetails/:ServiceDetails"
                 element={<MoreDetails />}
               />
               <Route path="/checkin" element={<CheckinPage />} />

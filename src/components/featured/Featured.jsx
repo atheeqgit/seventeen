@@ -34,7 +34,15 @@ const Featured = (props) => {
                 key={index}
                 className="card-m col-span-1 h-full "
                 onClick={() => {
-                  navigate(`/details/mr/${item.serviceName}`);
+                  if (
+                    item.type == "ValueAddedServices" ||
+                    item.serviceName == "Bike Inspection" ||
+                    item.serviceName == "Tyres and Wheels"
+                  ) {
+                    navigate(`/CurrentlyUA`);
+                  } else {
+                    navigate(`/details/mr/${item.serviceName}`);
+                  }
                 }}
               >
                 <div
