@@ -9,7 +9,7 @@ import TopNav from "../components/TopNav";
 import Loading from "../components/Loading";
 import CartNav from "../components/CartNav";
 import MostBooked from "../components/MostBooked/MostBooked";
-import TodoG from "../components/todoG";
+import TodoG from "../components/TodoG";
 
 const Home = () => {
   const {

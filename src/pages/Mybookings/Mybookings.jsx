@@ -150,10 +150,10 @@ const Mybookings = () => {
                             />
                           </div>
                           <div className="flex flex-row justify-between px-4 md:px-10 w-full">
-                            <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
+                            <p className="text-2xl lg:text-3xl capitalize font-semibold  ">
                               {item.serviceName}
                             </p>
-                            <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize">
+                            <p className="text-2xl lg:text-3xl capitalize font-semibold ">
                               ₹{item.price}
                             </p>
                           </div>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./moreDetails.css";
 import { useParams } from "react-router-dom";
+
 import NavigateComp from "../../components/navigateComp/NavigateComp";
 import { useGlobalContext } from "../../context";
 import Loading from "../../components/Loading";
 import FAQcomp from "../../components/FAQcomp";
 import MostBooked from "../../components/MostBooked/MostBooked";
-import TodoG from "../../components/todoG";
-
+import TodoG from "../../components/TodoG";
 const MoreDetails = () => {
   const {
     getMRDetails,

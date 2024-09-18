@@ -126,10 +126,10 @@ const CheckinPage = () => {
                       />
                     </div>
                     <div className="flex flex-row justify-between px-4 md:px-10 w-full">
-                      <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize ">
+                      <p className="text-2xl lg:text-3xl  font-semibold capitalize ">
                         {item.serviceName}
                       </p>
-                      <p className="text-2xl lg:text-3xl capitalize font-semibold capitalize">
+                      <p className="text-2xl lg:text-3xl  font-semibold capitalize">
                         ₹{item.price}
                       </p>
                     </div>
@@ -263,7 +263,7 @@ const CheckinPage = () => {
             grand total : ₹{totalPrice}
           </p>{" "}
           <div
-            className="w-full border-0 border-solid p-6 mt-5 rounded capitalize  text-white rounded-md bg-[#2459e0]  transition-colors hover:opacity-85 cursor-pointer"
+            className="w-full border-0 border-solid p-6 mt-5  capitalize  text-white rounded-md bg-[#2459e0]  transition-colors hover:opacity-85 cursor-pointer"
             onClick={async () => {
               const result = await postBooking(preferred);
               if (result) {
