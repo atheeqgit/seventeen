@@ -83,8 +83,12 @@ const Login = () => {
         if (response.data.message == "Mobile number already exists") {
           toast.error("Mobile number already exists");
         } else {
-          setLogin({ ...response.data, ...body });
-          setLocalStorage({ ...response.data, ...body });
+          setLogin({ ...response.data, ...body, models: [body.model_name] });
+          setLocalStorage({
+            ...response.data,
+            ...body,
+            models: [body.model_name],
+          });
         }
       }
     } catch (err) {

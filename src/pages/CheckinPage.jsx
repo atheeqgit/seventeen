@@ -178,7 +178,7 @@ const CheckinPage = () => {
             </p>
           </div>
         </div>
-        <div className="md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white">
+        <div className="md:col-span-12 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white">
           <h1 className="text-2xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
             details :
           </h1>

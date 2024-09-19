@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const ManageAdd = () => {
   const navigate = useNavigate();
-  const { location, setLocation, updateLocation } = useGlobalContext();
+  const { location, setLocation, updateLocation, notify } = useGlobalContext();
 
   return (
     <div className="full-body ">
@@ -24,9 +24,17 @@ const ManageAdd = () => {
 
         <button
           className="font-medium flex justify-center capitalize text-2xl h-fit  px-6 py-3 md:px-8 md:py-4 rounded-xl  cursor-pointer shadow-2xl bg-[#2459e0] text-white hover:bg-[#1d11c4] w-full mt-5 "
-          onClick={() => {
-            if (updateLocation(location.latitude, location.longitude)) {
+          onClick={async () => {
+            const bool = await updateLocation(
+              location.latitude,
+              location.longitude
+            );
+
+            if (bool) {
+              notify("Location updated", true);
               navigate(-1);
+            } else {
+              notify("Error while updating location", false);
             }
           }}
         >

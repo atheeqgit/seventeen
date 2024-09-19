@@ -22,6 +22,11 @@ const profileData = [
     icon: "icon-settings-manage-address.png",
     link: "ManageAddress",
   },
+  // {
+  //   title: "Change Vehicle model",
+  //   icon: "icon-settings-manage-address.png",
+  //   link: "ChangeModel",
+  // },
 
   {
     title: "About App",
@@ -59,7 +64,7 @@ const Profile = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 1 }}
-      className="part-body profile p-3 flex flex-col gap-3  "
+      className="part-body profile p-3 flex flex-col gap-3 mb-12 "
     >
       {cartData.length > 0 && <CartNav fullbody={false} />}
 

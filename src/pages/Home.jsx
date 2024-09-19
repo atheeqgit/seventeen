@@ -42,7 +42,7 @@ const Home = () => {
           {cartData.length > 0 && <CartNav />}
 
           <Banner />
-          <Featured title="sheduled Services" data={sheduledServices} />
+          <Featured title="scheduled Services" data={sheduledServices} />
           <Featured title="mechanical Services" data={mechanicalRepairs} />
           <div className="w-full py-5 px-3 md:py-7 md:px-4 text-center  bg-white rounded-2xl border-2 border-solid border-[#115ab9] shadow-lg">
             <p className="dont-know-box  text-[#1013bb] font-medium  text-2xl md:text-4xl ">

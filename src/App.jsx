@@ -31,8 +31,7 @@ import ManageAdd from "./pages/ManageAdd";
 import ChangeModel from "./pages/ChangeModel";
 import CurrentlyUA from "./pages/CurrentlyUA";
 import TearmsConditons from "./pages/TearmsConditions";
-
-//import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
+// import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
 
 function App() {
   const { getLocalStorage, login, cartData } = useGlobalContext();

@@ -69,7 +69,7 @@ export function GlobalProvider({ children }) {
     const lsCart = getLocalStorageCart();
     setCartData(lsCart);
     fetchAllServices();
-  }, [login]);
+  }, [login?.mobile]);
 
   useEffect(() => {
     upLocationFunc();
@@ -121,7 +121,7 @@ export function GlobalProvider({ children }) {
         const response = await axios.post(
           // import.meta.env.VITE_SERVER_PROXY + url,
           "https://todo-proxy-setup.vercel.app/api" + url,
-          //"http://82.112.226.128:8099" + url,
+          // "http://82.112.226.128:8099" + url,
           body,
           {
             headers: url.includes("/ac")
@@ -132,10 +132,12 @@ export function GlobalProvider({ children }) {
                 },
           }
         );
+        setLoading(false);
         // notify(response.data.message, true);
         return response;
       } catch (err) {
         notify(err.message, false);
+        setLoading(false);
         return err;
       }
     }
@@ -405,7 +407,7 @@ export function GlobalProvider({ children }) {
             ...login,
             userLatLng: lat + "|" + long,
           });
-          //  notify("you location has updated", true);
+
           return true;
         }
       } catch (err) {
