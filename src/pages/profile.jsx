@@ -34,6 +34,11 @@ const profileData = [
     link: "help&support",
   },
   {
+    title: "Tearms & condtions",
+    icon: "icon-settings-about-app.png",
+    link: "TearmsConditons",
+  },
+  {
     title: "Privacy Policy",
     icon: "icon-settings-about-app.png",
     link: "PrivacyPolicy",

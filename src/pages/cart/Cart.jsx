@@ -75,9 +75,9 @@ const Cart = () => {
           <div className="grid grid-cols-12 gap-4 ">
             {cartData.map((data) => {
               return (
-                <div className="col-span-12 md:col-span-6 flex flex-col gap-6 p-6 border rounded-3xl shadow-xl bg-white justify-evenly">
-                  <div className="grid grid-cols-12 gap-5 ">
-                    <div className="col-span-4">
+                <div className="col-span-12 md:col-span-6 flex grid-cols-12 gap-6 p-8 border rounded-3xl shadow-xl bg-white justify-evenly">
+                  <div className="grid grid-cols-12 gap-5 col-span-8">
+                    <div className="col-span-3">
                       <img
                         src={getCamelImgUrl(
                           data?.serviceName ? data?.serviceName : ""
@@ -86,32 +86,31 @@ const Cart = () => {
                         alt=""
                       />
                     </div>
-                    <div className="col-span-8 flex flex-col gap-3 ">
+                    <div className="col-span-9 md:col-span-6 flex flex-col gap-3 ">
                       {data?.serviceName && (
-                        <h4 className="text-2xl md:text-3 font-semibold capitalize">
+                        <h4 className="text-3xl md:text-3 font-semibold capitalize">
                           {data?.serviceName}
                         </h4>
                       )}
-
-                      <ul className="list-disc ml-8 capitalize font-medium text-xl md:text-2xl">
+                      <h4 className="text-3xl md:text-4xl font-bold capitalize">
+                        ₹{data?.price}
+                      </h4>
+                      {/* <ul className="list-disc ml-8 capitalize font-medium text-xl md:text-2xl">
                         <li>{data?.recommendedOn}</li>
-                        {/* {data?.points.map((point, index) => {
+                        {data?.points.map((point, index) => {
                    return <li key={index}>{point}</li>;
-                 })} */}
-                      </ul>
+                 })} 
+                      </ul> */}
                     </div>
                   </div>
-                  <div className="flex flex-row justify-around data?s-center gap-6 ">
-                    <h4 className="text-3xl md:text-4xl font-bold capitalize">
-                      ₹{data?.price}
-                    </h4>
+                  <div className="flex flex-col justify-around  gap-6 col-span-4">
                     <button
-                      className="border-[#e02424] border-2 text-[#e02424] border-solid bg-[#ffe9e9] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
+                      className="border-[#e02424] border-2 text-[#e02424] border-solid bg-[#ffe9e9] px-4 py-2 font-medium capitalize rounded-full text-2xl md:text-3xl"
                       onClick={() => {
                         removeFromCart(data);
                       }}
                     >
-                      Remove Item
+                      <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                   </div>
                 </div>
@@ -139,7 +138,7 @@ const Cart = () => {
           </div> */}
 
           <div
-            className={` bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[40vw] md:left-[55%] z-[108] px-6 py-3 lg:py-5 lg:px-5 lg:rounded-xl bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl  bottom-24
+            className={` bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[40vw] md:left-[55%] z-[108] px-6 py-4 lg:py-5 lg:px-5 lg:rounded-xl bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl  bottom-24
         `}
             onClick={() => {
               if (cartData.length > 0) {

@@ -25,6 +25,7 @@
   align-items: center;
   background-color: rgb(255, 255, 255);
   cursor: pointer;
+
   padding: 5px;
   align-items: center;
   color: black;
@@ -38,6 +39,9 @@
 }
 
 .bottom-nav .link-active svg path {
+  stroke: var(--primary-blue); /* For lines */
+}
+.bottom-nav .link-active svg line {
   stroke: var(--primary-blue); /* For lines */
 }
 

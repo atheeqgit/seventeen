@@ -123,3 +123,32 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+.tearms-conditions {
+  h1,
+  h2 {
+    color: #214eca;
+    text-align: left;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: justify;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  p {
+    margin-bottom: 14px;
+  }
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}

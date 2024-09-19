@@ -30,6 +30,7 @@ import Search from "./pages/Search";
 import ManageAdd from "./pages/ManageAdd";
 import ChangeModel from "./pages/ChangeModel";
 import CurrentlyUA from "./pages/CurrentlyUA";
+import TearmsConditons from "./pages/TearmsConditions";
 
 //import { App as capApp } from "@capacitor/app"; // Ensure this import is correct
 
@@ -57,7 +58,7 @@ function App() {
 
   return (
     <div className="app font-poppins">
-      <ToastContainer />
+      <ToastContainer autoClose={1300} closeOnClick hideProgressBar={true} />
 
       {getLocalStorage() == null ? (
         <Routes>
@@ -93,6 +94,7 @@ function App() {
               <Route path="/help&support" element={<HelpSupport />} />
               <Route path="/aboutapp" element={<AboutApp />} />
               <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="/TearmsConditons" element={<TearmsConditons />} />
               <Route path="/search" element={<Search />} />
             </Routes>
             <BottomNav />

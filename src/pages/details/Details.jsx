@@ -85,7 +85,7 @@ const Details = () => {
                 data.serviceName && (
                   <div
                     key={idx}
-                    className="col-span-12 md:col-span-6 flex flex-col gap-8  p-10 border rounded-3xl shadow-xl bg-white justify-evenly"
+                    className="col-span-12 md:col-span-6 flex flex-col gap-8  p-12 border rounded-3xl shadow-xl bg-white justify-evenly"
                   >
                     <div className="grid grid-cols-12 gap-5 ">
                       <div className="col-span-4 ">
@@ -93,7 +93,7 @@ const Details = () => {
                           src={getCamelImgUrl(
                             data?.serviceName ? data.serviceName : ""
                           )}
-                          className="w-full rounded-xl shadow border border-[#101ff0] border-solid"
+                          className="w-full rounded-3xl shadow border border-[#101ff0] border-solid"
                           alt=""
                         />
                       </div>
@@ -104,17 +104,26 @@ const Details = () => {
                           </h4>
                         )}
 
-                        <ul className="list-disc ml-8 capitalize font-medium text-xl md:text-2xl">
-                          <li>{data.recommendedOn}</li>
-                        </ul>
+                        <div className="h-[90px] overflow-y-auto todoG-scroll-container">
+                          <ul className=" list-disc ml-8 capitalize font-semibold text-lg md:text-2xl">
+                            <li>{data.recommendedOn}</li>
+                            <li>{data.takesAbout}</li>
+                            <li>
+                              {data.warranty
+                                ? data.warranty
+                                : "Basic Todo warranty "}
+                            </li>
+                            <li>Free pickup and drop</li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                    <div className="flex flex-row justify-around data?s-center gap-6">
-                      <h4 className="text-3xl md:text-4xl font-bold capitalize">
+                    <div className="grid grid-cols-3 justify-around items-center data?s-center gap-6">
+                      <h4 className="text-3xl md:text-4xl font-bold text-center capitalize col-span-1">
                         ₹{data?.price}/-
                       </h4>
                       {isPresentInCart(data) ? (
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 col-span-2 justify-center items-center">
                           <button className="border-[#24e063] border-2 text-[#000000] border-solid bg-[#E9F0FF] px-4 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl">
                             item in cart
                           </button>
@@ -128,8 +137,16 @@ const Details = () => {
                           </button>
                         </div>
                       ) : (
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 col-span-2 justify-center items-center">
                           <button
+                            className=" border-2 border-[#2459E0] border-2 text-[#2459E0] border-solid bg-[#E9F0FF] border-solid  px-6 py-2 font-medium capitalize rounded-xl text-2xl md:text-3xl"
+                            onClick={() => {
+                              addToCart(data);
+                            }}
+                          >
+                            Add to cart
+                          </button>
+                          {/* <button
                             onClick={() => {
                               navigate("/moreDetails/" + data.serviceName);
                             }}
@@ -144,7 +161,7 @@ const Details = () => {
                             }}
                           >
                             <i class="fa-solid fa-cart-shopping text-3xl text-blue-700"></i>
-                          </button>
+                          </button> */}
                         </div>
                       )}
                     </div>

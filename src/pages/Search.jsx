@@ -55,7 +55,6 @@ const Search = () => {
         setNotAvail(true);
       }
     }
-    console.log(notAvail);
   };
 
   return (

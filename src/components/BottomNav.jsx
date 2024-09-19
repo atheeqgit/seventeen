@@ -57,7 +57,7 @@ const BottomNav = () => {
             : ""
         }
       >
-        <svg
+        {/* <svg
           width="24px"
           height="24px"
           viewBox="0 0 24 24"
@@ -83,6 +83,56 @@ const BottomNav = () => {
             clip-rule="evenodd"
             d="M7 17C7 16.4477 7.44772 16 8 16H12C12.5523 16 13 16.4477 13 17C13 17.5523 12.5523 18 12 18H8C7.44772 18 7 17.5523 7 17Z"
             fill="#152C70"
+          />
+        </svg> */}
+
+        <svg
+          width="24px"
+          height="24px"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect
+            x="3"
+            y="5"
+            width="18"
+            height="16"
+            rx="2"
+            stroke="#1C274C"
+            stroke-width="1.5"
+            fill="none"
+          />
+          <path
+            d="M3 9H21"
+            stroke="#1C274C"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <path
+            d="M7 13H17M7 17H17"
+            stroke="#1C274C"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+          <line
+            x1="7"
+            y1="2"
+            x2="7"
+            y2="5"
+            stroke="#1C274C"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+
+          <line
+            x1="17"
+            y1="2"
+            x2="17"
+            y2="5"
+            stroke="#1C274C"
+            stroke-width="1.5"
+            stroke-linecap="round"
           />
         </svg>
 

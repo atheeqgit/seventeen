@@ -134,7 +134,7 @@ const Mybookings = () => {
                       {Object.entries(booking.cart)?.map(([key, item], idx) => (
                         <li
                           key={idx}
-                          className="items-center p-4 bg-gray-200 flex flex-row justify-between px-5 md:px-10"
+                          className="items-center p-4 bg-[#f5f5f5] rounded-xl flex flex-row justify-between px-5 md:px-10"
                         >
                           {" "}
                           <p className="text-2xl mr-6 lg:text-3xl capitalize font-semibold capitalize ">
@@ -145,7 +145,7 @@ const Mybookings = () => {
                               src={getCamelImgUrl(
                                 item?.serviceName ? item.serviceName : ""
                               )}
-                              className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
+                              className="w-full rounded-xl shadow border border-[#ccc] border-solid"
                               alt=""
                             />
                           </div>

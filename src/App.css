@@ -20,6 +20,33 @@
   background-color: #f4f5f6;
 }
 
+.toast-container {
+  width: 80vw;
+  right: -15%;
+  top: 3rem;
+  position: fixed;
+  border-radius: 1.5rem;
+}
+
+.toast-content {
+  color: #000000;
+}
+
+.Toastify__toast-body {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.Toastify__toast-theme--light {
+  width: 70vw;
+  right: -25%;
+  top: 4rem;
+  backdrop-filter: blur(5px);
+  border-radius: 1.5rem;
+  background: #bde5ff44;
+  color: #000000;
+}
+
 .part-body {
   padding: 1rem;
   padding-bottom: 12rem;

@@ -15,7 +15,7 @@ const AboutApp = () => {
         <div
           className="flex flex-col justify-between items-center 
 md:w-2/3 whitespace-pre-wrap p-4 leading-relaxed gap-10 font-semibold text-3xl
-"
+ text-justify"
         >
           <p className="">
             Todo simplifies bike servicing by bringing maintenance and repairs

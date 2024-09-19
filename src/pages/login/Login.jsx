@@ -78,9 +78,14 @@ const Login = () => {
 
     try {
       const response = await fetchFunc("post", "/ac/auth/register", body);
+
       if (response.status === 200) {
-        setLogin({ ...response.data, ...body });
-        setLocalStorage({ ...response.data, ...body });
+        if (response.data.message == "Mobile number already exists") {
+          toast.error("Mobile number already exists");
+        } else {
+          setLogin({ ...response.data, ...body });
+          setLocalStorage({ ...response.data, ...body });
+        }
       }
     } catch (err) {
       console.log(err);

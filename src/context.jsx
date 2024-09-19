@@ -21,7 +21,7 @@ export function GlobalProvider({ children }) {
   const setLocalStorage = (data) => {
     localStorage.setItem("profile", JSON.stringify(data));
   };
-  //import.meta.env.VITE_REACT_APP_SERVER_PROXY
+
   const getLocalStorage = () => {
     const data = localStorage.getItem("profile");
     return data ? JSON.parse(data) : null;
@@ -40,7 +40,11 @@ export function GlobalProvider({ children }) {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
           });
+
+          updateLocation(position.coords.latitude, position.coords.longitude);
+          console.log("Fetched location");
         },
+
         (err) => {
           setError(err.message);
         }
@@ -59,19 +63,18 @@ export function GlobalProvider({ children }) {
 
   useEffect(() => {
     getFrmLS();
-    upLocationFunc();
-  }, []);
-
-  useEffect(() => {
-    updateLocation(location.latitude, location.longitude);
   }, []);
 
   useEffect(() => {
     const lsCart = getLocalStorageCart();
     setCartData(lsCart);
     fetchAllServices();
-    getBookings();
   }, [login]);
+
+  useEffect(() => {
+    upLocationFunc();
+    getBookings();
+  }, [login?.mobile]);
 
   const notify = (msg, success) => {
     if (success) {
@@ -129,7 +132,7 @@ export function GlobalProvider({ children }) {
                 },
           }
         );
-        notify(response.data.message, true);
+        // notify(response.data.message, true);
         return response;
       } catch (err) {
         notify(err.message, false);
@@ -222,7 +225,7 @@ export function GlobalProvider({ children }) {
       setCartData([...cartData, data]);
       localStorage.setItem("cartData", JSON.stringify([...cartData, data]));
     } else {
-      notify("Item Already Present in Cart", false);
+      // notify("Item Already Present in Cart", false);
     }
   };
 
@@ -253,11 +256,10 @@ export function GlobalProvider({ children }) {
       //   preferredDate: preferred.date,
       //   preferredTime: preferred.time,
       //   cart: bod,
-      //   bookingPoint: userLatLng,
+      //   bookingPoint: login.userLatLng,
       // });
-      // notify("booking will is urrently in development", false);
-      // return false;
 
+      // return false;
       try {
         const response = await fetchFunc("post", "/gc/bookService", {
           mobile: login.mobile,
@@ -268,7 +270,7 @@ export function GlobalProvider({ children }) {
           bookingPoint: login.userLatLng,
         });
         if (response.status === 200) {
-          notify(response.data, true);
+          // notify(response.data, true);
           getBookings();
           setCartData([]);
           localStorage.removeItem("cartData");
@@ -305,7 +307,7 @@ export function GlobalProvider({ children }) {
     try {
       const response = await fetchFunc("get", `/gc/cancelBooking?id=${num}`);
       if (response.status === 200) {
-        notify("you booking has cancelled", true);
+        //  notify("you booking has cancelled", true);
         getBookings();
       }
     } catch (err) {
@@ -314,6 +316,7 @@ export function GlobalProvider({ children }) {
   };
 
   const logoutFunc = () => {
+    setLocation({ latitude: null, longitude: null });
     setLogin(null);
     setCartData([]);
     setBookings(null);
@@ -370,7 +373,7 @@ export function GlobalProvider({ children }) {
     try {
       const response = await fetchFunc("post", `/gc/addVehicleToUser`, body);
       if (response.status === 200) {
-        notify("you Model has added", true);
+        // notify("your Model has added", true);
         setLogin({
           ...login,
           model_Name: body.model,
@@ -387,24 +390,31 @@ export function GlobalProvider({ children }) {
     }
   };
   const updateLocation = async (lat, long) => {
-    try {
-      const response = await fetchFunc("post", `/gc/changeAddress`, {
-        mobile: login.mobile,
-        latlng: lat + "|" + long,
-      });
-      if (response.status === 200) {
-        setLogin({
-          ...login,
-          userLatLng: lat + "|" + long,
+    if (lat) {
+      try {
+        const response = await fetchFunc("post", `/gc/changeAddress`, {
+          mobile: login.mobile,
+          latlng: lat + "|" + long,
         });
-        setLocalStorage({
-          ...login,
-          userLatLng: lat + "|" + long,
-        });
-        notify("you location has updated", true);
+        if (response.status === 200) {
+          setLogin({
+            ...login,
+            userLatLng: lat + "|" + long,
+          });
+          setLocalStorage({
+            ...login,
+            userLatLng: lat + "|" + long,
+          });
+          //  notify("you location has updated", true);
+          return true;
+        }
+      } catch (err) {
+        console.log(err);
+        return false;
       }
-    } catch (err) {
-      console.log(err);
+    } else {
+      notify("Please Ture ON your GPS or Allow Location Access", false);
+      return false;
     }
   };
 

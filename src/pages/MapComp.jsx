@@ -44,21 +44,21 @@ const MapComp = ({ setLocation, location }) => {
   const [error, setError] = useState(null);
 
   // Fetch user's current geolocation
-  const getGeolocation = () => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        setLocation({ latitude, longitude });
-      },
-      (err) => {
-        setError(err.message);
-      }
-    );
-  };
+  // const getGeolocation = () => {
+  //   navigator.geolocation.getCurrentPosition(
+  //     (position) => {
+  //       const { latitude, longitude } = position.coords;
+  //       setLocation({ latitude, longitude });
+  //     },
+  //     (err) => {
+  //       setError(err.message);
+  //     }
+  //   );
+  // };
 
-  useEffect(() => {
-    getGeolocation(); // Fetch user's current location when component loads
-  }, []);
+  // useEffect(() => {
+  //   getGeolocation(); // Fetch user's current location when component loads
+  // }, []);
 
   return (
     <div className="w-100">

@@ -41,27 +41,27 @@ const CheckinPage = () => {
   const timeData = [
     {
       24: "09-11",
-      12: "9AM - 11AM",
+      12: "9AM-11AM",
     },
     {
       24: "11-13",
-      12: "11AM - 1PM",
+      12: "11AM-1PM",
     },
     {
       24: "13-15",
-      12: "1PM - 3PM",
+      12: "1PM-3PM",
     },
     {
       24: "15-17",
-      12: "3PM - 5PM",
+      12: "3PM-5PM",
     },
     {
       24: "17-19",
-      12: "5PM - 7PM",
+      12: "5PM-7PM",
     },
     {
       24: "19-21",
-      12: "7PM - 9PM",
+      12: "7PM-9PM",
     },
   ];
 
@@ -78,7 +78,7 @@ const CheckinPage = () => {
 
   return (
     <div className="full-body">
-      <NavigateComp title="Checkin" />
+      <NavigateComp title="Check-out" />
       <div className="flex flex-col gap-3 lg:grid grid-cols-12 ">
         <div className="md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white shadow-lg">
           <h1 className="text-2xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
@@ -110,13 +110,13 @@ const CheckinPage = () => {
                 return (
                   <li
                     key={idx}
-                    className="items-center p-4 bg-gray-200 flex flex-row justify-between px-5 md:px-10"
+                    className="items-center p-4 bg-[#f5f5f5] rounded-xl flex flex-row justify-between px-5 md:px-10"
                   >
                     {" "}
                     <p className="text-2xl mr-6 lg:text-3xl capitalize font-semibold capitalize ">
                       {idx + 1}
                     </p>
-                    <div className="w-24">
+                    {/* <div className="w-24">
                       <img
                         src={
                           item?.serviceName && getCamelImgUrl(item?.serviceName)
@@ -124,7 +124,7 @@ const CheckinPage = () => {
                         className="w-full rounded-xl shadow border-2 border-[#ccc] border-solid"
                         alt=""
                       />
-                    </div>
+                    </div> */}
                     <div className="flex flex-row justify-between px-4 md:px-10 w-full">
                       <p className="text-2xl lg:text-3xl  font-semibold capitalize ">
                         {item.serviceName}
@@ -137,6 +137,45 @@ const CheckinPage = () => {
                 );
               })}
             </ul>
+          </div>
+        </div>
+        <div className="md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-2 w-full bg-white shadow-lg">
+          <h1 className="text-2xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
+            PickUp location
+          </h1>
+          <hr />
+          <div className="flex flex-row justify-between ">
+            <p className="text-2xl lg:text-3xl capitalize font-semibold">
+              {login?.userLatLng ? (
+                <p className=" w-90 text-[rgb(63,62,62)] leading-8 font-medium truncate">
+                  <i className="fa-solid fa-location-dot"></i> Your current
+                  location has been set.
+                </p>
+              ) : (
+                <>
+                  <p className=" w-90 text-[rgb(212,10,10)] leading-8 font-medium truncate">
+                    <i className="fa-solid fa-circle-exclamation"></i> Please
+                    set your location.
+                  </p>
+                  {!location?.latitude && (
+                    <p className=" w-90 text-[rgb(212,10,10)] leading-8 font-medium truncate">
+                      <i className="fa-solid fa-circle-exclamation"></i> Please
+                      allow location permission.
+                    </p>
+                  )}
+                </>
+              )}
+            </p>
+          </div>
+          <div className="flex flex-row justify-between ">
+            <p
+              className="text-xl text-blue-600 underline capitalize font-semibold"
+              onClick={() => {
+                navigate("/ManageAddress");
+              }}
+            >
+              Please click here to verify or change Pickup location
+            </p>
           </div>
         </div>
         <div className="md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white">
@@ -182,7 +221,7 @@ const CheckinPage = () => {
               Preffered Time
             </h1>
             <p
-              className="text-2xl lg:text-3xl capitalize font-semibold"
+              className="text-2xl lg:text-3xl capitalize font-bold"
               onClick={() => {
                 if (preferred.time) {
                   setPreferred({ ...preferred, time: null });
@@ -198,7 +237,7 @@ const CheckinPage = () => {
                 return (
                   <li
                     key={idx}
-                    className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
+                    className={`col-span-1 md:col-span-1 font-semibold text-xl p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                       ${
                         preferred.time == time[24]
                           ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"
@@ -223,7 +262,7 @@ const CheckinPage = () => {
               prefered :date
             </h1>
             <p
-              className="text-2xl lg:text-3xl capitalize font-semibold"
+              className="text-2xl lg:text-3xl capitalize font-bold"
               onClick={() => {
                 if (preferred.date) {
                   setPreferred({ ...preferred, date: null });
@@ -239,7 +278,7 @@ const CheckinPage = () => {
                 return (
                   <li
                     key={idx}
-                    className={`col-span-2 md:col-span-1 font-medium text-md p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
+                    className={`col-span-1 md:col-span-1 font-semibold text-xl p-1 text-center border  shadow rounded-lg hover:bg-slate-300 active:scale-95 cursor-pointer  
                      ${
                        preferred.date == date
                          ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"

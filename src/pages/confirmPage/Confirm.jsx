@@ -12,8 +12,9 @@ const Confirm = () => {
       <h1 className="text-2xl md:text-4xl text-center font-semibold capitalize">
         your order has confirmed <br /> Thankyou for ordering
       </h1>
-      <div class="mt-6">
+      <div class="mt-6 flex flex-row justify-center items-center gap-3">
         <Mybutton title="back to home" primary={true} onclick="/" />
+        <Mybutton title="go to bookings" primary={true} onclick="/myBooking" />
       </div>
     </div>
   );

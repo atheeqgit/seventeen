@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import NavigateComp from "../components/navigateComp/NavigateComp";
 import { useGlobalContext } from "../context";
 import Loading from "../components/Loading";
+import { useNavigate } from "react-router-dom";
 
 const ChangeModel = () => {
   const { login, setLogin, getImgUrl, notify, updateModel } =
     useGlobalContext();
+
+  const navigate = useNavigate();
+
   const [brandName, SetBrandName] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [body, setBody] = useState({
@@ -22,7 +26,7 @@ const ChangeModel = () => {
             <li
               onClick={() => {
                 setLogin({ ...login, model_name: model });
-                notify("Your Model has Changed to " + model, true);
+                navigate(-1);
               }}
               key={idx}
               className={`col-span-6 md:col-span-4 w-full p-4 rounded-lg text-center border border-solid  card shadow-lg cursor-pointer flex flex-col gap-2 items-center justify-evenly lg:flex-row bg-white ${
