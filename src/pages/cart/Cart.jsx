@@ -28,7 +28,7 @@ const Cart = () => {
   }, 0);
 
   return (
-    <div className="part-body">
+    <div className="part-body relative">
       <NavigateComp title="CART" />
 
       {cartData.length > 0 ? (
@@ -138,7 +138,7 @@ const Cart = () => {
           </div> */}
 
           <div
-            className={` bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[40vw] md:left-[55%] z-[108] px-6 py-4 lg:py-5 lg:px-5 lg:rounded-xl bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl  bottom-24
+            className={` bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[42vw] md:left-[55%] z-[120] px-6 py-4 lg:py-5 lg:px-5  bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between bottom-28 items-center text-xl lg:text-2xl
         `}
             onClick={() => {
               if (cartData.length > 0) {

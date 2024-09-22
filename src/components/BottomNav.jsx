@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const BottomNav = () => {
   return (
-    <div className="bottom-nav grid grid-cols-5 lg:flex lg:flex-col lg:h-full fixed bottom-0 left-0 z-[102] w-full lg:w-fit px-6 lg:px-4 py-1 md:px-4 justify-around bg-white border border-gray-400 rounded-2xl">
+    <div className="bottom-nav grid grid-cols-5 lg:flex lg:flex-col lg:h-full fixed bottom-0 left-0 z-[102] w-full lg:w-fit px-6 lg:px-4 py-2 md:px-4 justify-around bg-white border border-[#ececec] rounded-2xl">
       <NavLink
         to="/"
         className={({ isActive, isPending }) =>

@@ -69,7 +69,7 @@ const Profile = () => {
       {cartData.length > 0 && <CartNav fullbody={false} />}
 
       <NavigateComp title="profile" />
-      <div className="container mx-auto p-3 flex flex-col gap-3">
+      <div className="container mx-auto p-3 flex flex-col gap-3 relative">
         <div className="p-6 py-10 flex flex-col  bg-[#2459E0] rounded-2xl text-white mb-4">
           <div className="flex flex-row w-full justify-between items-center gap-6 gap-10">
             <div className="w-40">
