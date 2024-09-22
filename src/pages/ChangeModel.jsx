@@ -3,9 +3,10 @@ import NavigateComp from "../components/navigateComp/NavigateComp";
 import { useGlobalContext } from "../context";
 import Loading from "../components/Loading";
 import { useNavigate } from "react-router-dom";
+import { calcLength } from "framer-motion";
 
 const ChangeModel = () => {
-  const { login, setLogin, getImgUrl, notify, updateModel } =
+  const { login, setLogin, getImgUrl, updateModel, setCartData, notify } =
     useGlobalContext();
 
   const navigate = useNavigate();
@@ -20,13 +21,16 @@ const ChangeModel = () => {
   return (
     <div className="full-body">
       <NavigateComp title="Change model" />
-      <ul className="mt-4 grid grid-cols-12 gap-4">
+      <ul className="mt-4 grid grid-cols-12 gap-4 mb-6">
         {login?.models.map((model, idx) => {
           return (
             <li
               onClick={() => {
-                setLogin({ ...login, model_name: model });
-                navigate(-1);
+                if (login.model_name !== model) {
+                  setLogin({ ...login, model_name: model });
+                  setCartData([]);
+                  navigate(-1);
+                }
               }}
               key={idx}
               className={`col-span-6 md:col-span-4 w-full p-4 rounded-lg text-center border border-solid  card shadow-lg cursor-pointer flex flex-col gap-2 items-center justify-evenly lg:flex-row bg-white ${
@@ -47,7 +51,7 @@ const ChangeModel = () => {
           );
         })}
       </ul>
-      <div className="inputs flex flex-col gap-4">
+      <div className="inputs flex flex-col  gap-4">
         {brandName && (
           <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
             <div className="p-2 flex justify-center items-center w-1/5">
@@ -108,10 +112,19 @@ const ChangeModel = () => {
             <div
               className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 mt-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#2d3fdd] cursor-pointer w-full"
               onClick={() => {
-                updateModel(body);
-                setShowModal(!showModal);
-                SetBrandName(null);
-                setBody({ ...body, model: null });
+                const isPresentInModels = (lname) => {
+                  return login.models.find((name) => name === lname);
+                };
+
+                if (isPresentInModels(body.model)) {
+                  notify(body.model + " is already in present! ", false);
+                } else {
+                  if (updateModel(body)) {
+                    setShowModal(false);
+                    SetBrandName(null);
+                    setBody({ ...body, model: null });
+                  }
+                }
               }}
             >
               ADD New Vehicle

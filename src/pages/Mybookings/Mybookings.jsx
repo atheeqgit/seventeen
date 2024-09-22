@@ -7,6 +7,33 @@ import { useGlobalContext } from "../../context";
 import Loading from "../../components/Loading";
 import CartNav from "../../components/CartNav";
 
+const timeData = [
+  {
+    24: "09-11",
+    12: "9AM-11AM",
+  },
+  {
+    24: "11-13",
+    12: "11AM-1PM",
+  },
+  {
+    24: "13-15",
+    12: "1PM-3PM",
+  },
+  {
+    24: "15-17",
+    12: "3PM-5PM",
+  },
+  {
+    24: "17-19",
+    12: "5PM-7PM",
+  },
+  {
+    24: "19-21",
+    12: "7PM-9PM",
+  },
+];
+
 const Mybookings = () => {
   const navigate = useNavigate();
   const {
@@ -42,6 +69,52 @@ const Mybookings = () => {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const timeData = [
+    {
+      24: "09-11",
+      12: "9AM-11AM",
+    },
+    {
+      24: "11-13",
+      12: "11AM-1PM",
+    },
+    {
+      24: "13-15",
+      12: "1PM-3PM",
+    },
+    {
+      24: "15-17",
+      12: "3PM-5PM",
+    },
+    {
+      24: "17-19",
+      12: "5PM-7PM",
+    },
+    {
+      24: "19-21",
+      12: "7PM-9PM",
+    },
+  ];
+
+  function convertTo12Hour(time24) {
+    // Create a Date object with the time string
+    const [hours, minutes, seconds] = time24.split(":");
+    let period = "AM";
+    let hour = parseInt(hours, 10);
+
+    // Adjust for PM
+    if (hour >= 12) {
+      period = "PM";
+      if (hour > 12) {
+        hour -= 12;
+      }
+    } else if (hour === 0) {
+      hour = 12; // Midnight case
+    }
+
+    return `${hour}:${minutes}${period}`;
+  }
 
   return (
     <motion.div
@@ -171,7 +244,12 @@ const Mybookings = () => {
                         Date: {booking.scheduledDate.split(" ")[0]}
                       </p>
                       <p className="text-xl md:text-2xl">
-                        Time: {booking.scheduledTime}
+                        Time:{" "}
+                        {timeData.map((time) => {
+                          if (time[24] == booking.scheduledTime) {
+                            return time[12];
+                          }
+                        })}
                       </p>
                     </div>
                   </div>
@@ -235,7 +313,7 @@ const Mybookings = () => {
         </div>
       )}
       {orderStatus != null && (
-        <div className="lg:ml-44 fixed  z-[109] inset-0 p-6 min-h-[100vh] overflow-scroll  mb-20 w-100  bg-white  ">
+        <div className="lg:ml-36 fixed  z-[109] inset-0 p-6 min-h-[100vh] overflow-scroll  mb-20 w-100  bg-white  ">
           <div className="flex mb-32 flex-col justify-top items-center ">
             <div className="container md:col-span-6 border  border-solid border-[#2459E0] rounded-3xl p-8 flex flex-col gap-5 w-full bg-white shadow-lg">
               <h1 className="text-4xl lg:text-4xl capitalize font-semibold text-[#1e1f20]">
@@ -255,7 +333,7 @@ const Mybookings = () => {
                   Order Time :
                 </h1>
                 <p className="text-2xl lg:text-3xl capitalize font-semibold">
-                  {orderStatus.bookingDate.split(" ")[1]}
+                  {convertTo12Hour(orderStatus.bookingDate.split(" ")[1])}
                 </p>
               </div>
               <div className="flex flex-row justify-between ">
@@ -271,7 +349,11 @@ const Mybookings = () => {
                   scheduled Time :
                 </h1>
                 <p className="text-2xl lg:text-3xl capitalize font-semibold">
-                  {orderStatus.scheduledTime}
+                  {timeData.map((time) => {
+                    if (time[24] == orderStatus.scheduledTime) {
+                      return time[12];
+                    }
+                  })}
                 </p>
               </div>
               <div className="flex flex-col gap-3">

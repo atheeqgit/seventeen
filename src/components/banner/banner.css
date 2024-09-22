@@ -14,3 +14,33 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+/* Specific styles for active dots */
+.react-multi-carousel-dot.react-multi-carousel-dot--active button {
+  width: 20px;
+  border-radius: 6px;
+  background-color: #2624ce !important; /* Ensure active dot color changes */
+}
+
+/* General dot styling */
+
+.banner-wrapper {
+  margin-right: 5px;
+}
+.react-multi-carousel-dot button {
+  margin-bottom: 10px;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 1;
+  padding: 5px;
+  box-shadow: none;
+  transition: all 0.5s;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(3, 0, 161) !important;
+  margin-right: 6px;
+  outline: 0;
+  cursor: pointer;
+  background-color: transparent !important; /* Change inactive dot color */
+}

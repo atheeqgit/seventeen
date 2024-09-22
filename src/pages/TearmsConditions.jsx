@@ -9,9 +9,9 @@ const TearmsConditons = () => {
 
   return (
     <div className="full-body px-4 py-6 ">
-      <NavigateComp title="Tearms & conditions" />
+      <NavigateComp title="Terms & conditions" />
       <h1 className="text-4xl font-bold capitalize text-center w-full ">
-        terms & Conditions
+        Terms & conditions
       </h1>
 
       <div className="tearms-conditions w-full min-h-[70vh] flex flex-col justify-center items-center mt-10 pb-10">

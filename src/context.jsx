@@ -43,6 +43,7 @@ export function GlobalProvider({ children }) {
 
           updateLocation(position.coords.latitude, position.coords.longitude);
           console.log("Fetched location");
+          console.log(position.coords.latitude, position.coords.longitude);
         },
 
         (err) => {
@@ -169,7 +170,7 @@ export function GlobalProvider({ children }) {
       try {
         const response = await fetchFunc(
           "get",
-          `/gc/getServiceDetails?model=Ntorq&serviceName=${serviceDetailsName}`,
+          `/gc/getServiceDetails?model=${login.model_name}&serviceName=${serviceDetailsName}`,
           {}
         );
         if (response?.status === 200) {
@@ -375,17 +376,18 @@ export function GlobalProvider({ children }) {
     try {
       const response = await fetchFunc("post", `/gc/addVehicleToUser`, body);
       if (response.status === 200) {
-        // notify("your Model has added", true);
         setLogin({
           ...login,
-          model_Name: body.model,
+          model_name: body.model,
           models: [...login.models, body.model],
         });
         setLocalStorage({
           ...login,
-          model_Name: body.model,
+          model_name: body.model,
           models: [...login.models, body.model],
         });
+
+        return true;
       }
     } catch (err) {
       console.log(err);
@@ -407,6 +409,9 @@ export function GlobalProvider({ children }) {
             ...login,
             userLatLng: lat + "|" + long,
           });
+
+          console.log("location on BE updated");
+          console.log(lat, long);
 
           return true;
         }

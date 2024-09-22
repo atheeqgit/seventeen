@@ -14,7 +14,7 @@ const setLocalStorage = (data) => {
 };
 
 const Login = () => {
-  const { setLogin, login, fetchFunc } = useGlobalContext();
+  const { setLogin, login, fetchFunc, notify } = useGlobalContext();
   const [isLogin, setIslogin] = useState(true);
 
   const handleLogin = async (number) => {
@@ -30,7 +30,9 @@ const Login = () => {
           mobile: number,
         });
 
-        if (response.status === 200) {
+        if (response.data.message == "No such account exists") {
+          notify("No such account exists", false);
+        } else {
           setLogin({
             ...response.data,
             model_name: response.data.models[0],
@@ -71,10 +73,6 @@ const Login = () => {
       toast.error("Please provide a model name");
       return null;
     }
-    // if (!body.userLatLng) {
-    //   toast.error("Please provide your location using Map");
-    //   return null;
-    // }
 
     try {
       const response = await fetchFunc("post", "/ac/auth/register", body);
@@ -83,11 +81,17 @@ const Login = () => {
         if (response.data.message == "Mobile number already exists") {
           toast.error("Mobile number already exists");
         } else {
-          setLogin({ ...response.data, ...body, models: [body.model_name] });
+          setLogin({
+            ...response.data,
+            ...body,
+            models: [body.model_name],
+            userLatLng: null,
+          });
           setLocalStorage({
             ...response.data,
             ...body,
             models: [body.model_name],
+            userLatLng: null,
           });
         }
       }
@@ -100,7 +104,7 @@ const Login = () => {
     <div className="w-full min-h-screen flex justify-center items-center  relative flex-col gap-5 p-10 bg-white bg-gradient-to-br from-white to-[rgba(10,72,255,0.23)]">
       <div className="w-full md:w-[60%] lg:w-[50%] bg-transparent rounded-2xl ">
         <div className="w-2/5 m-auto">
-          <img src="/logo.png" className="w-full" alt="" />
+          <img src="/logo.png" className="w-full mb-10" alt="" />
         </div>
 
         {isLogin ? (
@@ -165,7 +169,6 @@ const LoginForm = ({ handleLogin }) => {
 };
 
 const SignUpForm = ({ handleSignup }) => {
-  const [location, setLocation] = useState({ latitude: null, longitude: null });
   const [openMap, setOpenMap] = useState(false);
   const [brandName, SetBrandName] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -265,47 +268,6 @@ const SignUpForm = ({ handleSignup }) => {
             </div>
           </div>
         )}
-        {/* {body.userLatLng && (
-          <>
-            <div className="form-control w-full flex border-b-2 p-3 border-[#191dff] rounded-lg bg-white">
-              <div className="p-2 flex justify-center items-center w-1/5">
-                <p className="font-semibold capitalize text-xl md:text-2xl text-[#0d0d0f]">
-                  your location
-                </p>
-              </div>
-              <input
-                className="p-2 px-4 font-inherit w-4/5 border-none bg-transparent text-2xl outline-none"
-                type="text"
-                disabled
-                placeholder={`Model name`}
-                value={location.latitude + " | " + location.longitude}
-              />
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  setOpenMap(true);
-                }}
-                className="p-2  cursor-pointer font-inherit border-none bg-[#ff1635] text-white rounded-md text-2xl transition duration-300 hover:bg-[#ff436c] w-fit  capitalize block m-auto"
-              >
-                Re-enter location
-              </button>
-            </div>
-          </>
-        )} */}
-
-        {/* {!openMap && !body.userLatLng && body.model_name && (
-          <div className="flex flex-row justify-evenly gap-3 bg-white">
-            <div
-              className="font-medium flex justify-center capitalize text-2xl h-fit text-[#ffffff] px-6 py-3 md:px-8 md:py-4 rounded-lg bg-[#2d3fdd] cursor-pointer w-full"
-              onClick={() => {
-                setOpenMap(!openMap);
-              }}
-            >
-              Add Location
-            </div>
-          </div>
-        )} */}
-
         <button
           onClick={(e) => {
             e.preventDefault();

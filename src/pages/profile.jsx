@@ -39,7 +39,7 @@ const profileData = [
     link: "help&support",
   },
   {
-    title: "Tearms & condtions",
+    title: "Terms & conditions",
     icon: "icon-settings-about-app.png",
     link: "TearmsConditons",
   },
@@ -70,16 +70,21 @@ const Profile = () => {
 
       <NavigateComp title="profile" />
       <div className="container mx-auto p-3 flex flex-col gap-3">
-        <div className="p-6  flex flex-col  bg-[#2459E0] rounded-lg text-white mb-4">
-          <div className="flex flex-row w-full justify-between items-center gap-10">
-            <div className="flex flex-col w-full justify-between items-left capitalize">
+        <div className="p-6 py-10 flex flex-col  bg-[#2459E0] rounded-2xl text-white mb-4">
+          <div className="flex flex-row w-full justify-between items-center gap-6 gap-10">
+            <div className="w-40">
+              <img src="/profile-default.png " className="w-100" alt="" />
+            </div>
+            <div className="flex flex-col gap-3 w-full items-left capitalize">
               {login ? (
                 <>
                   {" "}
-                  <h3 className="font-medium mb-8 text-3xl md:text-3xl">
+                  <h3 className="font-medium text-3xl md:text-3xl">
                     {login.name}
                   </h3>
-                  <p className="font-medium">mobile: {login.mobile}</p>
+                  <p className="font-medium text-xl md:text-2xl">
+                    {login.mobile}
+                  </p>
                 </>
               ) : (
                 <></>

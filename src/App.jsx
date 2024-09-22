@@ -56,7 +56,7 @@ function App() {
   // }, [navigate]);
 
   return (
-    <div className="app font-poppins">
+    <div className="app font-poppins  ">
       <ToastContainer autoClose={1300} closeOnClick hideProgressBar={true} />
 
       {getLocalStorage() == null ? (
