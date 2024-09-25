@@ -12,8 +12,8 @@ const CartNav = ({ fullbody }) => {
 
   return (
     <div
-      className={`  bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[42vw] md:left-[55%] z-[108] px-6 py-4 lg:py-5 lg:px-5  bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl ${
-        fullbody ? " w-[100vw] left-[0%] bottom-0" : "bottom-28"
+      className={`  bg-opacity-20 backdrop-blur-lg fixed w-[100vw] left-[0%] md:bottom-28 lg:bottom-16 md:w-[42vw] md:left-[55%] z-[108] px-6 py-2 lg:py-5 lg:px-5  bg-[#76adff] border-b-2 border-solid md:rounded-full capitalize cursor-pointer flex flex-row justify-between items-center text-xl lg:text-2xl ${
+        fullbody ? " w-[100vw] left-[0%] bottom-0" : "bottom-[58px]"
       }`}
       onClick={() => {
         navigate("/cart");

@@ -10,6 +10,7 @@ import Loading from "../components/Loading";
 import CartNav from "../components/CartNav";
 import MostBooked from "../components/MostBooked/MostBooked";
 import TodoG from "../components/TodoG";
+import FAQcomp from "../components/FAQcomp";
 
 const Home = () => {
   const {
@@ -40,7 +41,6 @@ const Home = () => {
       ) : (
         <div className="container mx-auto ">
           {cartData.length > 0 && <CartNav />}
-
           <Banner />
           <Featured title="scheduled Services" data={sheduledServices} />
           <Featured title="mechanical Services" data={mechanicalRepairs} />
@@ -49,10 +49,10 @@ const Home = () => {
               I Don't know what the issue is with my bike?
             </p>
           </div>
-
-          <MostBooked title="Most Booked" data={[]} />
           <Featured title="value added services" data={valueAddedServices} />
+          <MostBooked title="Most Booked" data={[]} />
           <TodoG />
+          <FAQcomp />
         </div>
       )}
     </motion.div>

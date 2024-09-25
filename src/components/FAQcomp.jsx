@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const FAQComponent = () => {
+const FAQcomp = () => {
   const faqs = [
     {
       question: "What is Todo?",
@@ -88,7 +88,7 @@ const FAQComponent = () => {
         <div
           key={index}
           onClick={() => toggleFAQ(index)}
-          className="border-b-2 mb-3 shadow border-solid bg-[#e6e6e6] border-[#ccc] p-4 rounded-2xl"
+          className=" mb-3 shadow-2xl border-solid bg-[#f5f5f5] border-[#ccc] p-4 px-6 rounded-2xl border transition-all hover:border-[#838383]"
         >
           <h3 className="text-2xl font-semibold cursor-pointer flex flex-row justify-between">
             {faq.question}
@@ -97,7 +97,9 @@ const FAQComponent = () => {
             </span>
           </h3>
           {openFAQ === index && (
-            <p className="mt-4 text-xl text-gray-600">{faq.answer}</p>
+            <p className="mt-4 text-xl md:text-2xl text-gray-600">
+              {faq.answer}
+            </p>
           )}
         </div>
       ))}
@@ -105,4 +107,4 @@ const FAQComponent = () => {
   );
 };
 
-export default FAQComponent;
+export default FAQcomp;

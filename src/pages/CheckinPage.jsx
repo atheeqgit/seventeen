@@ -240,7 +240,7 @@ const CheckinPage = () => {
               return (
                 <li
                   key={idx}
-                  className={`col-span-1 w-fit block mx-auto  font-semibold text-xl  p-1 md:p-4 pt-4 text-center border  shadow rounded-full hover:bg-slate-300 active:scale-95 cursor-pointer  
+                  className={`col-span-1 w-fit block mx-auto  font-semibold text-xl  p-1 md:p-4 pt-4 text-center border  shadow rounded-full hover:border-[#0144c0]   active:scale-95 cursor-pointer  
                      ${
                        preferred.date == date.date
                          ? " border-[#0144c0] "
@@ -258,8 +258,8 @@ const CheckinPage = () => {
                   <h2
                     className={`p-4 rounded-full ${
                       preferred.date == date.date
-                        ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"
-                        : "bg-slate-200 hover:bg-slate-300"
+                        ? " bg-[#0144c0] text-white "
+                        : "bg-slate-200"
                     }`}
                   >
                     {date.shortDate}
@@ -284,12 +284,12 @@ const CheckinPage = () => {
             </p>
           </div>
           {/* {!preferred.time && ( */}
-          <ul className="grid grid-cols-4 flex-wrap gap-2">
+          <ul className="grid grid-cols-8 flex-wrap gap-2">
             {timeData?.map((time, idx) => {
               return (
                 <li
                   key={idx}
-                  className={`col-span-1 md:col-span-1 font-semibold text-2xl p-1 text-center border  shadow rounded-2xl py-3 hover:bg-slate-300 active:scale-95 cursor-pointer  
+                  className={`col-span-2 md:col-span-1 font-semibold text-2xl p-1 text-center border  shadow rounded-2xl py-3 hover:bg-slate-300 active:scale-95 cursor-pointer  
                       ${
                         preferred.time == time[24]
                           ? " bg-[#0144c0] text-white hover:bg-[#3c75df]"

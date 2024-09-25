@@ -46,12 +46,12 @@ const MostBooked = (props) => {
       </div>
 
       {/* Scrollable div for the cards */}
-      <div className="todoG-scroll-container flex gap-2 md:gap-6 lg:gap-8 overflow-x-auto w-full px-4">
+      <div className="todoG-scroll-container flex gap-2 md:gap-6 lg:gap-8 overflow-x-auto w-full pr-4">
         {MostBookedData.length > 0 &&
           MostBookedData?.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-2/3 md:w-1/3 lg:w-1/5 h-full"
+              className="flex-shrink-0 w-[55%] md:w-1/3 lg:w-1/5 h-full"
               onClick={() => {
                 navigate(`/details/mr/${item.serviceName}`);
               }}

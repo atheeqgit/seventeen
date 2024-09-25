@@ -30,8 +30,8 @@ const Banner = () => {
     <Carousel
       responsive={responsive}
       autoPlay={true}
-      autoPlaySpeed={5000}
-      infinite={true}
+      autoPlaySpeed={3000}
+      infinite={false}
       removeArrowOnDeviceType={["tablet", "mobile"]}
       showDots={true}
     >
